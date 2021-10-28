@@ -60,7 +60,7 @@ export default {
     items: [
       { text: 'Home', icon: 'mdi-star', color: 'purple darken-2', to: '/' },
       { text: 'Login', icon: 'mdi-account-multiple', color: 'orange darken-2', to: '/login' },
-      { text: '???????', icon: 'mdi-folder', color: 'cyan darken-4', to: '#' },
+      { text: 'Militares', icon: 'mdi-folder', color: 'cyan darken-4', to: '/mil' },
       { text: '???????', icon: 'mdi-check-circle', color: 'red darken-2', to: '#' },
       { text: '???????', icon: 'mdi-history', color: 'blue darken-2', to: '#' },
       { text: '???????', icon: 'mdi-upload', color: 'yellow darken-2', to: '#' },

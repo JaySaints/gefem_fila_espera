@@ -22,3 +22,9 @@ export default {
   })
 }
 </script>
+
+<style>
+.v-main__wrap {
+  background-color: rgb(215, 228, 238);
+}
+</style>

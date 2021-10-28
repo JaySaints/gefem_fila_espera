@@ -1,7 +1,8 @@
 <template>
-    <v-layout justify-center>
-    <v-flex xs8>
+  <v-layout justify-center class="login-body" absolut>
+    <v-flex xs4>
       <v-card
+        class="login-card"
         max-width="auto"
         color="grey lighten-1"
         danse
@@ -15,6 +16,7 @@
           <v-icon>mdi-account</v-icon>
           <v-toolbar-title class="ml-2">{{ title }}</v-toolbar-title>
         </v-toolbar>
+
         <v-card-text>
           <form name="tab-tracker-form" autocomplete="off">
             <v-text-field
@@ -22,6 +24,7 @@
             label="Nome"
             type="text"
             required
+            outlined
             ></v-text-field>
 
             <v-text-field
@@ -31,16 +34,14 @@
               @keyup.enter="access()"
               required
               autocomplete="new-password"
+              outlined
             ></v-text-field>
 
             <v-btn
               color="blue darken-4"
               @click="access()"
-              large
               dark
-              fab
-            >
-              <v-icon>mdi-arrow-up-circle-outline</v-icon>
+            >Entrar
             </v-btn>
           </form>
         </v-card-text>
@@ -48,7 +49,6 @@
       <div class="danger-alert" v-html="error"></div>
     </v-flex>
   </v-layout>
-
 </template>
 
 <script>
@@ -73,3 +73,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.login-card {
+  margin-top: 100px;
+}
+
+</style>
