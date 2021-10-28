@@ -15,9 +15,15 @@
             color="primary"
             dark
         >
-            <v-app-bar-nav-icon  @click="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-app-bar-nav-icon  @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-            <v-app-bar-title>Fila de Espera</v-app-bar-title>
+          <v-app-bar-title>Fila de Espera</v-app-bar-title>
+
+          <v-spacer></v-spacer>
+
+          <!-- Insert options on Header Bar -->
+          <slot class="slot_bar"/>
+
         </v-app-bar>
     </div>
 </template>
@@ -34,6 +40,13 @@ export default {
   },
   components: {
     NavigatDrawer
-  }
+  },
+  props: [
+    'option_btn'
+  ]
 }
 </script>
+
+<style>
+
+</style>

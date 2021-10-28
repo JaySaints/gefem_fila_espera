@@ -1,79 +1,74 @@
 <template>
   <v-container>
-    <header-page />
-    <v-row aling="center">
-      <v-col cols="4"></v-col>
-
-      <v-col cols="4">
-        <v-text-field
-        v-model="name"
+    <header-page>
+      <div class="div-input">
+      <v-text-field
+        id="inp-666"
+        v-model="find_name"
         label="Procurar Militar"
         type="text"
-        required
+        hide-details="auto"
+        style="width: 300px;"
+        @keyup.enter="search(find_name)"
+        clearable
         outlined
-        ></v-text-field>
-      </v-col>
+      ></v-text-field>
+      </div>
+      <div>
+      <v-btn fab icon dark @click="search(find_name)">
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+      </div>
+    </header-page>
 
-      <v-col cols="2">
-        <v-btn
-          color="blue darken-4"
-          dark
-          fab
-        ><v-icon>mdi-magnify</v-icon></v-btn>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col>
-      <panel>
+    <div class="list_users">
         <v-simple-table fixed-header>
-          <template v-slot:default>
-            <thead>
-              <tr>
-                <th class="text-center">
-                  Editar
-                </th>
-                <th class="text-center">
-                  Nome
-                </th>
-                <th class="text-center">
-                  Telefone
-                </th>
-                <th class="text-center">
-                  Sessão
-                </th>
-                <th class="text-center">
-                  Graduação
-                </th>
-              </tr>
-            </thead>
-            <tbody align="center">
-              <tr
-                v-for="user in users"
-                :key="user.id"
-              >
-                <td>
-                  <v-btn
-                    color="blue darken-1"
-                    class="mr-4"
-                    dark
-                    icon
-                    large
-                  ><v-icon>mdi-account-edit</v-icon>
-                  </v-btn>
-                </td>
-                <td>{{ user.graduation }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.phone }}</td>
-                <td>{{ user.section }}</td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
-      </panel>
-      </v-col>
-    </v-row>
-    <div class="fixedContainer">
+        <template v-slot:default>
+          <thead>
+            <tr>
+              <th class="text-center">
+                Editar
+              </th>
+              <th class="text-center">
+                Nome
+              </th>
+              <th class="text-center">
+                Telefone
+              </th>
+              <th class="text-center">
+                Sessão
+              </th>
+              <th class="text-center">
+                Graduação
+              </th>
+            </tr>
+          </thead>
+          <tbody align="center">
+            <tr
+              v-for="user in users"
+              :key="user.id"
+            >
+              <td>
+                <v-btn
+                  color="blue darken-1"
+                  class="mr-4"
+                  dark
+                  icon
+                  large
+                ><v-icon>mdi-account-edit</v-icon>
+                </v-btn>
+              </td>
+              <td>{{ user.graduation }}</td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.phone }}</td>
+              <td>{{ user.section }}</td>
+            </tr>
+          </tbody>
+        </template>
+      </v-simple-table>
+    </div>
+
+    <div class="button_add_user">
     <v-fab-transition>
       <v-btn
         color="blue darken-2"
@@ -95,6 +90,7 @@ export default {
   name: 'ListUsers',
   data () {
     return {
+      find_name: '',
       users: [
         { graduation: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
         { graduation: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
@@ -112,22 +108,32 @@ export default {
   },
   components: {
     HeaderPage
+  },
+  methods: {
+    search (name) {
+      alert('Hello ' + name)
+    }
   }
 }
 </script>
 
 <style>
-/* .v-btn--example {
-    bottom: 0;
-    margin-top: 30%;
-
-} */
-
-.fixedContainer {
+.button_add_user {
     position: fixed;
     padding: 2em;
     left: 95%;
     top: 90%;
     transform: translate(-50%, -50%);
 }
+.div_input {
+  margin-top: 15%;
+}
+
+/* #inp-666 {
+  color:red;
+  width: 300px;
+  height: 100px;
+  margin-top: 25px;
+} */
+
 </style>
