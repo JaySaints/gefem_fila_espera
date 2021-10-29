@@ -3,7 +3,6 @@
     <header-page>
       <div class="div-input">
       <v-text-field
-        id="inp-666"
         v-model="find_name"
         label="Procurar Militar"
         type="text"
@@ -14,6 +13,7 @@
         outlined
       ></v-text-field>
       </div>
+
       <div>
       <v-btn fab icon dark @click="search(find_name)">
         <v-icon>mdi-magnify</v-icon>
@@ -22,24 +22,23 @@
     </header-page>
 
     <div class="list_users">
-        <v-simple-table fixed-header>
-        <template v-slot:default>
+        <v-simple-table>
           <thead>
             <tr>
               <th class="text-center">
-                Editar
+                POSTO
               </th>
               <th class="text-center">
-                Nome
+                NOME
               </th>
               <th class="text-center">
-                Telefone
+                TELEFONE
               </th>
               <th class="text-center">
-                Sessão
+                SESSÃO
               </th>
-              <th class="text-center">
-                Graduação
+              <th class="text-center" id="t1">
+                EDITAR
               </th>
             </tr>
           </thead>
@@ -48,43 +47,34 @@
               v-for="user in users"
               :key="user.id"
             >
-              <td>
-                <v-btn
-                  color="blue darken-1"
-                  class="mr-4"
-                  dark
-                  icon
-                  large
-                ><v-icon>mdi-account-edit</v-icon>
-                </v-btn>
-              </td>
               <td>{{ user.graduation }}</td>
               <td>{{ user.name }}</td>
               <td>{{ user.phone }}</td>
               <td>{{ user.section }}</td>
+              <td>
+                <v-btn
+                  color="grey darken-1"
+                  class="mr-4"
+                  dark
+                  icon
+                  large
+                ><v-icon>mdi-pencil</v-icon>
+                </v-btn>
+              </td>
             </tr>
           </tbody>
-        </template>
       </v-simple-table>
     </div>
 
     <div class="button_add_user">
-    <v-fab-transition>
-      <v-btn
-        color="blue darken-2"
-        fab
-        large
-        dark
-      >
-        <v-icon>mdi-account-plus</v-icon>
-      </v-btn>
-    </v-fab-transition>
+      <create-user />
     </div>
   </v-container>
 </template>
 
 <script>
 import HeaderPage from '../global/HeaderPage.vue'
+import CreateUser from '../user/CreateUser.vue'
 
 export default {
   name: 'ListUsers',
@@ -102,12 +92,19 @@ export default {
         { graduation: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
         { graduation: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
         { graduation: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
+        { graduation: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
+        { graduation: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
+        { graduation: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
+        { graduation: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
+        { graduation: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
+        { graduation: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
         { graduation: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' }
       ]
     }
   },
   components: {
-    HeaderPage
+    HeaderPage,
+    CreateUser
   },
   methods: {
     search (name) {
@@ -125,15 +122,13 @@ export default {
     top: 90%;
     transform: translate(-50%, -50%);
 }
-.div_input {
-  margin-top: 15%;
+
+#t1 {
+  width: 10%;
 }
 
-/* #inp-666 {
-  color:red;
-  width: 300px;
-  height: 100px;
-  margin-top: 25px;
-} */
+th {
+  background-color: #42A5F5;
+}
 
 </style>

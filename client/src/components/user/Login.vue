@@ -4,7 +4,7 @@
       <v-card
         class="login-card"
         max-width="auto"
-        color="grey lighten-1"
+        ligth
         danse
       >
         <!-- HEADER -->
