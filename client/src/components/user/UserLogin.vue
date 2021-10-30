@@ -1,54 +1,74 @@
 <template>
-  <v-layout justify-center class="login-body" absolut>
-    <v-flex xs4>
-      <v-card
-        class="login-card"
-        max-width="auto"
-        ligth
-        danse
-      >
-        <!-- HEADER -->
-        <v-toolbar
-          flat
-          dark
-          color="primary"
-        >
-          <v-icon>mdi-account</v-icon>
-          <v-toolbar-title class="ml-2">{{ title }}</v-toolbar-title>
-        </v-toolbar>
+    <v-layout align-center justify-center>
+        <v-flex xs12 sm8 md4>
+          <v-card class="elevation-12 login-card">
+              <v-toolbar dark color="primary">
+                <v-toolbar-title>Login</v-toolbar-title>
+              </v-toolbar>
+              <v-card-text>
+                <v-form>
+                    <v-text-field
+                      v-model="email"
+                      prepend-icon="mdi-account"
+                      name="email"
+                      label="Email"
+                      type="text"
+                    ></v-text-field>
+                    <v-text-field
+                      id="password"
+                      v-model="password"
+                      prepend-icon="mdi-lock"
+                      name="password"
+                      label="Senha"
+                      type="password"
+                    ></v-text-field>
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" to="/">Entrar</v-btn>
+              </v-card-actions>
+          </v-card>
+          <div class="text-center">
+            <v-dialog
+              v-model="dialog"
+              width="500"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <a
+                  v-bind="attrs"
+                  v-on="on"
+                >Esqueci minha senha</a>
+              </template>
 
-        <v-card-text>
-          <form name="tab-tracker-form" autocomplete="off">
-            <v-text-field
-            v-model="name"
-            label="Nome"
-            type="text"
-            required
-            outlined
-            ></v-text-field>
+              <v-card>
+                <v-card-title class="text-h5 grey lighten-2">
+                  Aviso!
+                </v-card-title>
 
-            <v-text-field
-              v-model="password"
-              label="Senha"
-              type="password"
-              @keyup.enter="access()"
-              required
-              autocomplete="new-password"
-              outlined
-            ></v-text-field>
+                <v-card-text class="text-center">
+                  <strong>
+                    Procure o Ordenança para resetar sua senha
+                  </strong>
+                </v-card-text>
 
-            <v-btn
-              color="blue darken-4"
-              @click="access()"
-              dark
-            >Entrar
-            </v-btn>
-          </form>
-        </v-card-text>
-      </v-card>
-      <div class="danger-alert" v-html="error"></div>
-    </v-flex>
-  </v-layout>
+                <v-divider></v-divider>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    color="primary"
+                    text
+                    @click="dialog = false"
+                  >
+                    OK
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </div>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>
@@ -57,11 +77,10 @@ export default {
   name: 'Login',
   data () {
     return {
-      title: 'Login',
-      name: '',
-      password: '',
       email: '',
-      error: null
+      password: '',
+      error: null,
+      dialog: false
     }
   },
   methods: {

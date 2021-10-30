@@ -65,11 +65,4 @@ export default {
     transform: translate(-50%, -50%);
 }
 
-#t1 {
-  width: 10%;
-}
-
-th {
-  background-color: #42A5F5;
-}
 </style>

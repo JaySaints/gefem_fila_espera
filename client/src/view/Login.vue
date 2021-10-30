@@ -1,7 +1,7 @@
 <template>
-  <container>
+  <v-container fluid fill-height>
       <user-login />
-  </container>
+  </v-container>
 </template>
 
 <script>
