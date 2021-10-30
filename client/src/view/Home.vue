@@ -1,6 +1,6 @@
 <template>
   <v-container>
-      <header-page />
+      <header-bar />
     <v-row class="text-center">
       <v-col cols="12">
         <v-img
@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import HeaderPage from './global/HeaderPage.vue'
+import HeaderBar from '../components/global/HeaderBar.vue'
 
 export default {
   name: 'HelloWorld',
@@ -150,7 +150,7 @@ export default {
     ]
   }),
   components: {
-    HeaderPage
+    HeaderBar
   }
 }
 </script>

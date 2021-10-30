@@ -29,7 +29,8 @@
                 sm="6"
               >
                 <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
+                  v-model="posto"
+                  :items="postos"
                   label="Posto *"
                   required
                 ></v-select>
@@ -39,9 +40,8 @@
                 sm="6"
               >
                 <v-text-field
+                  v-model="nome"
                   label="Nome *"
-                  hint="example of persistent helper text"
-                  persistent-hint
                   required
                 ></v-text-field>
               </v-col>
@@ -50,7 +50,8 @@
                 sm="6"
               >
                 <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
+                  v-model="sessao"
+                  :items="sessoes"
                   label="Sessão *"
                   required
                 ></v-select>
@@ -59,21 +60,33 @@
                 cols="12"
                 sm="6"
               >
-                <v-autocomplete
-                  :items="sports"
-                  label="Tipo *"
-                ></v-autocomplete>
+              <v-radio-group
+                v-model="tipo"
+                row
+                mandatory
+                hint="Tipo de usuário."
+                persistent-hint
+              >
+                <v-radio
+                  label="Despachante"
+                  value="1"
+                ></v-radio>
+                <v-radio
+                  label="Admin"
+                  value="2"
+                ></v-radio>
+              </v-radio-group>
               </v-col>
               <v-col cols="12">
                 <v-text-field
-                v-model="name"
+                v-model="email"
                   label="Email *"
                   required
                 ></v-text-field>
               </v-col>
             </v-row>
           </v-container>
-          <small>*indicates required field</small>
+          <small>* Campos obrigatórios</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -87,7 +100,7 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="save_user(name)"
+            @click="save_user()"
           >
             Save
           </v-btn>
@@ -103,13 +116,22 @@ export default {
     return {
       dialog: false,
       name: '',
-      sports: ['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']
+      tipo: '',
+      posto: '',
+      sessao: '',
+      email: '',
+      postos: ['Coronel', 'Ten-Coronel', 'Major', 'Capitão', 'Tenente', 'Asp', 'Sub-Tenente', 'Sargento', 'Cabo', 'Soldado'],
+      sessoes: ['BC/AP', '1º BO', '2º BO', '3º BO', '4º BO', 'NPOR', 'Tesouraria', 'Salc', 'Almox', 'Aprov', 'ordenança', 'N/A']
     }
   },
   methods: {
-    save_user (name) {
-      alert('Hello ' + name)
+    save_user () {
+      alert(`Posto: ${this.posto} - Nome: ${this.nome} - Sessão: ${this.sessao} - Tipo: ${this.tipo} - Email: ${this.email}`)
       this.dialog = false
+      this.posto = ''
+      this.nome = ''
+      this.sessao = ''
+      this.email = ''
     }
   }
 }
