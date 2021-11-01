@@ -58,13 +58,13 @@ export default {
     title: 'Menu',
     subTitle: 'Bem-Vindo',
     items: [
-      { text: 'Home', icon: 'mdi-star', color: 'purple darken-2', to: '/' },
-      { text: 'Login', icon: 'mdi-account-multiple', color: 'orange darken-2', to: '/login' },
-      { text: 'Militares', icon: 'mdi-folder', color: 'cyan darken-4', to: '/mil' },
-      { text: '???????', icon: 'mdi-check-circle', color: 'red darken-2', to: '#' },
+      { text: 'Fila', icon: 'mdi-home', color: 'green darken-4', to: '/' },
+      { text: 'Perfil', icon: 'mdi-account', color: 'amber darken-2', to: '/profile' },
+      { text: 'Militares', icon: 'mdi-account-multiple', color: 'cyan darken-4', to: '/mil' },
+      { text: 'Login', icon: 'mdi-login', color: 'green darken-2', to: '/login' },
       { text: '???????', icon: 'mdi-history', color: 'blue darken-2', to: '#' },
       { text: '???????', icon: 'mdi-upload', color: 'yellow darken-2', to: '#' },
-      { text: 'Logout', icon: 'mdi-logout', color: 'green darken-2', to: '#' }
+      { text: 'Logout', icon: 'mdi-logout', color: 'red darken-2', to: '#' }
     ]
   })
 }

@@ -2,21 +2,21 @@
   <v-container>
     <div class="list_users">
         <v-simple-table>
-          <thead>
+          <thead class="elevation-1 primary">
             <tr>
-              <th class="text-center">
+              <th class="text-center" id="t1">
                 POSTO
               </th>
-              <th class="text-center">
+              <th class="text-center" id="t1">
                 NOME
               </th>
-              <th class="text-center">
+              <th class="text-center" id="t1">
                 TELEFONE
               </th>
-              <th class="text-center">
+              <th class="text-center" id="t1">
                 SESSÃO
               </th>
-              <th class="text-center" id="t1">
+              <th class="text-center" id="t2">
                 EDITAR
               </th>
             </tr>
@@ -80,11 +80,14 @@ export default {
 
 <style>
 #t1 {
-  width: 10%;
+  color: white;
+  font-size: 10pt;
 }
 
-th {
-  background-color: #42A5F5;
+#t2 {
+  width: 10%;
+  color: white;
+  font-size: 10pt;
 }
 
 </style>

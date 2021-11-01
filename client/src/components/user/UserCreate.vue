@@ -29,8 +29,8 @@
                 sm="6"
               >
                 <v-select
-                  v-model="posto"
-                  :items="postos"
+                  v-model="post"
+                  :items="posts"
                   label="Posto *"
                   required
                 ></v-select>
@@ -40,7 +40,7 @@
                 sm="6"
               >
                 <v-text-field
-                  v-model="nome"
+                  v-model="name"
                   label="Nome *"
                   required
                 ></v-text-field>
@@ -50,8 +50,8 @@
                 sm="6"
               >
                 <v-select
-                  v-model="sessao"
-                  :items="sessoes"
+                  v-model="session"
+                  :items="sessions"
                   label="Sessão *"
                   required
                 ></v-select>
@@ -60,29 +60,36 @@
                 cols="12"
                 sm="6"
               >
-              <v-radio-group
-                v-model="tipo"
-                row
-                mandatory
-                hint="Tipo de usuário."
-                persistent-hint
-              >
-                <v-radio
-                  label="Despachante"
-                  value="1"
-                ></v-radio>
-                <v-radio
-                  label="Admin"
-                  value="2"
-                ></v-radio>
-              </v-radio-group>
+                <v-text-field
+                v-model="phone"
+                  label="Telefone *"
+                  required
+                ></v-text-field>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="12" sm="6">
                 <v-text-field
                 v-model="email"
                   label="Email *"
                   required
                 ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <v-radio-group
+                  v-model="type"
+                  row
+                  mandatory
+                  hint="Tipo de usuário."
+                  persistent-hint
+                >
+                  <v-radio
+                    label="Despachante"
+                    value="1"
+                  ></v-radio>
+                  <v-radio
+                    label="Admin"
+                    value="2"
+                  ></v-radio>
+                </v-radio-group>
               </v-col>
             </v-row>
           </v-container>
@@ -116,21 +123,22 @@ export default {
     return {
       dialog: false,
       name: '',
-      tipo: '',
-      posto: '',
-      sessao: '',
+      type: '',
+      post: '',
+      session: '',
+      phone: '',
       email: '',
-      postos: ['Coronel', 'Ten-Coronel', 'Major', 'Capitão', 'Tenente', 'Asp', 'Sub-Tenente', 'Sargento', 'Cabo', 'Soldado'],
-      sessoes: ['BC/AP', '1º BO', '2º BO', '3º BO', '4º BO', 'NPOR', 'Tesouraria', 'Salc', 'Almox', 'Aprov', 'ordenança', 'N/A']
+      posts: ['Coronel', 'Ten-Coronel', 'Major', 'Capitão', 'Tenente', 'Asp', 'Sub-Tenente', 'Sargento', 'Cabo', 'Soldado'],
+      sessions: ['BC/AP', '1º BO', '2º BO', '3º BO', '4º BO', 'NPOR', 'Tesouraria', 'Salc', 'Almox', 'Aprov', 'ordenança', 'N/A']
     }
   },
   methods: {
     save_user () {
       alert(`Posto: ${this.posto} - Nome: ${this.nome} - Sessão: ${this.sessao} - Tipo: ${this.tipo} - Email: ${this.email}`)
       this.dialog = false
-      this.posto = ''
-      this.nome = ''
-      this.sessao = ''
+      this.post = ''
+      this.name = ''
+      this.session = ''
       this.email = ''
     }
   }

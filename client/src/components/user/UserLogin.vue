@@ -3,6 +3,7 @@
         <v-flex xs12 sm8 md4>
           <v-card class="elevation-12 login-card">
               <v-toolbar dark color="primary">
+                <v-icon>mdi-login</v-icon>
                 <v-toolbar-title>Login</v-toolbar-title>
               </v-toolbar>
               <v-card-text>

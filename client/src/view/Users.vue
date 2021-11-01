@@ -3,19 +3,18 @@
       <header-bar>
       <div class="div-input">
       <v-text-field
-        v-model="find_name"
+        v-model="name"
         label="Procurar Militar"
         type="text"
         hide-details="auto"
         style="width: 300px;"
-        @keyup.enter="search(find_name)"
         clearable
         outlined
       ></v-text-field>
       </div>
 
       <div>
-      <v-btn fab icon dark @click="search(find_name)">
+      <v-btn fab icon dark @click="search(name)">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
       </div>
@@ -40,7 +39,7 @@ export default {
   name: 'Users',
   data () {
     return {
-
+      name: ''
     }
   },
   components: {
