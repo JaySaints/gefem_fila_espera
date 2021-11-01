@@ -19,6 +19,7 @@
       </template>
       <v-card>
         <v-card-title>
+          <v-icon style="margin-right: 10px;">mdi-account</v-icon>
           <span class="text-h5">Cadastrar Militar</span>
         </v-card-title>
         <v-card-text>
@@ -108,18 +109,16 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="blue darken-1"
-            text
-            @click="dialog = false"
-          >
-            Close
-          </v-btn>
-          <v-btn
-            color="blue darken-1"
-            text
+            color="primary darken-1"
             @click="save_user()"
           >
-            Save
+            Salvar
+          </v-btn>
+          <v-btn
+            color="warning darken-1"
+            @click="dialog = false"
+          >
+            Cancelar
           </v-btn>
         </v-card-actions>
       </v-card>

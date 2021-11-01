@@ -22,7 +22,12 @@ const routes = [
   {
     path: '/mil',
     name: 'Users',
-    component: () => import(/* webpackChunkName: "list-users" */ '../view/Users.vue')
+    component: () => import(/* webpackChunkName: "list-users" */ '../view/ListUsers.vue')
+  },
+  {
+    path: '/mil/:uid',
+    name: 'Edit-Users',
+    component: () => import(/* webpackChunkName: "list-users" */ '../view/EditUsers.vue')
   }
 ]
 

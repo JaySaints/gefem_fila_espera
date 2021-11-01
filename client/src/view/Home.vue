@@ -96,7 +96,7 @@
 import HeaderBar from '../components/global/HeaderBar.vue'
 
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
   data: () => ({
     ecosystem: [
       {

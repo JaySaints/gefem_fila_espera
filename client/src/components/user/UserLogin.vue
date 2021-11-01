@@ -3,7 +3,7 @@
         <v-flex xs12 sm8 md4>
           <v-card class="elevation-12 login-card">
               <v-toolbar dark color="primary">
-                <v-icon>mdi-login</v-icon>
+                <v-icon style="margin-right: 10px;">mdi-login</v-icon>
                 <v-toolbar-title>Login</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
@@ -37,9 +37,10 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <a
+                  style="text-decoration: underline; font-size: 15pt;"
                   v-bind="attrs"
                   v-on="on"
-                >Esqueci minha senha</a>
+                >Esqueci minha senha!</a>
               </template>
 
               <v-card>

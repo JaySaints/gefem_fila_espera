@@ -4,12 +4,11 @@
             <v-container>
                 <v-card>
                     <v-card-title>
-                    <!-- <v-toolbar color="primary" dark> -->
-                        <!-- <v-icon>mdi-account</v-icon> -->
-                        <v-toolbar-title>Perfil do Militar</v-toolbar-title>
+                        <v-icon style="margin-right: 10px;">mdi-account</v-icon>
+                        <span  class="text-h5">Perfil do Militar</span>
                         <v-spacer></v-spacer>
                         <v-btn
-                            color="primary darken-2"
+                            color="primary darken-1"
                             middle
                             fab
                             @click="isEditing = !isEditing"
@@ -22,7 +21,6 @@
                             </v-icon>
                         </v-btn>
                     </v-card-title>
-                    <!-- </v-toolbar> -->
                     <v-card-text>
                         <v-container>
                         <v-row>
@@ -119,8 +117,8 @@
                     <v-divider></v-divider>
                     <v-card-actions class="justify-center">
                         <v-btn
-                            color="primary darken-2"
-                            large
+                            color="primary darken-1"
+                            middle
                             fab
                             :disabled="!isEditing"
                             @click="save"
