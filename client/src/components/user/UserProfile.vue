@@ -65,13 +65,12 @@
                             cols="12"
                             sm="2"
                         >
-                            <v-select
-                            v-model="codArea"
-                            :items="codAreas"
+                           <v-text-field
+                            v-model="ddd"
                             label="DDD *"
                             required
                             :disabled="!isEditing"
-                            ></v-select>
+                            ></v-text-field>
                         </v-col>
                         <v-col
                             cols="12"
@@ -144,13 +143,12 @@ export default {
       isEditing: false,
       name: '',
       post: '',
-      codArea: '',
+      ddd: '',
       session: '',
       phone: '',
       email: '',
       password: '',
       confPassword: '',
-      codAreas: ['41', '42', '61', '21', '44'],
       posts: ['Coronel', 'Ten-Coronel', 'Major', 'Capitão', 'Tenente', 'Asp', 'Sub-Tenente', 'Sargento', 'Cabo', 'Soldado'],
       sessions: ['BC/AP', '1º BO', '2º BO', '3º BO', '4º BO', 'NPOR', 'Tesouraria', 'Salc', 'Almox', 'Aprov', 'Ordenança', 'N/A']
     }
