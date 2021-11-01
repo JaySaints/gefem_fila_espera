@@ -3,8 +3,9 @@
         <v-flex xs12 sm8 md6>
             <v-container>
                 <v-card>
-                    <v-toolbar color="primary" dark>
-                        <v-icon>mdi-account</v-icon>
+                    <v-card-title>
+                    <!-- <v-toolbar color="primary" dark> -->
+                        <!-- <v-icon>mdi-account</v-icon> -->
                         <v-toolbar-title>Perfil do Militar</v-toolbar-title>
                         <v-spacer></v-spacer>
                         <v-btn
@@ -20,7 +21,8 @@
                                 mdi-pencil
                             </v-icon>
                         </v-btn>
-                    </v-toolbar>
+                    </v-card-title>
+                    <!-- </v-toolbar> -->
                     <v-card-text>
                         <v-container>
                         <v-row>
