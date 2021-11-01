@@ -26,7 +26,7 @@
             <v-row>
               <v-col
                 cols="12"
-                sm="6"
+                sm="4"
               >
                 <v-select
                   v-model="post"
@@ -37,7 +37,7 @@
               </v-col>
               <v-col
                 cols="12"
-                sm="6"
+                sm="8"
               >
                 <v-text-field
                   v-model="name"
@@ -47,7 +47,7 @@
               </v-col>
               <v-col
                 cols="12"
-                sm="6"
+                sm="4"
               >
                 <v-select
                   v-model="session"
@@ -56,20 +56,30 @@
                   required
                 ></v-select>
               </v-col>
+              <v-col cols="12" sm="8">
+                <v-text-field
+                v-model="email"
+                  label="Email *"
+                  required
+                ></v-text-field>
+              </v-col>
               <v-col
                 cols="12"
-                sm="6"
+                sm="2"
+              >
+                <v-text-field
+                  v-model="ddd"
+                  label="DDD *"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm=""
               >
                 <v-text-field
                 v-model="phone"
                   label="Telefone *"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6">
-                <v-text-field
-                v-model="email"
-                  label="Email *"
                   required
                 ></v-text-field>
               </v-col>
@@ -128,18 +138,21 @@ export default {
       session: '',
       phone: '',
       email: '',
+      ddd: '',
       posts: ['Coronel', 'Ten-Coronel', 'Major', 'Capitão', 'Tenente', 'Asp', 'Sub-Tenente', 'Sargento', 'Cabo', 'Soldado'],
       sessions: ['BC/AP', '1º BO', '2º BO', '3º BO', '4º BO', 'NPOR', 'Tesouraria', 'Salc', 'Almox', 'Aprov', 'ordenança', 'N/A']
     }
   },
   methods: {
     save_user () {
-      alert(`Posto: ${this.posto} - Nome: ${this.nome} - Sessão: ${this.sessao} - Tipo: ${this.tipo} - Email: ${this.email}`)
+      alert(`Posto: ${this.post} - Nome: ${this.name} - Sessão: ${this.session} - Tipo: ${this.type} - Email: ${this.email} - Telefone ${this.ddd} ${this.phone}`)
       this.dialog = false
       this.post = ''
       this.name = ''
       this.session = ''
       this.email = ''
+      this.ddd = ''
+      this.phone = ''
     }
   }
 }
