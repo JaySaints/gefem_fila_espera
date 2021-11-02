@@ -42,6 +42,7 @@
                     readonly
                 ></v-text-field>
             </v-card-text>
+            <v-divider></v-divider>
             <v-card-actions class="justify-center" v-if="isAdmin">
                 <v-btn
                     color="warning"
