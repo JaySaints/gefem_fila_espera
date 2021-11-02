@@ -9,7 +9,6 @@
         hide-details="auto"
         style="width: 300px;"
         clearable
-        outlined
       ></v-text-field>
       </div>
 
@@ -60,7 +59,7 @@ export default {
     position: fixed;
     padding: 2em;
     left: 95%;
-    top: 90%;
+    top: 85%;
     transform: translate(-50%, -50%);
 }
 

@@ -10,22 +10,54 @@
                 :key="index"
             >
                 <v-card class="ma-2" width="250">
-                    <v-toolbar color="primary">
-                        <v-btn
-                            fab
-                            small
-                            dark
-                            v-text="`#${index + 1}`"
-                            color="primary darken-1"
-                        ></v-btn>
-                        <v-spacer></v-spacer>
+                    <v-toolbar color="primary" dark>
                         <v-btn
                             icon
                             dark
+                            small
                             v-if="userLogged == user.id || isAdmin"
                             @click="tt(user.id)"
                         >
                             <v-icon>mdi-dots-vertical</v-icon>
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            fab
+                            small
+                            dark
+                            v-text="`${index + 1}°`"
+                            color="primary darken-1"
+                        ></v-btn>
+                        <!-- <v-card-title>{{ `${index + 1}°` }}</v-card-title> -->
+                        <v-spacer></v-spacer>
+                        <!-- <v-btn
+                            color="success"
+                            small
+                            fab
+                            dark
+                            icon
+                            v-if="isAdmin"
+                        >
+                            <v-icon>mdi-run-fast</v-icon>
+                        </v-btn>
+                        <v-btn
+                            small
+                            dark
+                            fab
+                            icon
+                            v-if="isAdmin"
+                        >
+                            <v-icon>mdi-send</v-icon>
+                        </v-btn> -->
+                        <v-btn
+                            color="error"
+                            small
+                            dark
+                            fab
+                            icon
+                            v-if="userLogged == user.id || isAdmin"
+                        >
+                            <v-icon>mdi-delete</v-icon>
                         </v-btn>
                     </v-toolbar>
                     <v-card-text>
@@ -49,14 +81,6 @@
                     </v-card-text>
                    <v-card-actions class="justify-center" v-if="isAdmin">
                         <v-btn
-                            color="primary lighten-1"
-                            x-small
-                            dark
-                            fab
-                        >
-                            <v-icon>mdi-send</v-icon>
-                        </v-btn>
-                        <v-btn
                             color="green darken-1"
                             small
                             fab
@@ -65,13 +89,21 @@
                             <v-icon>mdi-run-fast</v-icon>
                         </v-btn>
                         <v-btn
+                            color="primary lighten-1"
+                            x-small
+                            dark
+                            fab
+                        >
+                            <v-icon>mdi-send</v-icon>
+                        </v-btn>
+                        <!-- <v-btn
                             color="error"
                             x-small
                             dark
                             fab
                         >
                             <v-icon>mdi-delete</v-icon>
-                        </v-btn>
+                        </v-btn> -->
                     </v-card-actions>
                 </v-card>
             </v-slide-item>

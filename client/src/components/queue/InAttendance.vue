@@ -13,8 +13,6 @@
       >
         <v-card class="ma-2">
             <v-toolbar dark color="primary">
-                <v-card-title class="card_title">Em Atendimento</v-card-title>
-                <v-spacer></v-spacer>
                 <v-btn
                     icon
                     dark
@@ -22,6 +20,8 @@
                 >
                     <v-icon>mdi-dots-vertical</v-icon>
                 </v-btn>
+                <v-card-title class="card_title">Em Atendimento</v-card-title>
+                <v-spacer></v-spacer>
             </v-toolbar>
             <v-card-text>
                 <v-text-field
