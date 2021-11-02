@@ -115,7 +115,7 @@
             Salvar
           </v-btn>
           <v-btn
-            color="warning darken-1"
+            color="warning"
             @click="dialog = false"
           >
             Cancelar
