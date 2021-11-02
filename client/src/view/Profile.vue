@@ -1,7 +1,7 @@
 <template>
     <div>
-        <header-bar />
-        <user-profile />
+      <header-bar />
+      <user-profile />
     </div>
 </template>
 

@@ -14,13 +14,13 @@
                 dark
                 v-bind="attrs"
                 v-on="on"
-            ><v-icon>mdi-account-plus</v-icon></v-btn>
+            ><v-icon>mdi-plus</v-icon></v-btn>
         </v-fab-transition>
       </template>
       <v-card>
         <v-card-title>
           <v-icon style="margin-right: 10px;">mdi-account</v-icon>
-          <span class="text-h5">Cadastrar Militar</span>
+          <span class="text-h5">Inserir Despachante na Fila</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -83,24 +83,6 @@
                   label="Telefone *"
                   required
                 ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6">
-                <v-radio-group
-                  v-model="type"
-                  row
-                  mandatory
-                  hint="Tipo de usuário."
-                  persistent-hint
-                >
-                  <v-radio
-                    label="Despachante"
-                    value="1"
-                  ></v-radio>
-                  <v-radio
-                    label="Admin"
-                    value="2"
-                  ></v-radio>
-                </v-radio-group>
               </v-col>
             </v-row>
           </v-container>

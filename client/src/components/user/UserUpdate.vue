@@ -94,6 +94,7 @@
                             <v-col cols="6" ms="6">
                                 <v-btn
                                     color="warning"
+                                    small
                                 >Resetar senha</v-btn>
                             </v-col>
                             </v-row>
@@ -104,7 +105,7 @@
                     <v-card-actions class="justify-center">
                         <v-btn
                             color="green darken-4"
-                            middle
+                            small
                             fab
                             dark
                             :to="{ name: 'Users'}"
@@ -113,7 +114,7 @@
                         </v-btn>
                         <v-btn
                             color="primary darken-2"
-                            middle
+                            large
                             fab
                             @click="save"
                         >
@@ -121,7 +122,7 @@
                         </v-btn>
                         <v-btn
                             color="red darken-2"
-                            middle
+                            small
                             fab
                             dark
                         >

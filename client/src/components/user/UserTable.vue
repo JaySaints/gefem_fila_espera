@@ -40,15 +40,6 @@
                   :to="{ name: 'Edit-Users', params: {uid: user.id} }"
                 ><v-icon>mdi-pencil</v-icon>
                 </v-btn>
-                <!-- <v-btn
-                  color="error"
-                  class="mr-4"
-                  dark
-                  icon
-                  small
-                  :to="{ name: 'Edit-Users', params: {uid: user.id} }"
-                ><v-icon>mdi-delete</v-icon>
-                </v-btn> -->
               </td>
             </tr>
           </tbody>

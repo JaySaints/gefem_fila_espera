@@ -9,7 +9,7 @@
                         <v-spacer></v-spacer>
                         <v-btn
                             color="primary darken-1"
-                            middle
+                            small
                             fab
                             @click="isEditing = !isEditing"
                         >
@@ -117,6 +117,15 @@
                     <v-divider></v-divider>
                     <v-card-actions class="justify-center">
                         <v-btn
+                            color="green darken-4"
+                            small
+                            fab
+                            dark
+                            @click="backPage"
+                        >
+                            <v-icon>mdi-arrow-u-left-top-bold</v-icon>
+                        </v-btn>
+                        <v-btn
                             color="primary darken-1"
                             middle
                             fab
@@ -156,6 +165,12 @@ export default {
       this.isEditing = false
       alert(`Posto: ${this.post}\nNome: ${this.name}\nSessão: ${this.session}\n
       Telefone: (${this.codArea}) ${this.phone}\nEmail: ${this.email}\nSenha: ${this.password} - Conf. Senha ${this.confPassword}`)
+    },
+    navigateTo (route) {
+      this.$router.push(route)
+    },
+    backPage () {
+      this.$router.go(-1)
     }
   }
 }

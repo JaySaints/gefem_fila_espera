@@ -7,12 +7,12 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('../view/Home.vue')
+    component: () => import(/* webpackChunkName: "home" */'../view/Home.vue')
   },
   {
     path: '/profile',
     name: 'Profile',
-    component: () => import('../view/Profile.vue')
+    component: () => import(/* webpackChunkName: "profile" */'../view/Profile.vue')
   },
   {
     path: '/login',
@@ -27,7 +27,12 @@ const routes = [
   {
     path: '/mil/:uid',
     name: 'Edit-Users',
-    component: () => import(/* webpackChunkName: "list-users" */ '../view/EditUsers.vue')
+    component: () => import(/* webpackChunkName: "edit-users" */ '../view/EditUsers.vue')
+  },
+  {
+    path: '/queue',
+    name: 'Show-Queue',
+    component: () => import(/* webpackChunkName: "show-queue" */ '../view/ShowQueue.vue')
   }
 ]
 
