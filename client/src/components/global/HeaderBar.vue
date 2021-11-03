@@ -35,7 +35,7 @@ export default {
   name: 'HeaderPage',
   data () {
     return {
-      drawer: null
+      drawer: false
     }
   },
   components: {
