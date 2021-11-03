@@ -32,7 +32,7 @@ const routes = [
   {
     path: '/queue',
     name: 'Show-Queue',
-    component: () => import(/* webpackChunkName: "show-queue" */ '../view/Queue.vue')
+    component: () => import(/* webpackChunkName: "show-queue" */ '../view/Queue2.vue')
   }
 ]
 

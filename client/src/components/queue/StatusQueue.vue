@@ -7,14 +7,16 @@
         <v-list-item>
             <v-list-item-content>
                 <v-list-item-title class="text-h5">
-                    <strong>Em atendimento</strong>
+                    <strong>Status da Fila</strong>
                 </v-list-item-title>
               <hr>
                 <dir class="font-weight-bold mt-4">
-                  Militar:  <br>
-                  Tel:  <br>
-                  Data: 15/05/2021 <br>
-                  Inicio despacho: 13:16:23
+                  Total na fila: 10 <br>
+                  Data da Fila
+                  <v-text-field
+                      v-model="email"
+                      type="date"
+                    ></v-text-field>
                 </dir>
             </v-list-item-content>
         </v-list-item>
