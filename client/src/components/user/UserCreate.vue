@@ -107,16 +107,16 @@
           <small>* Campos obrigatórios</small>
         </v-card-text>
         <v-card-actions>
-          <v-spacer></v-spacer>
             <v-btn
               color="green darken-4"
-              small
+              large
               fab
               dark
               @click="dialog = false"
             >
               <v-icon>mdi-arrow-u-left-top-bold</v-icon>
           </v-btn>
+          <v-divider></v-divider>
           <v-btn
               color="primary darken-2"
               large

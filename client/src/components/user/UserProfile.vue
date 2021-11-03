@@ -9,8 +9,9 @@
                         <v-spacer></v-spacer>
                         <v-btn
                             color="primary darken-1"
-                            small
+                            large
                             fab
+                            dark
                             @click="isEditing = !isEditing"
                         >
                             <v-icon v-if="isEditing">
@@ -118,16 +119,17 @@
                     <v-card-actions class="justify-center">
                         <v-btn
                             color="green darken-4"
-                            small
+                            large
                             fab
                             dark
                             @click="backPage"
                         >
                             <v-icon>mdi-arrow-u-left-top-bold</v-icon>
                         </v-btn>
+                        <v-divider></v-divider>
                         <v-btn
                             color="primary darken-1"
-                            middle
+                            large
                             fab
                             :disabled="!isEditing"
                             @click="save"

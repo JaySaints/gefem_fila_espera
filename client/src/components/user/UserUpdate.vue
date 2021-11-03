@@ -105,13 +105,23 @@
                     <v-card-actions class="justify-center">
                         <v-btn
                             color="green darken-4"
-                            small
+                            large
                             fab
                             dark
                             :to="{ name: 'Users'}"
                         >
                             <v-icon>mdi-arrow-u-left-top-bold</v-icon>
                         </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            color="red darken-2"
+                            large
+                            fab
+                            dark
+                        >
+                            <v-icon>mdi-delete</v-icon>
+                        </v-btn>
+                        <v-spacer></v-spacer>
                         <v-btn
                             color="primary darken-2"
                             large
@@ -119,14 +129,6 @@
                             @click="save"
                         >
                             <v-icon>mdi-content-save</v-icon>
-                        </v-btn>
-                        <v-btn
-                            color="red darken-2"
-                            small
-                            fab
-                            dark
-                        >
-                            <v-icon>mdi-delete</v-icon>
                         </v-btn>
                     </v-card-actions>
                 </v-card>
