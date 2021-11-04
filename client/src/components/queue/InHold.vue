@@ -1,7 +1,7 @@
 <template>
     <v-card
-        elevation="24"
-        width="1200"
+        elevation="17"
+        width="1300"
         class="mx-auto"
     >
         <v-slide-group
@@ -13,26 +13,9 @@
                 v-for="(user, index) in users"
                 :key="index"
             >
-                <v-card class="ma-2" width="250">
-                    <v-toolbar color="primary" dark>
-                        <v-btn
-                            fab
-                            small
-                            dark
-                            v-text="`${index + 1}°`"
-                            color="primary darken-1"
-                        ></v-btn>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                            icon
-                            dark
-                            small
-                            v-if="userLogged == user.id || isAdmin"
-                            @click="tt(user.id)"
-                        >
-                            <v-icon>mdi-dots-vertical</v-icon>
-                        </v-btn>
-                        <v-spacer></v-spacer>
+                <v-card class="ma-2 grey lighten-2" width="250">
+                    <v-toolbar color="primary" dark collapse height="40">
+                        <v-card-title>{{ `${++index}º` }}</v-card-title>
                     </v-toolbar>
                     <v-card-text>
                         <v-text-field
@@ -42,8 +25,8 @@
                         ></v-text-field>
 
                         <v-text-field
-                            v-model="user.phone"
-                            label="Tel:"
+                            v-model="user.session"
+                            label="Sessão:"
                             readonly
                         ></v-text-field>
                     </v-card-text>
@@ -52,13 +35,19 @@
                         <v-btn
                             class="ma-1"
                             color="success"
-                            outlined
+                            dark
                             rounded
                         ><v-icon>mdi-run-fast</v-icon></v-btn>
                         <v-btn
                             class="ma-1"
-                            color="error"
-                            outlined
+                            color="grey"
+                            dark
+                            rounded
+                        ><v-icon>mdi-information</v-icon></v-btn>
+                        <v-btn
+                            class="ma-1"
+                            color="red"
+                            dark
                             rounded
                         ><v-icon>mdi-delete</v-icon></v-btn>
                         </v-card-actions>

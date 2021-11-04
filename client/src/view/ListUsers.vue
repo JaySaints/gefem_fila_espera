@@ -59,7 +59,7 @@ export default {
     position: fixed;
     padding: 2em;
     left: 95%;
-    top: 85%;
+    top: 90%;
     transform: translate(-50%, -50%);
 }
 

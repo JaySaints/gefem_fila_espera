@@ -8,8 +8,8 @@
                         <span  class="text-h5">Perfil do Militar</span>
                         <v-spacer></v-spacer>
                         <v-btn
-                            color="primary darken-1"
-                            large
+                            color="grey darken-4"
+                            small
                             fab
                             dark
                             @click="isEditing = !isEditing"
@@ -116,21 +116,22 @@
                     <small>* Campos obrigatórios</small>
                     </v-card-text>
                     <v-divider></v-divider>
+                    <v-divider></v-divider>
                     <v-card-actions class="justify-center">
                         <v-btn
                             color="green darken-4"
                             large
-                            fab
+                            rounded
                             dark
                             @click="backPage"
                         >
                             <v-icon>mdi-arrow-u-left-top-bold</v-icon>
                         </v-btn>
-                        <v-divider></v-divider>
+                        <v-spacer></v-spacer>
                         <v-btn
                             color="primary darken-1"
                             large
-                            fab
+                            rounded
                             :disabled="!isEditing"
                             @click="save"
                         >

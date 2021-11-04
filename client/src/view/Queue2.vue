@@ -3,15 +3,18 @@
         <header-bar />
         <v-container fluid >
           <v-row>
-            <v-col cols="6">
+            <v-col cols="4">
                 <in-attendance />
             </v-col>
-            <v-col cols="6">
+            <v-col cols="4">
                 <status-queue />
+            </v-col>
+            <v-col cols="4">
+              <date-queue />
             </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12" ms="12">
+            <v-col cols="12">
               <in-hold class="carousel_cards"/>
             </v-col>
           </v-row>
@@ -25,12 +28,13 @@
 <script>
 import HeaderBar from '../components/global/HeaderBar.vue'
 import AddQueue from '../components/queue/AddQueue.vue'
+import DateQueue from '../components/queue/DateQueue.vue'
 import InAttendance from '../components/queue/InAttendance.vue'
 import InHold from '../components/queue/InHold.vue'
 import StatusQueue from '../components/queue/StatusQueue.vue'
 
 export default {
-  components: { HeaderBar, InHold, AddQueue, StatusQueue, InAttendance },
+  components: { HeaderBar, InHold, AddQueue, StatusQueue, InAttendance, DateQueue },
   name: 'ShowQueue',
   data () {
     return {
@@ -42,7 +46,7 @@ export default {
 
 <style>
 .carousel_cards {
-  margin-top: 0%;
+  margin-top: 2%;
 }
 
 .add_queue {

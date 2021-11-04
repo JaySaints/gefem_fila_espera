@@ -1,26 +1,18 @@
 <template>
-    <v-card
-        elevation="24"
-        max-width="444"
-        class="mx-auto"
-    >
-        <v-list-item>
-            <v-list-item-content>
-                <v-list-item-title class="text-h5">
-                    <strong>Status da Fila</strong>
-                </v-list-item-title>
-              <hr>
-                <dir class="font-weight-bold mt-4">
-                  Total na fila: 10 <br>
-                  Data da Fila
-                  <v-text-field
-                      v-model="email"
-                      type="date"
-                    ></v-text-field>
-                </dir>
-            </v-list-item-content>
-        </v-list-item>
-    </v-card>
+  <v-card
+    max-width="444"
+    height="150"
+    class="mx-auto"
+    color="orange lighten-2"
+  >
+    <v-card-title>Data da Fila:</v-card-title>
+      <v-card-subtitle>
+        <v-layout>
+          <v-flex>
+          </v-flex>
+        </v-layout>
+      </v-card-subtitle>
+  </v-card>
 </template>
 
 <script>

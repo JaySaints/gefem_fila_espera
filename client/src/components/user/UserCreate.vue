@@ -106,21 +106,22 @@
           </v-container>
           <small>* Campos obrigatórios</small>
         </v-card-text>
+        <v-divider></v-divider>
         <v-card-actions>
             <v-btn
               color="green darken-4"
               large
-              fab
+              rounded
               dark
               @click="dialog = false"
             >
               <v-icon>mdi-arrow-u-left-top-bold</v-icon>
           </v-btn>
-          <v-divider></v-divider>
+          <v-spacer></v-spacer>
           <v-btn
               color="primary darken-2"
               large
-              fab
+              rounded
               @click="save_user()"
           >
             <v-icon>mdi-content-save</v-icon>

@@ -106,7 +106,7 @@
                         <v-btn
                             color="green darken-4"
                             large
-                            fab
+                            rounded
                             dark
                             :to="{ name: 'Users'}"
                         >
@@ -116,7 +116,7 @@
                         <v-btn
                             color="red darken-2"
                             large
-                            fab
+                            rounded
                             dark
                         >
                             <v-icon>mdi-delete</v-icon>
@@ -125,7 +125,7 @@
                         <v-btn
                             color="primary darken-2"
                             large
-                            fab
+                            rounded
                             @click="save"
                         >
                             <v-icon>mdi-content-save</v-icon>

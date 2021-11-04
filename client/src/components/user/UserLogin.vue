@@ -27,7 +27,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" to="/">Entrar</v-btn>
+                <v-btn color="primary" to="/" rounded>Entrar</v-btn>
               </v-card-actions>
           </v-card>
           <div>
