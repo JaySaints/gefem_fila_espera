@@ -5,13 +5,11 @@
     class="mx-auto"
     color="orange lighten-2"
   >
-    <v-card-title>Data da Fila:</v-card-title>
-      <v-card-subtitle>
-        <v-layout>
-          <v-flex>
-          </v-flex>
-        </v-layout>
-      </v-card-subtitle>
+    <v-col class="text-center">
+      <h1 style="font-size: 40pt;">8</h1>
+      <hr>
+      <span class="black--text">Total de militares na fila</span>
+    </v-col>
   </v-card>
 </template>
 

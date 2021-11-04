@@ -20,7 +20,7 @@
       <v-card>
         <v-card-title>
           <v-icon style="margin-right: 10px;">mdi-account</v-icon>
-          <span class="text-h5">Inserir Despachante na Fila</span>
+          <span class="text-h5">Entrar na Fila</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -89,20 +89,20 @@
           <small>* Campos obrigatórios</small>
         </v-card-text>
         <v-card-actions>
-          <v-spacer></v-spacer>
             <v-btn
               color="green darken-4"
-              small
-              fab
+              large
+              rounded
               dark
               @click="dialog = false"
             >
               <v-icon>mdi-arrow-u-left-top-bold</v-icon>
           </v-btn>
+          <v-spacer></v-spacer>
           <v-btn
               color="primary darken-2"
               large
-              fab
+              rounded
               @click="save_user()"
           >
             <v-icon>mdi-content-save</v-icon>

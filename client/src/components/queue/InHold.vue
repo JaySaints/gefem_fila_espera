@@ -31,24 +31,27 @@
                         ></v-text-field>
                     </v-card-text>
                     <v-divider></v-divider>
-                   <v-card-actions class="justify-center" v-if="isAdmin">
+                   <v-card-actions class="justify-center">
                         <v-btn
                             class="ma-1"
                             color="success"
                             dark
                             rounded
+                            v-if="isAdmin"
                         ><v-icon>mdi-run-fast</v-icon></v-btn>
                         <v-btn
                             class="ma-1"
                             color="grey"
                             dark
                             rounded
+                            v-if="isAdmin || userLogged == user.id"
                         ><v-icon>mdi-information</v-icon></v-btn>
                         <v-btn
                             class="ma-1"
                             color="red"
                             dark
                             rounded
+                            v-if="isAdmin || userLogged == user.id"
                         ><v-icon>mdi-delete</v-icon></v-btn>
                         </v-card-actions>
                 </v-card>

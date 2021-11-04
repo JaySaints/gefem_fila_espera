@@ -6,8 +6,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */'../view/Home.vue')
+    name: 'Show-Queue',
+    component: () => import(/* webpackChunkName: "show-queue" */ '../view/Queue.vue')
   },
   {
     path: '/profile',
@@ -28,11 +28,6 @@ const routes = [
     path: '/mil/:uid',
     name: 'Edit-Users',
     component: () => import(/* webpackChunkName: "edit-users" */ '../view/EditUsers.vue')
-  },
-  {
-    path: '/queue',
-    name: 'Show-Queue',
-    component: () => import(/* webpackChunkName: "show-queue" */ '../view/Queue2.vue')
   }
 ]
 
