@@ -21,7 +21,7 @@
           color="success lighten-2"
         >
            <v-card-actions>
-           <v-card-tilte class="text-h5 ml-2">Em atendimento...</v-card-tilte>
+           <span class="text-h5 ml-2">Em atendimento...</span>
            <v-spacer></v-spacer>
              <v-btn
               dark

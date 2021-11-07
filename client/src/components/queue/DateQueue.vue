@@ -3,16 +3,20 @@
     max-width="444"
     height="150"
     class="mx-auto"
-    color="teal lighten-2"
+    color="yellow lighten-2"
   >
-    <v-card-subtitle>
-      <v-layout>
-        <v-flex>
-          Informations
-        </v-flex>
-      </v-layout>
-    </v-card-subtitle>
-    <v-card-tilte class="text-h5 ml-2">Data da Fila</v-card-tilte>
+    <v-col class="text-center">
+      <v-card>
+        <v-toolbar color="primary">
+          <v-card-title dark>Sáb, 7 de Novembro</v-card-title>
+          <v-spacer></v-spacer>
+          <v-btn dark icon large><v-icon>mdi-calendar-month</v-icon></v-btn>
+        </v-toolbar>
+      </v-card>
+      <br>
+          <hr>
+      <span class="black--text">Data da Fila</span>
+    </v-col>
   </v-card>
 </template>
 
@@ -22,7 +26,19 @@ export default {
   name: '',
   data () {
     return {
+      date: null,
+      picker: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      trip: {
+        name: '',
+        location: null,
+        start: null,
+        end: null
+      }
     }
   }
 }
 </script>
+
+<style>
+
+</style>
