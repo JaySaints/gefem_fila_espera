@@ -16,7 +16,7 @@
                                 sm="4"
                             >
                                 <v-select
-                                v-model="post"
+                                v-model="user.post"
                                 :items="posts"
                                 label="Posto *"
                                 required
@@ -27,7 +27,7 @@
                                 sm="8"
                             >
                                 <v-text-field
-                                v-model="name"
+                                v-model="user.name"
                                 label="Nome *"
                                 required
                                 ></v-text-field>
@@ -37,7 +37,7 @@
                                 sm="4"
                             >
                                 <v-select
-                                v-model="session"
+                                v-model="user.session"
                                 :items="sessions"
                                 label="Sessão *"
                                 required
@@ -48,7 +48,7 @@
                                 sm="8"
                             >
                             <v-text-field
-                                v-model="email"
+                                v-model="user.email"
                                 label="Email *"
                                 required
                                 ></v-text-field>
@@ -58,8 +58,8 @@
                                 sm="2"
                             >
                                 <v-text-field
-                                v-model="ddd"
-                                label="DDD *"
+                                v-model="user.codArea"
+                                label="codArea *"
                                 required
                                 ></v-text-field>
                             </v-col>
@@ -68,14 +68,14 @@
                                 sm="4"
                             >
                                 <v-text-field
-                                v-model="phone"
+                                v-model="user.phone"
                                 label="Telefone *"
                                 required
                                 ></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-radio-group
-                                v-model="type"
+                                v-model="user.role"
                                 row
                                 mandatory
                                 hint="Tipo de usuário."
@@ -126,7 +126,6 @@
                             color="primary darken-2"
                             large
                             rounded
-                            @click="save"
                         >
                             <v-icon>mdi-content-save</v-icon>
                         </v-btn>
@@ -138,21 +137,27 @@
 </template>
 
 <script>
+import api from '../../service/api'
 
 export default {
   name: '',
   data () {
     return {
       name: '',
-      type: '',
+      role: '',
       post: '',
       session: '',
       phone: '',
       email: '',
-      ddd: '',
+      codArea: '',
+      user: {},
       posts: ['Coronel', 'Ten-Coronel', 'Major', 'Capitão', 'Tenente', 'Asp', 'Sub-Tenente', 'Sargento', 'Cabo', 'Soldado'],
       sessions: ['BC/AP', '1º BO', '2º BO', '3º BO', '4º BO', 'NPOR', 'Tesouraria', 'Salc', 'Almox', 'Aprov', 'ordenança', 'N/A']
     }
+  },
+  async mounted () {
+    const userId = this.$route.params.uid
+    this.user = (await api.one_user_get(userId)).data.user
   }
 }
 </script>

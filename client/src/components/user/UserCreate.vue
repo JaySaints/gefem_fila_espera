@@ -69,8 +69,8 @@
                 sm="2"
               >
                 <v-text-field
-                  v-model="ddd"
-                  label="DDD *"
+                  v-model="codArea"
+                  label="codArea *"
                   required
                 ></v-text-field>
               </v-col>
@@ -86,7 +86,7 @@
               </v-col>
               <v-col cols="12" sm="6">
                 <v-radio-group
-                  v-model="type"
+                  v-model="role"
                   row
                   mandatory
                   hint="Tipo de usuário."
@@ -122,41 +122,68 @@
               color="primary darken-2"
               large
               rounded
-              @click="save_user()"
+              @click="create_user()"
           >
             <v-icon>mdi-content-save</v-icon>
           </v-btn>
         </v-card-actions>
+        <v-snackbar
+          v-model="hasSaved"
+          :timeout="2000"
+          absolute
+          center
+        >
+          Militar Cadastrado!
+        </v-snackbar>
       </v-card>
     </v-dialog>
   </v-row>
 </template>
 
 <script>
+import api from '../../service/api'
+
 export default {
   data () {
     return {
       dialog: false,
+      hasSaved: false,
       name: '',
-      type: '',
+      role: null,
       post: '',
       session: '',
       phone: '',
       email: '',
-      ddd: '',
+      codArea: '',
       posts: ['Coronel', 'Ten-Coronel', 'Major', 'Capitão', 'Tenente', 'Asp', 'Sub-Tenente', 'Sargento', 'Cabo', 'Soldado'],
       sessions: ['BC/AP', '1º BO', '2º BO', '3º BO', '4º BO', 'NPOR', 'Tesouraria', 'Salc', 'Almox', 'Aprov', 'ordenança', 'N/A']
     }
   },
   methods: {
-    save_user () {
-      alert(`Posto: ${this.post} - Nome: ${this.name} - Sessão: ${this.session} - Tipo: ${this.type} - Email: ${this.email} - Telefone ${this.ddd} ${this.phone}`)
-      this.dialog = false
+    async create_user () {
+      // alert(`Posto: ${this.post} - Nome: ${this.name} - Sessão: ${this.session} - Tipo: ${this.type} - Email: ${this.email} - Telefone ${this.codArea} ${this.phone}`)
+      try {
+        const user = {
+          post: this.post,
+          name: this.name,
+          session: this.session,
+          email: this.email,
+          codArea: this.codArea,
+          phone: this.phone,
+          role: this.role
+        }
+        const result = (await api.create_user_post(user)).data
+        if (result.success) {
+          this.hasSaved = true
+        }
+      } catch (error) {
+        console.log(error)
+      }
       this.post = ''
       this.name = ''
       this.session = ''
       this.email = ''
-      this.ddd = ''
+      this.codArea = ''
       this.phone = ''
     }
   }

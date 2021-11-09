@@ -28,8 +28,8 @@
             >
               <td>{{ user.post }}</td>
               <td>{{ user.name }}</td>
-              <td>{{ user.phone }}</td>
-              <td>{{ user.section }}</td>
+              <td>{{ `(${user.codArea}) ${user.phone}` }}</td>
+              <td>{{ user.session }}</td>
               <td>
                 <v-btn
                   color="grey darken-1"
@@ -49,32 +49,19 @@
 </template>
 
 <script>
+import api from '../../service/api'
 
 export default {
   name: 'ListUsers',
   data () {
     return {
       find_name: '',
-      users: [
-        { id: '1', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '2', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '3', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '4', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '5', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '6', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '7', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '8', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '9', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '10', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '11', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '12', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '13', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '14', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '15', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '16', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' },
-        { id: '17', post: 'CABO', name: 'Pablo J. Santos', phone: '41 99999-0909', section: 'Ordenança' }
-      ]
+      users: []
     }
+  },
+  async mounted () {
+    // do a request to the backend for all the users
+    this.users = (await api.all_user_get()).data.users
   },
   methods: {
     navigateTo (route) {
@@ -89,11 +76,4 @@ export default {
   color: white;
   font-size: 10pt;
 }
-
-/* #t2 {
-  width: 10%;
-  color: white;
-  font-size: 10pt;
-} */
-
 </style>

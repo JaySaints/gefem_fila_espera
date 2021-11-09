@@ -26,10 +26,8 @@ module.exports = {
     // Function get all user => GET
     async all_user_get (req, res, next) {
         try {
-            const users = await User.findAll({
-                attributes: ['id', 'post', 'name', 'session', 'codArea', 'phone', 'role']
-            })
-            res.send({success: true, allUsers: users})
+            const users = await User.findAll()
+            res.send({success: true, users: users})
         } catch (error) {
             res.status(500).send({success: false, error: 'Ocorreu um erro ao tentar encontrar os usuários cadastrados.'})
         }    
