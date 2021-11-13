@@ -6,13 +6,11 @@
     color="yellow lighten-2"
   >
     <v-col class="text-center">
-      <v-card>
         <v-toolbar color="primary">
           <v-card-title dark>Sáb, 7 de Novembro</v-card-title>
           <v-spacer></v-spacer>
           <v-btn dark icon large><v-icon>mdi-calendar-month</v-icon></v-btn>
         </v-toolbar>
-      </v-card>
       <br>
           <hr>
       <span class="black--text">Data da Fila</span>
