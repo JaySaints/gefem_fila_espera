@@ -13,9 +13,10 @@
                 v-for="(user, index) in users"
                 :key="index"
             >
-                <v-card class="ma-2 grey lighten-2" width="250">
+            <v-hover v-slot="{ hover }" open-delay="200">
+                <v-card class="ma-2 blue lighten-4" width="250" :elevation="hover ? 10 : 2">
                     <v-toolbar color="primary" dark collapse height="40">
-                        <v-card-title>{{ `${++index}º` }}</v-card-title>
+                        <v-card-title>{{ `${index}º` }}</v-card-title>
                     </v-toolbar>
                     <v-card-text>
                         <v-text-field
@@ -26,7 +27,7 @@
 
                         <v-text-field
                             v-model="user.session"
-                            label="Sessão:"
+                            label="Seção:"
                             readonly
                         ></v-text-field>
                     </v-card-text>
@@ -55,6 +56,7 @@
                         ><v-icon>mdi-run-fast</v-icon></v-btn>
                         </v-card-actions>
                 </v-card>
+            </v-hover>
             </v-slide-item>
         </v-slide-group>
     </v-card>

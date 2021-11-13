@@ -3,18 +3,18 @@
         <header-bar />
         <v-container fluid >
           <v-row>
-            <v-col cols="4">
+            <v-col cols="12" sm="4">
                 <in-attendance />
             </v-col>
-            <v-col cols="4">
+            <v-col cols="12" sm="4">
                 <status-queue />
             </v-col>
-            <v-col cols="4">
+            <v-col cols="12" sm="4">
               <date-queue />
             </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12">
+            <v-col cols="12" sm="12">
               <in-hold class="carousel_cards"/>
             </v-col>
           </v-row>
@@ -46,7 +46,7 @@ export default {
 
 <style>
 .carousel_cards {
-  margin-top: 2%;
+  margin-top: 0%;
 }
 
 .add_queue {

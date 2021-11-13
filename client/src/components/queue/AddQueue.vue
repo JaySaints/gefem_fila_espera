@@ -53,7 +53,7 @@
                 <v-select
                   v-model="session"
                   :items="sessions"
-                  label="Sessão *"
+                  label="Seção *"
                   required
                 ></v-select>
               </v-col>
@@ -131,7 +131,7 @@ export default {
   },
   methods: {
     save_user () {
-      alert(`Posto: ${this.post} - Nome: ${this.name} - Sessão: ${this.session} - Tipo: ${this.type} - Email: ${this.email} - Telefone ${this.ddd} ${this.phone}`)
+      alert(`Posto: ${this.post} - Nome: ${this.name} - Seção: ${this.session} - Tipo: ${this.type} - Email: ${this.email} - Telefone ${this.ddd} ${this.phone}`)
       this.dialog = false
       this.post = ''
       this.name = ''

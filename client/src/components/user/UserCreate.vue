@@ -53,7 +53,7 @@
                 <v-select
                   v-model="session"
                   :items="sessions"
-                  label="Sessão *"
+                  label="Seção *"
                   required
                 ></v-select>
               </v-col>
@@ -161,7 +161,7 @@ export default {
   },
   methods: {
     async create_user () {
-      // alert(`Posto: ${this.post} - Nome: ${this.name} - Sessão: ${this.session} - Tipo: ${this.type} - Email: ${this.email} - Telefone ${this.codArea} ${this.phone}`)
+      // alert(`Posto: ${this.post} - Nome: ${this.name} - Seção: ${this.session} - Tipo: ${this.type} - Email: ${this.email} - Telefone ${this.codArea} ${this.phone}`)
       try {
         const user = {
           post: this.post,

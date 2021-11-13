@@ -14,7 +14,7 @@
                 TELEFONE
               </th>
               <th class="text-center" id="t1">
-                SESSÃO
+                SEÇÃO
               </th>
               <th class="text-center" id="t1">
                 EDITAR

@@ -39,7 +39,7 @@
                                 <v-select
                                 v-model="userObject.session"
                                 :items="sessions"
-                                label="Sessão *"
+                                label="Seção *"
                                 required
                                 ></v-select>
                             </v-col>
