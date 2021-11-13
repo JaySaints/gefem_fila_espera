@@ -6,6 +6,9 @@ const user = require('../controller/UserController')
 module.exports = (app) => {
     app.get('/', home)
 
+    // Login user
+    app.post('/login', user.login_user_post)
+    
     // Create new user
     app.post('/mil/create', user.create_user_post)
 
@@ -16,10 +19,14 @@ module.exports = (app) => {
     app.get('/mil/:uid', user.one_user_get)
 
     // Update user information account
-    app.post('/mil/:uid', user.update_user_post)
+    app.post('/mil/:uid/update', user.update_user_post)
 
     // Delete user account
-    app.delete('/mil/:uid', user.delete_user_delete)
+    app.get('/mil/:uid/delete', user.delete_user_get)
 
+    // Update profile information account
+    app.post('/profile/:uid/update', user.update_profile_post)
 
+    // Reset password user account
+    app.get('/mil/:uid/reset', user.reset_password_get)
 }

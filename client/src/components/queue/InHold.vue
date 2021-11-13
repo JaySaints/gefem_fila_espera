@@ -38,7 +38,7 @@
                             dark
                             rounded
                             v-if="isAdmin"
-                        ><v-icon>mdi-run-fast</v-icon></v-btn>
+                        ><v-icon>mdi-exit-run</v-icon></v-btn>
                         <v-btn
                             class="ma-1"
                             color="grey"
@@ -52,7 +52,7 @@
                             dark
                             rounded
                             v-if="isAdmin || userLogged == user.id"
-                        ><v-icon>mdi-delete</v-icon></v-btn>
+                        ><v-icon>mdi-run-fast</v-icon></v-btn>
                         </v-card-actions>
                 </v-card>
             </v-slide-item>

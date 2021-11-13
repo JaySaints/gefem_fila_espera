@@ -7,7 +7,6 @@ const User = sequelize.define('User', {
     },
     name: {
         type: DataTypes.STRING,
-        unique: true
     },
     session: {
         type: DataTypes.STRING

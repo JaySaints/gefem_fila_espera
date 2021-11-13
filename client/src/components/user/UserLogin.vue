@@ -27,18 +27,21 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" to="/" rounded>Entrar</v-btn>
+                <v-btn color="primary" @click="access()" rounded>Entrar</v-btn>
               </v-card-actions>
           </v-card>
           <div>
             <forget-pwd />
           </div>
+          <div class="danger-alert" v-html="err"></div>
         </v-flex>
     </v-layout>
 </template>
 
 <script>
 import ForgetPwd from '../alerts/ForgetPwd.vue'
+// import api from '../../service/api'
+import { mapActions } from 'vuex'
 
 export default {
   components: { ForgetPwd },
@@ -47,15 +50,28 @@ export default {
     return {
       email: '',
       password: '',
-      error: null,
+      err: null,
       dialog: false
     }
   },
   methods: {
-    access () {
-      var msg = `Entrou ${this.name} ${this.password}`
-      console.log(msg)
-      this.error = msg
+    ...mapActions(['login']),
+    async access () {
+      try {
+        this.login({
+          email: this.email,
+          password: this.password
+        }).then(res => {
+          if (res.data.success) {
+            this.err = res.data.msg
+            this.$router.push({ name: 'home' })
+          }
+        }).catch(error => {
+          this.err = error.response.data.error
+        })
+      } catch (error) {
+        this.err = error.response.data.error
+      }
     }
   }
 }

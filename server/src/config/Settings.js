@@ -1,3 +1,13 @@
+const fs = require('fs');
+const path = require('path');
+
+const pathToKey = path.join(__dirname, '.', 'id_rsa_priv.pem');
+const PRIV_KEY = fs.readFileSync(pathToKey, 'utf8');
+
+const pathToPubKey = path.join(__dirname, '.', 'id_rsa_pub.pem');
+const PUB_KEY = fs.readFileSync(pathToPubKey, 'utf8');
+
+
 module.exports = {
     port: process.env.PORT || 8081,
     db: {
@@ -11,7 +21,7 @@ module.exports = {
         }
     },
     authentication: {
-        PRIV_KEY: 'secret',
-        PUB_KEY: 'secret'
+        PRIV_KEY: PRIV_KEY || 'secret',
+        PUB_KEY: PUB_KEY || 'secret'
     }
 }

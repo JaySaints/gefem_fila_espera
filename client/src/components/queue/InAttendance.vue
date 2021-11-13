@@ -1,47 +1,27 @@
 <template>
-  <v-card
+<v-card
     max-width="444"
+    height="150"
     class="mx-auto"
+    color="yellow lighten-2"
   >
-    <v-carousel
-      :continuous="false"
-      :show-arrows="true"
-      height="auto"
-      hide-delimiters
-      width="50"
-    >
-      <v-carousel-item
-        v-for="(user, index) in users"
-        :key="index"
-      >
-        <v-card
-          outlined
-          width="500"
-          height="150"
-          color="success lighten-2"
-        >
-           <v-card-actions>
-           <span class="text-h5 ml-2">Em atendimento...</span>
-           <v-spacer></v-spacer>
-             <v-btn
-              dark
-              small
-              rounded
-              color="primary darken-1"
-            ><v-icon>mdi-exit-run</v-icon></v-btn>
-           </v-card-actions>
-           <v-card-subtitle>
-             <v-layout>
-               <v-flex>
-                Militar: <strong>{{ `${user.post} ${user.name}` }}</strong>. <br>
-                Data: <strong>20 de novembro de 2021</strong> <br>
-                Inicío do despacho: <strong>20:09:23 horas</strong>
-               </v-flex>
-             </v-layout>
-           </v-card-subtitle>
-        </v-card>
-      </v-carousel-item>
-    </v-carousel>
+    <v-col class="text-center">
+      <v-card>
+        <v-toolbar color="primary">
+          <v-card-title dark>Sáb, 7 de Novembro</v-card-title>
+          <v-spacer></v-spacer>
+          <v-btn dark icon large><v-icon>mdi-calendar-month</v-icon></v-btn>
+        </v-toolbar>
+      </v-card>
+      <br>
+           <!-- <v-avatar
+                class="ma-3"
+                size="125"
+                tile
+              >
+                <v-img :src="'../../../public/persons.png'"></v-img>
+              </v-avatar> -->
+    </v-col>
   </v-card>
 </template>
 
@@ -49,11 +29,13 @@
 export default {
   data () {
     return {
-      isAdmin: true,
-      userLogged: 3,
-      users: [
-        { id: 1, post: 'Cap', name: 'Gustavo Machado', phone: '41 999995555', session: 'Ordenança' },
-        { id: 1, post: 'Cap', name: 'J. Santos', phone: '41 999995555', session: 'Ordenança' }
+      items: [
+        {
+          color: '#1F7087',
+          src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
+          title: 'Supermodel',
+          artist: 'Foster the People'
+        }
       ]
     }
   }

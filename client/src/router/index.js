@@ -1,18 +1,25 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store/index'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Show-Queue',
-    component: () => import(/* webpackChunkName: "show-queue" */ '../view/Queue.vue')
+    name: 'home',
+    component: () => import(/* webpackChunkName: "show-queue" */ '../view/Queue.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/profile',
     name: 'Profile',
-    component: () => import(/* webpackChunkName: "profile" */'../view/Profile.vue')
+    component: () => import(/* webpackChunkName: "profile" */'../view/Profile.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/login',
@@ -22,17 +29,40 @@ const routes = [
   {
     path: '/mil',
     name: 'Users',
-    component: () => import(/* webpackChunkName: "list-users" */ '../view/ListUsers.vue')
+    component: () => import(/* webpackChunkName: "list-users" */ '../view/ListUsers.vue'),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/mil/:uid',
     name: 'Edit-Users',
-    component: () => import(/* webpackChunkName: "edit-users" */ '../view/EditUsers.vue')
+    component: () => import(/* webpackChunkName: "edit-users" */ '../view/EditUsers.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ]
 
 const router = new VueRouter({
   routes
+})
+
+// verify is authenticat
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters.isLoggedIn) {
+      next('/login')
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

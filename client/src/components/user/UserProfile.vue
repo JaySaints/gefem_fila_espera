@@ -6,21 +6,6 @@
                     <v-card-title>
                         <v-icon style="margin-right: 10px;">mdi-account</v-icon>
                         <span  class="text-h5">Perfil do Militar</span>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                            color="grey darken-4"
-                            small
-                            fab
-                            dark
-                            @click="isEditing = !isEditing"
-                        >
-                            <v-icon v-if="isEditing">
-                                mdi-close
-                            </v-icon>
-                            <v-icon v-else>
-                                mdi-pencil
-                            </v-icon>
-                        </v-btn>
                     </v-card-title>
                     <v-card-text>
                         <v-container>
@@ -30,11 +15,10 @@
                             sm="3"
                         >
                             <v-select
-                            v-model="post"
+                            v-model="userObject.post"
                             :items="posts"
                             label="Posto *"
                             required
-                            :disabled="!isEditing"
                             ></v-select>
                         </v-col>
                         <v-col
@@ -42,10 +26,9 @@
                             sm="5"
                         >
                             <v-text-field
-                            v-model="name"
+                            v-model="userObject.name"
                             label="Nome *"
                             required
-                            :disabled="!isEditing"
                             ></v-text-field>
                         </v-col>
                         <v-col
@@ -53,11 +36,10 @@
                             sm="4"
                         >
                             <v-select
-                            v-model="session"
+                            v-model="userObject.session"
                             :items="sessions"
                             label="Sessão *"
                             required
-                            :disabled="!isEditing"
                             ></v-select>
                         </v-col>
                         <v-col
@@ -65,10 +47,9 @@
                             sm="2"
                         >
                            <v-text-field
-                            v-model="ddd"
-                            label="DDD *"
+                            v-model="userObject.codArea"
+                            label="codArea *"
                             required
-                            :disabled="!isEditing"
                             ></v-text-field>
                         </v-col>
                         <v-col
@@ -76,10 +57,9 @@
                             sm="4"
                         >
                             <v-text-field
-                            v-model="phone"
+                            v-model="userObject.phone"
                             label="Telefone *"
                             required
-                            :disabled="!isEditing"
                             ></v-text-field>
                         </v-col>
                         <v-col
@@ -87,10 +67,9 @@
                             sm="6"
                         >
                         <v-text-field
-                            v-model="email"
+                            v-model="userObject.email"
                             label="Email *"
                             required
-                            :disabled="!isEditing"
                             ></v-text-field>
                         </v-col>
                         <v-col cols="6" ms="6">
@@ -98,8 +77,6 @@
                             v-model="password"
                             label="Senha"
                             type="password"
-                            required
-                            :disabled="!isEditing"
                             ></v-text-field>
                         </v-col>
                         <v-col cols="6" ms="6">
@@ -107,8 +84,6 @@
                             v-model="confPassword"
                             label="Confirmar senha"
                             type="password"
-                            required
-                            :disabled="!isEditing"
                             ></v-text-field>
                         </v-col>
                         </v-row>
@@ -132,12 +107,19 @@
                             color="primary darken-1"
                             large
                             rounded
-                            :disabled="!isEditing"
-                            @click="save"
+                            @click="update_profile()"
                         >
                             <v-icon>mdi-content-save</v-icon>
                         </v-btn>
                     </v-card-actions>
+                    <v-snackbar
+                    v-model="hasSaved"
+                    :timeout="2000"
+                    absolute
+                    center
+                    >
+                    Dados Atualizados!
+                    </v-snackbar>
                 </v-card>
             </v-container>
         </v-flex>
@@ -145,29 +127,71 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import api from '../../service/api'
 
 export default {
   name: 'UserProfile',
   data () {
     return {
       isEditing: false,
-      name: '',
-      post: '',
-      ddd: '',
-      session: '',
-      phone: '',
-      email: '',
+      hasSaved: false,
+      uid: null,
+      updata: false,
+      userObject: {
+        name: '',
+        post: '',
+        codArea: '',
+        session: '',
+        phone: '',
+        email: ''
+      },
       password: '',
       confPassword: '',
       posts: ['Coronel', 'Ten-Coronel', 'Major', 'Capitão', 'Tenente', 'Asp', 'Sub-Tenente', 'Sargento', 'Cabo', 'Soldado'],
       sessions: ['BC/AP', '1º BO', '2º BO', '3º BO', '4º BO', 'NPOR', 'Tesouraria', 'Salc', 'Almox', 'Aprov', 'Ordenança', 'N/A']
     }
   },
+  computed: {
+    ...mapGetters(['user'])
+  },
+  async mounted () {
+    this.uid = this.user.id
+    this.userObject = (await api.one_user_get(this.uid)).data.user
+  },
   methods: {
-    save () {
-      this.isEditing = false
-      alert(`Posto: ${this.post}\nNome: ${this.name}\nSessão: ${this.session}\n
-      Telefone: (${this.codArea}) ${this.phone}\nEmail: ${this.email}\nSenha: ${this.password} - Conf. Senha ${this.confPassword}`)
+    async update_profile () {
+      try {
+        if (this.password !== this.confPassword) {
+          console.log('As senhas não conferem!')
+          this.updata = false
+        } else if (this.password === '' && this.confPassword === '') {
+          this.password = ''
+          this.updata = true
+          console.log('Salvar sem alterar senha')
+        } else {
+          this.updata = true
+        }
+
+        if (this.updata) {
+          const profile = {
+            post: this.userObject.post,
+            name: this.userObject.name,
+            session: this.userObject.session,
+            email: this.userObject.email,
+            codArea: this.userObject.codArea,
+            phone: this.userObject.phone,
+            password: this.password
+          }
+          const result = (await api.update_profile_post(this.uid, profile)).data
+
+          if (result.success) {
+            this.hasSaved = true
+          }
+        }
+      } catch (error) {
+        console.log(error)
+      }
     },
     navigateTo (route) {
       this.$router.push(route)

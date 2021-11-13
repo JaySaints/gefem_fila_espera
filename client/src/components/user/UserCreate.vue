@@ -170,7 +170,8 @@ export default {
           email: this.email,
           codArea: this.codArea,
           phone: this.phone,
-          role: this.role
+          role: this.role,
+          password: this.phone
         }
         const result = (await api.create_user_post(user)).data
         if (result.success) {
