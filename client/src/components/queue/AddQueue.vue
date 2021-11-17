@@ -30,7 +30,7 @@
                 sm="4"
               >
                 <v-select
-                  v-model="post"
+                  v-model="user.post"
                   :items="posts"
                   label="Posto *"
                   required
@@ -41,48 +41,25 @@
                 sm="8"
               >
                 <v-text-field
-                  v-model="name"
+                  v-model="user.name"
                   label="Nome *"
                   required
                 ></v-text-field>
               </v-col>
               <v-col
                 cols="12"
-                sm="4"
+                sm="12"
               >
-                <v-select
-                  v-model="session"
-                  :items="sessions"
-                  label="Seção *"
-                  required
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="8">
-                <v-text-field
-                v-model="email"
-                  label="Email *"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col
-                cols="12"
-                sm="2"
-              >
-                <v-text-field
-                  v-model="ddd"
-                  label="DDD *"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col
-                cols="12"
-                sm=""
-              >
-                <v-text-field
-                v-model="phone"
-                  label="Telefone *"
-                  required
-                ></v-text-field>
+               <v-textarea
+                  v-model="user.subject"
+                  background-color="grey lighten-2"
+                  color="cyan"
+                  row="3"
+                  no-resize
+                  label="Assunto:"
+                  row-height="40"
+                  clearable
+                ></v-textarea>
               </v-col>
             </v-row>
           </v-container>
@@ -118,27 +95,22 @@ export default {
   data () {
     return {
       dialog: false,
-      name: '',
-      type: '',
-      post: '',
-      session: '',
-      phone: '',
-      email: '',
-      ddd: '',
+      user: {
+        name: '',
+        post: '',
+        subject: ''
+      },
       posts: ['Coronel', 'Ten-Coronel', 'Major', 'Capitão', 'Tenente', 'Asp', 'Sub-Tenente', 'Sargento', 'Cabo', 'Soldado'],
       sessions: ['BC/AP', '1º BO', '2º BO', '3º BO', '4º BO', 'NPOR', 'Tesouraria', 'Salc', 'Almox', 'Aprov', 'ordenança', 'N/A']
     }
   },
   methods: {
     save_user () {
-      alert(`Posto: ${this.post} - Nome: ${this.name} - Seção: ${this.session} - Tipo: ${this.type} - Email: ${this.email} - Telefone ${this.ddd} ${this.phone}`)
+      alert(`Posto: ${this.user.post} - Nome: ${this.user.name} - Assunto: ${this.user.subject}`)
       this.dialog = false
-      this.post = ''
-      this.name = ''
-      this.session = ''
-      this.email = ''
-      this.ddd = ''
-      this.phone = ''
+      this.user.post = ''
+      this.user.name = ''
+      this.user.subject = ''
     }
   }
 }
