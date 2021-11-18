@@ -27,24 +27,15 @@
             <v-row>
               <v-col
                 cols="12"
-                sm="4"
+                sm="12"
               >
                 <v-select
-                  v-model="user.post"
-                  :items="posts"
-                  label="Posto *"
-                  required
-                ></v-select>
-              </v-col>
-              <v-col
-                cols="12"
-                sm="8"
-              >
-                <v-text-field
                   v-model="user.name"
-                  label="Nome *"
-                  required
-                ></v-text-field>
+                  :items="military"
+                  :item-text="item => `${item.post} ${item.name}`"
+                  item-value="id"
+                  label="Militar"
+                ></v-select>
               </v-col>
               <v-col
                 cols="12"
@@ -97,17 +88,30 @@ export default {
   data () {
     return {
       dialog: false,
+      posts: [],
+      military: [],
       user: {
         name: '',
         post: '',
         subject: ''
-      },
-      posts: []
+      }
     }
   },
   methods: {
-    save_user () {
-      alert(`Posto: ${this.user.post} - Nome: ${this.user.name} - Assunto: ${this.user.subject}`)
+    async save_user () {
+      try {
+        const payload = {
+          dateScheduling: new Date().toISOString().slice(0, 10),
+          userId: this.military,
+          subject: this.user.subject,
+          status: 'em espera'
+        }
+        console.log(payload)
+        const result = (await api.enter_on_queue_post(payload)).data
+        console.log(result)
+      } catch (error) {
+        console.log(error)
+      }
       this.dialog = false
       this.user.post = ''
       this.user.name = ''
@@ -115,9 +119,7 @@ export default {
     }
   },
   async mounted () {
-    const objects = (await api.get_inflate_get()).data
-    this.sessions = objects.sessions
-    this.posts = objects.posts
+    this.military = (await api.all_user_get()).data.users
   }
 }
 </script>

@@ -30,5 +30,8 @@ export default {
   },
   get_inflate_get () {
     return axios.get(`${DomainServer}/inflate`)
+  },
+  enter_on_queue_post (payload) {
+    return axios.post(`${DomainServer}/enter-on-queue`, payload)
   }
 }

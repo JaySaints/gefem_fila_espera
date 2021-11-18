@@ -1,6 +1,7 @@
 const home = require('../controller/Home').home
 const user = require('../controller/UserController')
 const inflateLayout = require('../controller/InflateLayoutController')
+const scheduling = require('../controller/SchedulingController')
 
 
 module.exports = (app) => {
@@ -33,4 +34,9 @@ module.exports = (app) => {
     // Response contents layout
     app.get('/inflate', inflateLayout.inflate_layout_get)
     
+    // Insert new user in the queue
+    app.post('/enter-on-queue', scheduling.enter_on_queue_post)
+
+    // Get military on queue
+    app.get('/list-queue', scheduling.list_queue_get)
 }
