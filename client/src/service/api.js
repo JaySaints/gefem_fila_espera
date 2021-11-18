@@ -27,5 +27,8 @@ export default {
   },
   reset_passowrd_get (uid) {
     return axios.get(`${DomainServer}/mil/${uid}/reset`)
+  },
+  get_inflate_get () {
+    return axios.get(`${DomainServer}/inflate`)
   }
 }

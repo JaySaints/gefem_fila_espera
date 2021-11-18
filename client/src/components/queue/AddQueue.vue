@@ -91,6 +91,8 @@
 </template>
 
 <script>
+import api from '../../service/api'
+
 export default {
   data () {
     return {
@@ -100,8 +102,7 @@ export default {
         post: '',
         subject: ''
       },
-      posts: ['Coronel', 'Ten-Coronel', 'Major', 'Capitão', 'Tenente', 'Asp', 'Sub-Tenente', 'Sargento', 'Cabo', 'Soldado'],
-      sessions: ['BC/AP', '1º BO', '2º BO', '3º BO', '4º BO', 'NPOR', 'Tesouraria', 'Salc', 'Almox', 'Aprov', 'ordenança', 'N/A']
+      posts: []
     }
   },
   methods: {
@@ -112,6 +113,11 @@ export default {
       this.user.name = ''
       this.user.subject = ''
     }
+  },
+  async mounted () {
+    const objects = (await api.get_inflate_get()).data
+    this.sessions = objects.sessions
+    this.posts = objects.posts
   }
 }
 </script>

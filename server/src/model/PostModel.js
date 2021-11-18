@@ -2,10 +2,13 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('./index').sequelize;
 
 const Post = sequelize.define('Post', {
+    cod_id: {
+        type: DataTypes.INTEGER,
+    },
     initials: {
         type: DataTypes.STRING,
     },
-    name: {
+    description: {
         type: DataTypes.STRING,
         unique: true
     }

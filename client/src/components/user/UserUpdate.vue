@@ -167,11 +167,14 @@ export default {
         email: '',
         codArea: ''
       },
-      posts: ['Coronel', 'Ten-Coronel', 'Major', 'Capitão', 'Tenente', 'Asp', 'Sub-Tenente', 'Sargento', 'Cabo', 'Soldado'],
-      sessions: ['BC/AP', '1º BO', '2º BO', '3º BO', '4º BO', 'NPOR', 'Tesouraria', 'Salc', 'Almox', 'Aprov', 'ordenança', 'N/A']
+      posts: [],
+      sessions: []
     }
   },
   async mounted () {
+    const objects = (await api.get_inflate_get()).data
+    this.sessions = objects.sessions
+    this.posts = objects.posts
     this.uid = this.$route.params.uid
     this.userObject = (await api.one_user_get(this.uid)).data.user
   },

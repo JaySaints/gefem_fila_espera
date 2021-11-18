@@ -4,7 +4,6 @@ const cors = require('cors');
 const morgan = require('morgan');
 const { sequelize } = require('./model');
 const settings = require('./config/Settings')
-const Posts = require('./datas/Posts')
 const app = express();
 
 app.use(morgan('combined'));
@@ -16,5 +15,5 @@ require('./router')(app);
 sequelize.sync({force: false})
     .then(() => {
         app.listen(settings.port);
-        console.log(`Server started on port ${settings.port}`)      
+        console.log(`Server started on port ${settings.port}`)   
     })

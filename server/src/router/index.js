@@ -1,6 +1,6 @@
 const home = require('../controller/Home').home
 const user = require('../controller/UserController')
-
+const inflateLayout = require('../controller/InflateLayoutController')
 
 
 module.exports = (app) => {
@@ -29,4 +29,8 @@ module.exports = (app) => {
 
     // Reset password user account
     app.get('/mil/:uid/reset', user.reset_password_get)
+
+    // Response contents layout
+    app.get('/inflate', inflateLayout.inflate_layout_get)
+    
 }
