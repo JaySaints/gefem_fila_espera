@@ -1,4 +1,5 @@
 const Scheduling = require('../model/SchedulingModel')
+const User = require('../model/UserModel')
 
 module.exports = {
     async enter_on_queue_post (req, res, next) {
@@ -16,19 +17,40 @@ module.exports = {
     },
     async list_queue_get (req, res, next) {
         try {
+            Scheduling.belongsTo(User)
             const result = await Scheduling.findAll({
+                attributes: ['id', 'userId', 'subject'],
                 where: {
                     status: "em espera"
+                },
+                include: {
+                    model: User,
+                    as: 'User',
+                    attributes: ['id', 'post', 'name', 'session', 'codArea', 'phone', 'role', 'email']
                 }
             })
             if (result.length == 0) {
                 res.status(500).send({success: false, msg: "Nem um militar na fila!!!"})
             } else {
-                res.send(result)
+                res.send({users: result})
             }
         } catch (error) {
             console.log(error)
             res.status(500).send({success: false, msg: "Nem um militar na fila!"})
+        }
+    },
+    async update_status_queue_post (req, res, next) {
+        try {
+            
+            const result = await Scheduling.update({status: req.body.status},{
+                where: {
+                    id: req.body.uid
+                }
+            })
+            res.status(200).send({success: true, msg: 'Elemento Atualizado!!!'})
+        } catch (error) {
+            console.log(error)
+            res.status(501).send({success: false, error: 'Erro ao atualizar!'})
         }
     }
 }
