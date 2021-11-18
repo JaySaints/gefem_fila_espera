@@ -14,7 +14,7 @@
                       </v-btn>
                     </div>
                     <v-list-item-title class="headline mb-1 white--text">
-                      {{ setTotal ? 'Fila Vazia!' : total }}
+                      {{ setTotal ? 'Fila vazia!' : total }}
                     </v-list-item-title>
                     <v-list-item-subtitle class="white--text">Total em Espera</v-list-item-subtitle>
                   </v-list-item-content>
@@ -37,10 +37,7 @@ export default {
   name: '',
   data () {
     return {
-      setTotal: null,
-      users: [
-        { id: 1, post: 'Cap', name: 'J. Santos', phone: '41 999995555', session: 'Ordenança' }
-      ]
+      setTotal: null
     }
   },
   props: [

@@ -40,6 +40,9 @@ module.exports = (app) => {
     // Get military on queue
     app.get('/list-queue', scheduling.list_queue_get)
 
+    // Get military on queue
+    app.get('/list-queue/in-attendance', scheduling.in_attendance_get)
+
     // update status queue
     app.post('/list-queue', scheduling.update_status_queue_post)
 }

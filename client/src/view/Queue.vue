@@ -4,7 +4,7 @@
         <v-container fluid >
           <v-row>
             <v-col cols="12" sm="4">
-                <in-attendance />
+                <in-attendance :upcard="upcard"/>
             </v-col>
             <v-col cols="12" sm="4">
                 <status-queue :total.sync="total"/>
@@ -15,7 +15,7 @@
           </v-row>
           <v-row>
             <v-col cols="12" sm="12">
-              <in-hold class="carousel_cards"  v-on:update="receveTotal" :updateQueue.sync="update"/>
+              <in-hold class="carousel_cards" v-on:upcard="up"  v-on:update="receveTotal" :updateQueue.sync="update"/>
             </v-col>
           </v-row>
           <div class="add_queue">
@@ -39,7 +39,8 @@ export default {
   data () {
     return {
       resTotal: 'Fila Vazia!',
-      update: false
+      update: false,
+      upcard: false
     }
   },
   props: [
@@ -52,6 +53,12 @@ export default {
       this.update = true
       setTimeout(() => {
         this.update = false
+      }, 1000)
+    },
+    up () {
+      this.upcard = true
+      setTimeout(() => {
+        this.upcard = false
       }, 1000)
     }
   },

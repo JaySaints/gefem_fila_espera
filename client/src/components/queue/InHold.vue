@@ -1,4 +1,5 @@
 <template>
+  <div>
     <v-card
         elevation="17"
         width="1300"
@@ -32,14 +33,8 @@
                     </v-card-text>
                     <v-divider></v-divider>
                    <v-card-actions class="justify-center">
-                        <v-btn
-                            class="ma-1"
-                            color="success"
-                            dark
-                            rounded
-                            v-if="isAdmin"
-                            @click="updateStatus(item.id, 1)"
-                        ><v-icon>mdi-exit-run</v-icon></v-btn>
+                      <starded-dispatch :elements="item" v-on:update="updatePage"/>
+
                         <v-btn
                             class="ma-1"
                             color="grey"
@@ -47,30 +42,28 @@
                             rounded
                             v-if="isAdmin || userLogged == item.id"
                         ><v-icon>mdi-information</v-icon></v-btn>
-                        <v-btn
-                            class="ma-1"
-                            color="red"
-                            dark
-                            rounded
-                            v-if="isAdmin || userLogged == item.id"
-                            @click="updateStatus(item.id, 2)"
-                        ><v-icon>mdi-run-fast</v-icon></v-btn>
+
+                      <exit-queue  :elements="item" v-on:update="updatePage"/>
                         </v-card-actions>
                 </v-card>
             </v-slide-item>
         </v-slide-group>
-            <div class="danger-alert" v-html="err"></div>
     </v-card>
+  </div>
 </template>
 
 <script>
 import api from '../../service/api'
+import ExitQueue from './ExitQueue.vue'
+import StardedDispatch from './StardedDispatch.vue'
 
 export default {
+  components: { ExitQueue, StardedDispatch },
   name: '',
   data () {
     return {
       isAdmin: true,
+      dialog_3: null,
       userLogged: 10,
       err: '',
       usersObject: []
@@ -80,34 +73,10 @@ export default {
     'updateQueue'
   ],
   methods: {
-    async exitQueue (id) {
-      try {
-        const payload = {
-          status: 'saiu da fila',
-          uid: id
-        }
-        const result = (await api.update_status_queue_post(payload)).data
-        console.log(result)
-        this.usersObject = this.usersObject.filter(item => item.id !== id)
-        this.$emit('update', { total: this.usersObject.length })
-      } catch (error) {
-        console.log(error)
-      }
-    },
-    async updateStatus (uid, option) {
-      var result
-      try {
-        if (option === 1) {
-          result = (await api.update_status_queue_post({ status: 'Em atendimento', uid: uid })).data
-        } else if (option === 2) {
-          result = (await api.update_status_queue_post({ status: 'Saiu da Fila', uid: uid })).data
-        }
-        this.usersObject = this.usersObject.filter(item => item.id !== uid)
-        this.$emit('update', { total: this.usersObject.length })
-        console.log(result)
-      } catch (error) {
-        console.log(error)
-      }
+    updatePage (payload) {
+      this.usersObject = this.usersObject.filter(item => item.id !== payload.uid)
+      this.$emit('update', { total: this.usersObject.length })
+      this.$emit('upcard')
     }
   },
   async mounted () {

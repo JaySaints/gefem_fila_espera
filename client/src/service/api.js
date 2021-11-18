@@ -37,6 +37,9 @@ export default {
   list_queue_get () {
     return axios.get(`${DomainServer}/list-queue`)
   },
+  in_attendance_get () {
+    return axios.get(`${DomainServer}/list-queue/in-attendance`)
+  },
   update_status_queue_post (payload) {
     return axios.post(`${DomainServer}/list-queue`, payload)
   }

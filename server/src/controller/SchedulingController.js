@@ -54,5 +54,29 @@ module.exports = {
             console.log(error)
             res.status(501).send({success: false, error: 'Erro ao atualizar!'})
         }
+    },
+    async in_attendance_get (req, res, next) {
+        try {
+            Scheduling.belongsTo(User)
+            const result = await Scheduling.findAll({
+                attributes: ['id', 'userId', 'subject', 'status'],
+                where: {
+                    status: "Em atendimento"
+                },
+                include: {
+                    model: User,
+                    attributes: ['id', 'post', 'name', 'session', 'codArea', 'phone', 'role', 'email']
+                },
+                limit: 1
+            })
+            if (result.length == 0) {
+                res.send({success: false, msg: "Nem um militar na fila!!!", users: {User: {name: 'vazia!', post: 'Sala'}}})
+            } else {
+                res.send({users: result[0]})
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).send({success: false, msg: "Nem um militar na fila!"})
+        }
     }
 }
