@@ -42,7 +42,9 @@ module.exports = {
     async update_status_queue_post (req, res, next) {
         try {
             
-            const result = await Scheduling.update({status: req.body.status},{
+            const result = await Scheduling.update({
+                status: req.body.status
+            },{
                 where: {
                     id: req.body.uid
                 }

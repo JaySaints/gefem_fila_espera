@@ -7,7 +7,7 @@
                 <in-attendance />
             </v-col>
             <v-col cols="12" sm="4">
-                <status-queue />
+                <status-queue :total.sync="total"/>
             </v-col>
             <v-col cols="12" sm="4">
               <date-queue />
@@ -15,11 +15,11 @@
           </v-row>
           <v-row>
             <v-col cols="12" sm="12">
-              <in-hold class="carousel_cards"/>
+              <in-hold class="carousel_cards"  v-on:update="receveTotal" :updateQueue.sync="update"/>
             </v-col>
           </v-row>
           <div class="add_queue">
-            <add-queue />
+            <add-queue  v-on:queue="funUpdate()"/>
           </div>
         </v-container>
     </div>
@@ -38,7 +38,31 @@ export default {
   name: 'ShowQueue',
   data () {
     return {
-
+      resTotal: 'Fila Vazia!',
+      update: false
+    }
+  },
+  props: [
+  ],
+  methods: {
+    receveTotal (payload) {
+      this.resTotal = payload.total
+    },
+    funUpdate () {
+      this.update = true
+      setTimeout(() => {
+        this.update = false
+      }, 1000)
+    }
+  },
+  computed: {
+    total: {
+      get () {
+        return `${this.resTotal}`
+      },
+      set () {
+        this.total = this.resTotal
+      }
     }
   }
 }

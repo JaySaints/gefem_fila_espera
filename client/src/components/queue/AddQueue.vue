@@ -30,8 +30,8 @@
                 sm="12"
               >
                 <v-select
-                  v-model="user.name"
-                  :items="military"
+                  v-model="military"
+                  :items="listMilitary"
                   :item-text="item => `${item.post} ${item.name}`"
                   item-value="id"
                   label="Militar"
@@ -89,7 +89,8 @@ export default {
     return {
       dialog: false,
       posts: [],
-      military: [],
+      military: '',
+      listMilitary: [],
       user: {
         name: '',
         post: '',
@@ -106,9 +107,8 @@ export default {
           subject: this.user.subject,
           status: 'em espera'
         }
-        console.log(payload)
-        const result = (await api.enter_on_queue_post(payload)).data
-        console.log(result)
+        await api.enter_on_queue_post(payload).data
+        this.$emit('queue')
       } catch (error) {
         console.log(error)
       }
@@ -119,7 +119,7 @@ export default {
     }
   },
   async mounted () {
-    this.military = (await api.all_user_get()).data.users
+    this.listMilitary = (await api.all_user_get()).data.users
   }
 }
 </script>

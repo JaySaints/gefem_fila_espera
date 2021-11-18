@@ -33,5 +33,11 @@ export default {
   },
   enter_on_queue_post (payload) {
     return axios.post(`${DomainServer}/enter-on-queue`, payload)
+  },
+  list_queue_get () {
+    return axios.get(`${DomainServer}/list-queue`)
+  },
+  update_status_queue_post (payload) {
+    return axios.post(`${DomainServer}/list-queue`, payload)
   }
 }
