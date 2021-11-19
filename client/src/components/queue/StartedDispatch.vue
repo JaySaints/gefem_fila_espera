@@ -64,12 +64,11 @@ export default {
     'elements'
   ],
   methods: {
-    async updateStatus (uid) {
+    async updateStatus (id) {
       this.dialog = false
       try {
-        const result = (await api.update_status_queue_post({ status: 'Em atendimento', uid: uid })).data
-        console.log(result)
-        this.$emit('update', { uid: uid })
+        await api.update_status_queue_post({ status: 'Em atendimento', id: id, uid: this.elements.userId })
+        this.$emit('update', { id: id })
       } catch (error) {
         console.log(error)
       }

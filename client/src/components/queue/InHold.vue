@@ -5,6 +5,7 @@
         width="1300"
         class="mx-auto"
     >
+        <div class="text-center text-h2" v-html="err"></div>
         <v-slide-group
             class="pa-2"
             active-class="success"
@@ -60,7 +61,7 @@ export default {
       isAdmin: true,
       dialog_3: null,
       userLogged: 10,
-      err: '',
+      err: null,
       usersObject: []
     }
   },
@@ -69,14 +70,19 @@ export default {
   ],
   methods: {
     updatePage (payload) {
-      this.usersObject = this.usersObject.filter(item => item.id !== payload.uid)
+      this.usersObject = this.usersObject.filter(item => item.id !== payload.id)
       this.$emit('update', { total: this.usersObject.length })
       this.$emit('upcard')
     }
   },
   async mounted () {
-    this.usersObject = (await api.list_queue_get()).data.users
-    this.$emit('update', { total: this.usersObject.length })
+    try {
+      this.usersObject = (await api.list_queue_get()).data.users
+      this.$emit('update', { total: this.usersObject.length })
+      this.err = null
+    } catch (error) {
+      console.log('Nem um militar na fila!!!')
+    }
   },
   watch: {
     updateQueue: {

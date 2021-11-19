@@ -23,5 +23,8 @@ module.exports = {
     authentication: {
         PRIV_KEY: PRIV_KEY || 'secret',
         PUB_KEY: PUB_KEY || 'secret'
+    },
+    telegran: {
+        token: process.env.TOKEN_BOT ||'1447829026:AAGCldZBrV7c_dtPOPlvVO07qP4UGNIFFAM'
     }
 }

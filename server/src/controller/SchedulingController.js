@@ -1,5 +1,6 @@
 const Scheduling = require('../model/SchedulingModel')
 const User = require('../model/UserModel')
+const Bot = require('../telegram/bot').Bot
 
 module.exports = {
     async enter_on_queue_post (req, res, next) {
@@ -46,10 +47,15 @@ module.exports = {
                 status: req.body.status
             },{
                 where: {
-                    id: req.body.uid
+                    id: req.body.id
                 }
             })
-            res.status(200).send({success: true, msg: 'Elemento Atualizado!!!'})
+
+            if(req.body.status == "Em atendimento") {
+                await Bot.sendMessage('888971468', `Iniciou atendimento`);  
+                console.log('hello ----------------------------------------->');
+            }
+            res.status(200).send({success: true, msg: 'Elemento Atualizado!!!', return: result})
         } catch (error) {
             console.log(error)
             res.status(501).send({success: false, error: 'Erro ao atualizar!'})

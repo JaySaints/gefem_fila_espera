@@ -55,8 +55,8 @@ export default {
     // console.log(this.userObject)
   },
   methods: {
-    async conclued (uid) {
-      await api.update_status_queue_post({ uid: uid, status: 'Concluido' })
+    async conclued (id) {
+      await api.update_status_queue_post({ id: id, status: 'Concluido' })
       this.post = 'Sala'
       this.name = 'vazia!'
     }
