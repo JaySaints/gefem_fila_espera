@@ -35,13 +35,7 @@
                    <v-card-actions class="justify-center">
                       <started-dispatch :elements="item" v-on:update="updatePage"/>
 
-                        <v-btn
-                            class="ma-1"
-                            color="grey"
-                            dark
-                            rounded
-                            v-if="isAdmin || userLogged == item.id"
-                        ><v-icon>mdi-information</v-icon></v-btn>
+                        <information-queue />
 
                       <exit-queue  :elements="item" v-on:update="updatePage"/>
                         </v-card-actions>
@@ -55,10 +49,11 @@
 <script>
 import api from '../../service/api'
 import ExitQueue from './ExitQueue.vue'
+import InformationQueue from './InformationQueue.vue'
 import StartedDispatch from './StartedDispatch.vue'
 
 export default {
-  components: { ExitQueue, StartedDispatch },
+  components: { ExitQueue, StartedDispatch, InformationQueue },
   name: '',
   data () {
     return {

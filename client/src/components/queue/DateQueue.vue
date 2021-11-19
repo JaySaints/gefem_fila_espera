@@ -44,7 +44,7 @@ export default {
   },
   mounted () {
     const now = new Date()
-    const monName = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+    const monName = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
     this.fDate = now.getDate() + ', ' + monName[now.getMonth()]
     console.log(this.fDate)
   }

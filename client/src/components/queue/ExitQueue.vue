@@ -7,7 +7,7 @@
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     class="ma-1"
-                    color="red"
+                    color="red lighten-1"
                     dark
                     rounded
                     v-bind="attrs" v-on="on"
@@ -35,14 +35,14 @@
                 text
                 @click="dialog = false"
                 >
-                Cancelar
+                Não
                 </v-btn>
                 <v-btn
                 color="primary"
                 text
                 @click="updateStatus(elements.id)"
                 >
-                OK
+                Sim
                 </v-btn>
             </v-card-actions>
             </v-card>

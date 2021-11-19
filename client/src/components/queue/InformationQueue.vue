@@ -7,12 +7,12 @@
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     class="ma-1"
-                    color="success lighten-1"
+                    color="grey"
                     dark
                     rounded
                     v-bind="attrs" v-on="on"
                     @click="dialog = !dialog"
-                ><v-icon>mdi-exit-run</v-icon></v-btn>
+                ><v-icon>mdi-information</v-icon></v-btn>
             </template>
 
             <v-card>
@@ -22,7 +22,7 @@
 
             <v-card-text class="text-center">
                 <strong>
-                    Iniciar despacho?
+                    Tem certeza que deseja sair da fila?
                 </strong>
             </v-card-text>
 
@@ -35,14 +35,14 @@
                 text
                 @click="dialog = false"
                 >
-                Não
+                Cancelar
                 </v-btn>
                 <v-btn
                 color="primary"
                 text
                 @click="updateStatus(elements.id)"
                 >
-                Sim
+                OK
                 </v-btn>
             </v-card-actions>
             </v-card>
@@ -67,7 +67,7 @@ export default {
     async updateStatus (uid) {
       this.dialog = false
       try {
-        const result = (await api.update_status_queue_post({ status: 'Em atendimento', uid: uid })).data
+        const result = (await api.update_status_queue_post({ status: 'Saiu da Fila', uid: uid })).data
         console.log(result)
         this.$emit('update', { uid: uid })
       } catch (error) {
