@@ -7,6 +7,7 @@ const PRIV_KEY = fs.readFileSync(pathToKey, 'utf8');
 const pathToPubKey = path.join(__dirname, '.', 'id_rsa_pub.pem');
 const PUB_KEY = fs.readFileSync(pathToPubKey, 'utf8');
 
+require('dotenv').config()
 
 module.exports = {
     port: process.env.PORT || 8081,
@@ -24,7 +25,7 @@ module.exports = {
         PRIV_KEY: PRIV_KEY || 'secret',
         PUB_KEY: PUB_KEY || 'secret'
     },
-    telegran: {
+    telegram: {
         token: process.env.TOKEN_BOT
     }
 }

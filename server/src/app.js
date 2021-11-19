@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const { sequelize } = require('./model');
 const Bot = require('./telegram/bot').Bot
+require('dotenv').config()
 const settings = require('./config/Settings')
 const app = express();
 
