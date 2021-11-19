@@ -14,7 +14,7 @@
                       </v-btn>
                     </div>
                     <v-list-item-title class="headline mb-1 white--text">
-                      {{ picker }}
+                      {{ fDate }}
                     </v-list-item-title>
                     <v-list-item-subtitle class="white--text">Data da Fila</v-list-item-subtitle>
                   </v-list-item-content>
@@ -39,13 +39,14 @@ export default {
     return {
       date: null,
       picker: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-      trip: {
-        name: '',
-        location: null,
-        start: null,
-        end: null
-      }
+      fDate: ''
     }
+  },
+  mounted () {
+    const now = new Date()
+    const monName = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+    this.fDate = now.getDate() + ', ' + monName[now.getMonth()]
+    console.log(this.fDate)
   }
 }
 </script>
