@@ -6,7 +6,7 @@
     app
   >
     <v-list
-      class="primary"
+      color="#0071bc"
       dark
       height="128px"
     >
@@ -31,7 +31,7 @@
       dense
     >
       <v-list-item-group
-        color="primary"
+        color="#0071bc"
       >
         <v-list-item
           v-for="(item, i) in items"
@@ -62,7 +62,8 @@ export default {
       { text: 'Perfil', icon: 'mdi-account', color: 'amber darken-2', to: '/profile' },
       { text: 'Militares', icon: 'mdi-account-multiple', color: 'cyan darken-4', to: '/mil' },
       { text: 'Login', icon: 'mdi-login', color: 'green darken-2', to: '/login' },
-      { text: '???????', icon: 'mdi-upload', color: 'yellow darken-2', to: '#' },
+      { text: 'Relatórios', icon: 'mdi-upload', color: 'yellow darken-2', to: '#' },
+      { text: 'Links Úteis', icon: 'mdi-link-variant', color: 'blue darken-2', to: '#' },
       { text: 'Logout', icon: 'mdi-logout', color: 'red darken-2', to: '#' }
     ]
   })

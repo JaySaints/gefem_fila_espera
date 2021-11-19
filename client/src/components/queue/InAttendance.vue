@@ -21,7 +21,7 @@
                 </v-list-item>
               </v-col>
               <v-col cols="12" sm="4">
-                <v-avatar size="100" class="ml-n10 mt-6" tile><v-img src="./persons.png"></v-img></v-avatar>
+                <v-avatar size="100" class="ml-n10 mt-6" tile><v-img src="../../../public/talking.png"></v-img></v-avatar>
               </v-col>
             </v-row>
           </v-card>

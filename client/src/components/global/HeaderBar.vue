@@ -1,6 +1,6 @@
 <template>
     <div
-        color="primary"
+        color="#0071bc"
         flat
         height="200px"
         tile
@@ -12,7 +12,7 @@
         </v-navigation-drawer>
         <v-app-bar
             app
-            color="primary"
+            color="#0071bc"
             dark
         >
           <v-app-bar-nav-icon  @click="drawer = !drawer"></v-app-bar-nav-icon>

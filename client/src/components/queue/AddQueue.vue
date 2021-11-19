@@ -53,7 +53,6 @@
               </v-col>
             </v-row>
           </v-container>
-          <small>* Campos obrigatórios</small>
         </v-card-text>
         <v-card-actions>
             <v-btn

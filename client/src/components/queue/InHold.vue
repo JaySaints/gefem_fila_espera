@@ -14,8 +14,8 @@
                 v-for="(item, index) in usersObject"
                 :key="index"
             >
-                <v-card class="ma-2 blue lighten-4" width="250">
-                    <v-toolbar color="primary" dark collapse height="40">
+                <v-card class="ma-2" color="#eaebee" width="250">
+                    <v-toolbar color="#0071bc" dark collapse height="40">
                         <v-card-title>{{ `${++index}º` }}</v-card-title>
                     </v-toolbar>
                     <v-card-text>
@@ -33,7 +33,7 @@
                     </v-card-text>
                     <v-divider></v-divider>
                    <v-card-actions class="justify-center">
-                      <starded-dispatch :elements="item" v-on:update="updatePage"/>
+                      <started-dispatch :elements="item" v-on:update="updatePage"/>
 
                         <v-btn
                             class="ma-1"
@@ -55,10 +55,10 @@
 <script>
 import api from '../../service/api'
 import ExitQueue from './ExitQueue.vue'
-import StardedDispatch from './StardedDispatch.vue'
+import StartedDispatch from './StartedDispatch.vue'
 
 export default {
-  components: { ExitQueue, StardedDispatch },
+  components: { ExitQueue, StartedDispatch },
   name: '',
   data () {
     return {

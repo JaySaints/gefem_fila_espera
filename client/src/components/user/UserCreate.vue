@@ -69,7 +69,7 @@
               >
                 <v-text-field
                   v-model="codArea"
-                  label="codArea *"
+                  label="DDD *"
                   required
                 ></v-text-field>
               </v-col>

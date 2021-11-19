@@ -48,7 +48,7 @@
                         >
                            <v-text-field
                             v-model="userObject.codArea"
-                            label="codArea *"
+                            label="DDD *"
                             required
                             ></v-text-field>
                         </v-col>
