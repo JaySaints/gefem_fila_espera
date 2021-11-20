@@ -99,8 +99,12 @@ export default {
   methods: {
     async save_user () {
       try {
+        var today = new Date()
+        // var fullDate = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)
+        // today.getDay() + '/' + today.getMonth() + '/' + today.getFullYear()
+        var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
         const payload = {
-          dateScheduling: new Date().toISOString().slice(0, 10),
+          dateScheduling: time,
           userId: this.military,
           subject: this.user.subject,
           status: 'em espera'

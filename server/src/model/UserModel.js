@@ -24,7 +24,7 @@ const User = sequelize.define('User', {
         type: DataTypes.INTEGER,
         defaultValue: 1
     },
-    chatid: {
+    chatId: {
         type: DataTypes.STRING,
     },
     hash: DataTypes.STRING,

@@ -28,7 +28,7 @@ exports.ok = async (bot, msg, match) => {
 
     if (option == telefone) {
         await User.update({
-           chatid: chatId
+           chatId: chatId
         }, {
             where: {
                 id: usuario.id

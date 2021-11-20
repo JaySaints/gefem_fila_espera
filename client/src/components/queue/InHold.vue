@@ -36,7 +36,7 @@
                    <v-card-actions class="justify-center">
                       <started-dispatch :elements="item" v-on:update="updatePage"/>
 
-                        <information-queue />
+                        <information-queue :elements="item"/>
 
                       <exit-queue  :elements="item" v-on:update="updatePage"/>
                         </v-card-actions>

@@ -13,7 +13,7 @@ const Scheduling = sequelize.define('Scheduling', {
         }
     },
     dateScheduling: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
     },
     subject: {
         type: DataTypes.STRING

@@ -20,14 +20,13 @@ module.exports = {
         try {
             Scheduling.belongsTo(User)
             const result = await Scheduling.findAll({
-                attributes: ['id', 'userId', 'subject'],
                 where: {
                     status: "em espera"
                 },
                 include: {
                     model: User,
                     as: 'User',
-                    attributes: ['id', 'post', 'name', 'session', 'codArea', 'phone', 'role', 'email']
+                    attributes: ['id', 'post', 'name', 'session', 'codArea', 'phone', 'chatId', 'email']
                 }
             })
             if (result.length == 0) {
@@ -60,7 +59,6 @@ module.exports = {
         try {
             Scheduling.belongsTo(User)
             const result = await Scheduling.findAll({
-                attributes: ['id', 'userId', 'subject', 'status'],
                 where: {
                     status: "Em atendimento"
                 },
@@ -87,20 +85,20 @@ module.exports = {
                 where: {
                     id: uid
                 },
-                attributes: ['post', 'name', 'session', 'chatid', 'phone', 'email']
+                attributes: ['post', 'name', 'session', 'chatId', 'phone', 'email']
             })
-            if (user.chatid != null) {
-                await Bot.sendMessage(user.chatid, msg);      
+            if (user.chatId != null) {
+                await Bot.sendMessage(user.chatId, msg);      
                 res.send({
                     success: true,
-                    chat_id: user.chatid,
+                    chat_id: user.chatId,
                     name: user.name,
                     msg: "Usuário registrado no telegram."
                 })
             } else {
                 res.send({
                     success: false,
-                    chat_id: user.chatid,
+                    chat_id: user.chatId,
                     name: user.name,
                     msg: "Usuário ainda NÃO registrado no telegram!"
                 })
