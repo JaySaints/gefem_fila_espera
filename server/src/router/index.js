@@ -45,4 +45,7 @@ module.exports = (app) => {
 
     // update status queue
     app.post('/list-queue', scheduling.update_status_queue_post)
+
+    // Send notification for dispatschers
+    app.post('/send-message', scheduling.send_message_post)
 }

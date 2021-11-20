@@ -61,7 +61,11 @@ export default {
   },
   async mounted () {
     // do a request to the backend for all the users
-    this.users = (await api.all_user_get()).data.users
+    try {
+      this.users = (await api.all_user_get()).data.users
+    } catch (error) {
+      console.log(error)
+    }
   },
   methods: {
     navigateTo (route) {

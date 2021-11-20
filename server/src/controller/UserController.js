@@ -76,6 +76,7 @@ module.exports = {
             res.send({success: true, users: users})
         } catch (error) {
             res.status(500).send({success: false, error: 'Ocorreu um erro ao tentar encontrar os usuários cadastrados.'})
+            console.log(error)
         }    
     },
 

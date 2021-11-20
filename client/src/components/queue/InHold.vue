@@ -73,6 +73,25 @@ export default {
       this.usersObject = this.usersObject.filter(item => item.id !== payload.id)
       this.$emit('update', { total: this.usersObject.length })
       this.$emit('upcard')
+      this.sendMessage(payload)
+    },
+    async sendMessage (payload) {
+      try {
+        console.log('Sende Message')
+        const fil = this.usersObject[0]
+        const msg = 'Você já é o próximo a ser atendido, dirija-se a sala de espera!'
+        if (fil) {
+          const result = (await api.send_message_post({
+            uid: fil.User.id,
+            msg: msg
+          })).data
+          console.log({
+            return_serve: result
+          })
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
   async mounted () {

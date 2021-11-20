@@ -49,12 +49,7 @@ module.exports = {
                 where: {
                     id: req.body.id
                 }
-            })
-
-            if(req.body.status == "Em atendimento") {
-                await Bot.sendMessage('888971468', `Iniciou atendimento`);  
-                console.log('hello ----------------------------------------->');
-            }
+            })            
             res.status(200).send({success: true, msg: 'Elemento Atualizado!!!', return: result})
         } catch (error) {
             console.log(error)
@@ -83,6 +78,35 @@ module.exports = {
         } catch (error) {
             console.log(error)
             res.status(500).send({success: false, msg: "Nem um militar na fila!"})
+        }
+    },
+    async send_message_post (req, res, next) {
+        try {
+            const {uid, msg} = req.body
+            const user = await User.findOne({
+                where: {
+                    id: uid
+                },
+                attributes: ['post', 'name', 'session', 'chatid', 'phone', 'email']
+            })
+            if (user.chatid != null) {
+                await Bot.sendMessage(user.chatid, msg);      
+                res.send({
+                    success: true,
+                    chat_id: user.chatid,
+                    name: user.name,
+                    msg: "Usuário registrado no telegram."
+                })
+            } else {
+                res.send({
+                    success: false,
+                    chat_id: user.chatid,
+                    name: user.name,
+                    msg: "Usuário ainda NÃO registrado no telegram!"
+                })
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 }

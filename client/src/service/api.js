@@ -42,5 +42,8 @@ export default {
   },
   update_status_queue_post (payload) {
     return axios.post(`${DomainServer}/list-queue`, payload)
+  },
+  send_message_post (payload) {
+    return axios.post(`${DomainServer}/send-message`, payload)
   }
 }
