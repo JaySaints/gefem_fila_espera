@@ -8,7 +8,8 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" sm="4">
+          <v-col cols="12" sm="12">
+            <list-reports />
           </v-col>
         </v-row>
       </v-container>
@@ -17,6 +18,7 @@
 
 <script>
 import HeaderBar from '../components/global/HeaderBar.vue'
+import ListReports from '../components/reports/ListReports.vue'
 import SearchReports from '../components/reports/SearchReports.vue'
 
 export default {
@@ -28,7 +30,8 @@ export default {
   },
   components: {
     HeaderBar,
-    SearchReports
+    SearchReports,
+    ListReports
   }
 }
 </script>
