@@ -62,7 +62,7 @@ export default {
       { text: 'Perfil', icon: 'mdi-account', color: 'amber darken-2', to: '/profile' },
       { text: 'Militares', icon: 'mdi-account-multiple', color: 'cyan darken-4', to: '/mil' },
       { text: 'Login', icon: 'mdi-login', color: 'green darken-2', to: '/login' },
-      { text: 'Relatórios', icon: 'mdi-upload', color: 'yellow darken-2', to: '#' },
+      { text: 'Emitir Relatório', icon: 'mdi-upload', color: 'yellow darken-2', to: '/reports' },
       { text: 'Links Úteis', icon: 'mdi-link-variant', color: 'blue darken-2', to: '#' },
       { text: 'Logout', icon: 'mdi-logout', color: 'red darken-2', to: '#' }
     ]

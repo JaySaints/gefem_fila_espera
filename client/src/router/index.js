@@ -43,6 +43,14 @@ const routes = [
     }
   },
   {
+    path: '/reports/',
+    name: 'Reports',
+    component: () => import(/* webpackChunkName: "Reports" */ '../view/Reports.vue'),
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
     path: '*',
     redirect: '/'
   }
