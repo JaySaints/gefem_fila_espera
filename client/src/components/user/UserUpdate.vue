@@ -70,6 +70,7 @@
                                 <v-text-field
                                 v-model="userObject.phone"
                                 label="Telefone *"
+                                type="tel"
                                 required
                                 ></v-text-field>
                             </v-col>

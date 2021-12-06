@@ -31,9 +31,10 @@
                 sm="4"
               >
                 <v-select
-                  v-model="post"
+                  v-model="user.post"
                   :items="posts"
                   label="Posto *"
+                  :rules="[rules.required]"
                   required
                 ></v-select>
               </v-col>
@@ -42,8 +43,9 @@
                 sm="8"
               >
                 <v-text-field
-                  v-model="name"
+                  v-model="user.name"
                   label="Nome *"
+                  :rules="[rules.required]"
                   required
                 ></v-text-field>
               </v-col>
@@ -52,16 +54,19 @@
                 sm="4"
               >
                 <v-select
-                  v-model="session"
+                  v-model="user.session"
                   :items="sessions"
                   label="Seção *"
+                  :rules="[rules.required]"
                   required
                 ></v-select>
               </v-col>
               <v-col cols="12" sm="8">
                 <v-text-field
-                v-model="email"
+                  v-model="user.email"
                   label="Email *"
+                  type="email"
+                  :rules="[rules.required]"
                   required
                 ></v-text-field>
               </v-col>
@@ -70,8 +75,9 @@
                 sm="2"
               >
                 <v-text-field
-                  v-model="codArea"
+                  v-model="user.codArea"
                   label="DDD *"
+                  :rules="[rules.required]"
                   required
                 ></v-text-field>
               </v-col>
@@ -80,14 +86,15 @@
                 sm=""
               >
                 <v-text-field
-                v-model="phone"
+                v-model="user.phone"
                   label="Telefone *"
+                  :rules="[rules.required]"
                   required
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="6">
                 <v-radio-group
-                  v-model="role"
+                  v-model="user.role"
                   row
                   mandatory
                   hint="Tipo de usuário."
@@ -138,7 +145,7 @@
           absolute
           center
         >
-          Militar Cadastrado!
+          {{ returnMsg }}
         </v-snackbar>
       </v-card>
     </v-dialog>
@@ -153,44 +160,60 @@ export default {
     return {
       dialog: false,
       hasSaved: false,
-      name: '',
-      role: null,
-      post: '',
-      session: '',
-      phone: '',
-      email: '',
-      codArea: '',
+      user: {
+        name: '',
+        role: null,
+        post: '',
+        session: '',
+        phone: '',
+        email: '',
+        codArea: ''
+      },
+      sessions: [],
       posts: [],
-      sessions: []
+      returnMsg: '',
+      rules: {
+        required: (value) => !!value || 'Obrigatório!'
+      }
     }
   },
   methods: {
     async create_user () {
-      // alert(`Posto: ${this.post} - Nome: ${this.name} - Seção: ${this.session} - Tipo: ${this.type} - Email: ${this.email} - Telefone ${this.codArea} ${this.phone}`)
+      const areAllFieldsFilledIn = Object
+        .keys(this.user)
+        .every(key => !!this.user[key])
+      if (!areAllFieldsFilledIn) {
+        this.returnMsg = 'Preencha todos os campos OBRIGATÓRIOS!'
+        this.hasSaved = true
+        return
+      }
       try {
         const user = {
-          post: this.post,
-          name: this.name,
-          session: this.session,
-          email: this.email,
-          codArea: this.codArea,
-          phone: this.phone,
-          role: this.role,
-          password: this.phone
+          name: this.user.name,
+          post: this.user.post,
+          session: this.user.session,
+          email: this.user.email,
+          codArea: this.user.codArea,
+          phone: this.user.phone,
+          role: this.user.role,
+          password: this.user.phone
         }
         const result = (await api.create_user_post(user)).data
         if (result.success) {
+          this.returnMsg = 'Militar Cadastrado!'
           this.hasSaved = true
         }
+        this.user.post = ''
+        this.user.name = ''
+        this.user.session = ''
+        this.user.email = ''
+        this.user.codArea = ''
+        this.user.phone = ''
       } catch (error) {
         console.log(error)
+        this.returnMsg = error.response.data.error
+        this.hasSaved = true
       }
-      this.post = ''
-      this.name = ''
-      this.session = ''
-      this.email = ''
-      this.codArea = ''
-      this.phone = ''
     }
   },
   async mounted () {

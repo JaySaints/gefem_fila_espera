@@ -2,6 +2,7 @@ const home = require('../controller/Home').home
 const user = require('../controller/UserController')
 const inflateLayout = require('../controller/InflateLayoutController')
 const scheduling = require('../controller/SchedulingController')
+const EmailPolicy = require('../polices/EmailPolicy')
 
 
 module.exports = (app) => {
@@ -11,7 +12,7 @@ module.exports = (app) => {
     app.post('/login', user.login_user_post)
     
     // Create new user
-    app.post('/mil/create', user.create_user_post)
+    app.post('/mil/create', EmailPolicy.register, user.create_user_post)
 
     // List all user accounts
     app.get('/mil/', user.all_user_get)
