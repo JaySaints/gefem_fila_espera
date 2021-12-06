@@ -27,7 +27,7 @@ module.exports = (app) => {
     app.get('/mil/:uid/delete', user.delete_user_get)
 
     // Update profile information account
-    app.post('/profile/:uid/update', user.update_profile_post)
+    app.post('/profile/:uid/update', EmailPolicy.register, user.update_profile_post)
 
     // Reset password user account
     app.get('/mil/:uid/reset', user.reset_password_get)

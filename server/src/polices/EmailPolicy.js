@@ -4,12 +4,18 @@ module.exports = {
     register (req, res, next) {
         const schema = Joi.object({
             email: Joi.string().email(),            
-            codArea: Joi.string().min(2).max(2).regex(
-                new RegExp('[0-9]')
-            ),
-            phone: Joi.string().min(8).max(9).regex(
-                new RegExp('[0-9]')
-            )
+            codArea: Joi.string()
+                .min(2)
+                .max(2)
+                .regex(
+                    new RegExp('^[0-9]')
+                ),
+            phone: Joi.string()
+                .min(8)
+                .max(9)
+                .regex(
+                    new RegExp('^[0-9]')
+                )
         })
 
         // schema options
@@ -30,7 +36,8 @@ module.exports = {
                     break;  
                 case 'codArea':
                     res.status(400).send({
-                        error: 'Erro: Verifique o CÓDIGO DE ÂREA!'
+                        error: 'Erro: Verifique o CÓDIGO DE ÂREA!',
+                        errorLog: error
                     });
                     break;  
                 case 'phone':

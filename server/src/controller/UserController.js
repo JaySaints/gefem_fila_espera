@@ -127,8 +127,8 @@ module.exports = {
                 post: req.body.post,
                 session: req.body.session,
                 email: req.body.email,
-                codArea: req.body.codArea,
-                phone: req.body.phone,
+                codArea: req.body.codArea.toString(),
+                phone: req.body.phone.toString(),
             }, {
                 where: {
                     id: req.params.uid

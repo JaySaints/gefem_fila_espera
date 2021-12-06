@@ -18,6 +18,7 @@
                             v-model="userObject.post"
                             :items="posts"
                             label="Posto *"
+                            :rules="[rules.required]"
                             required
                             ></v-select>
                         </v-col>
@@ -28,6 +29,7 @@
                             <v-text-field
                             v-model="userObject.name"
                             label="Nome *"
+                            :rules="[rules.required]"
                             required
                             ></v-text-field>
                         </v-col>
@@ -39,6 +41,7 @@
                             v-model="userObject.session"
                             :items="sessions"
                             label="Seção *"
+                            :rules="[rules.required]"
                             required
                             ></v-select>
                         </v-col>
@@ -49,6 +52,7 @@
                            <v-text-field
                             v-model="userObject.codArea"
                             label="DDD *"
+                            :rules="[rules.required]"
                             required
                             ></v-text-field>
                         </v-col>
@@ -59,6 +63,7 @@
                             <v-text-field
                             v-model="userObject.phone"
                             label="Telefone *"
+                            :rules="[rules.required]"
                             required
                             ></v-text-field>
                         </v-col>
@@ -69,6 +74,7 @@
                         <v-text-field
                             v-model="userObject.email"
                             label="Email *"
+                            :rules="[rules.required]"
                             required
                             ></v-text-field>
                         </v-col>
@@ -122,7 +128,7 @@
                     absolute
                     center
                     >
-                    Dados Atualizados!
+                      {{ returnMsg }}
                     </v-snackbar>
                 </v-card>
             </v-container>
@@ -142,18 +148,22 @@ export default {
       hasSaved: false,
       uid: null,
       updata: false,
+      returnMsg: '',
       userObject: {
         name: '',
         post: '',
-        codArea: '',
+        codArea: null,
         session: '',
-        phone: '',
+        phone: null,
         email: ''
       },
       password: '',
       confPassword: '',
       posts: [],
-      sessions: []
+      sessions: [],
+      rules: {
+        required: (value) => !!value || 'Obrigatório!'
+      }
     }
   },
   computed: {
@@ -168,9 +178,18 @@ export default {
   },
   methods: {
     async update_profile () {
+      const areAllFieldsFilledIn = Object
+        .keys(this.userObject)
+        .every(key => !!this.userObject[key])
+      if (!areAllFieldsFilledIn) {
+        this.returnMsg = 'Preencha todos os campos OBRIGATÓRIOS!'
+        this.hasSaved = true
+        return
+      }
       try {
         if (this.password !== this.confPassword) {
-          console.log('As senhas não conferem!')
+          this.returnMsg = 'As senhas não conferem!'
+          this.hasSaved = true
           this.updata = false
         } else if (this.password === '' && this.confPassword === '') {
           this.password = ''
@@ -186,17 +205,20 @@ export default {
             name: this.userObject.name,
             session: this.userObject.session,
             email: this.userObject.email,
-            codArea: this.userObject.codArea,
-            phone: this.userObject.phone,
+            codArea: (this.userObject.codArea).toString(),
+            phone: (this.userObject.phone).toString(),
             password: this.password
           }
           const result = (await api.update_profile_post(this.uid, profile)).data
 
           if (result.success) {
+            this.returnMsg = 'Informações atualizadas!'
             this.hasSaved = true
           }
         }
       } catch (error) {
+        this.returnMsg = error.response.data.error
+        this.hasSaved = true
         console.log(error)
       }
     },
