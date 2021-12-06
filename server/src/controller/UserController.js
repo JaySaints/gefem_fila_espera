@@ -1,5 +1,6 @@
 const User = require('../model/UserModel')
 const tools = require('../config/tools')
+const searchUser = require('./SearchUsersController')
 
 module.exports = {
     // Function create user account => POST
@@ -72,8 +73,15 @@ module.exports = {
     // Function get all user => GET
     async all_user_get (req, res, next) {
         try {
-            const users = await User.findAll()
-            res.send({success: true, users: users})
+            const search = req.query.search
+            if (search) {
+                const users = await searchUser.search(search)
+                res.send({success: true, users: users})
+            } else {
+                const users = await User.findAll()
+                res.send({success: true, users: users})
+            }
+    
         } catch (error) {
             res.status(500).send({success: false, error: 'Ocorreu um erro ao tentar encontrar os usuários cadastrados.'})
             console.log(error)
