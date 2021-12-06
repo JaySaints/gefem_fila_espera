@@ -12,6 +12,8 @@
                     rounded
                     v-bind="attrs" v-on="on"
                     @click="dialog = !dialog"
+                    aria-label="Informações"
+                    title="Informações"
                 ><v-icon>mdi-information</v-icon></v-btn>
             </template>
 

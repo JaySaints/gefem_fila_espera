@@ -98,6 +98,8 @@
                                     color="warning"
                                     small
                                     @click="reset_password()"
+                                    aria-label="Resetar Senha"
+                                    title="Resetar Senha"
                                 >Resetar senha</v-btn>
                             </v-col>
                             </v-row>
@@ -112,6 +114,8 @@
                             rounded
                             dark
                             :to="{ name: 'Users'}"
+                            aria-label="Voltar"
+                            title="Voltar"
                         >
                             <v-icon>mdi-arrow-u-left-top-bold</v-icon>
                         </v-btn>
@@ -122,6 +126,8 @@
                             rounded
                             dark
                             @click="delete_user()"
+                            aria-label="Deletar"
+                            title="Deletar"
                         >
                             <v-icon>mdi-delete</v-icon>
                         </v-btn>
@@ -131,6 +137,8 @@
                             large
                             rounded
                             @click="update_user()"
+                            aria-label="Salvar"
+                            title="Salvar"
                         >
                             <v-icon>mdi-content-save</v-icon>
                         </v-btn>

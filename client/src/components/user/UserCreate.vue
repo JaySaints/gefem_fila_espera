@@ -13,6 +13,8 @@
                 dark
                 v-bind="attrs"
                 v-on="on"
+                aria-label="Cadastrar Militar"
+                title="Cadastrar Militar"
             ><v-icon>mdi-account-plus</v-icon></v-btn>
         </v-fab-transition>
       </template>
@@ -113,6 +115,8 @@
               rounded
               dark
               @click="dialog = false"
+              aria-label="Voltar"
+              title="Voltar"
             >
               <v-icon>mdi-arrow-u-left-top-bold</v-icon>
           </v-btn>
@@ -122,6 +126,8 @@
               large
               rounded
               @click="create_user()"
+              aria-label="Salvar"
+              title="Salvar"
           >
             <v-icon>mdi-content-save</v-icon>
           </v-btn>

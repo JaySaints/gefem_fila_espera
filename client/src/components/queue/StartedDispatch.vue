@@ -12,6 +12,8 @@
                     rounded
                     v-bind="attrs" v-on="on"
                     @click="dialog = !dialog"
+                    aria-label="Iniciar Despacho"
+                    title="Iniciar Despacho"
                 ><v-icon>mdi-exit-run</v-icon></v-btn>
             </template>
 

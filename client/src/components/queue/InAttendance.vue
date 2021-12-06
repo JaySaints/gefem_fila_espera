@@ -9,7 +9,14 @@
                 <v-list-item three-line>
                   <v-list-item-content>
                     <div class="mb-4">
-                      <v-btn v-model="btnConclued" fab color="success lighten-2" :elevation="hover ? 8 : 2" @click="conclued(scheId)">
+                      <v-btn
+                        v-model="btnConclued"
+                        fab color="success lighten-2"
+                        :elevation="hover ? 8 : 2"
+                        @click="conclued(scheId)"
+                        aria-label="Concluir!"
+                        title="Concluir!"
+                      >
                         <v-icon color="white">mdi-check-outline</v-icon>
                       </v-btn>
                     </div>

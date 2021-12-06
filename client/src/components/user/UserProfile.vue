@@ -99,6 +99,8 @@
                             rounded
                             dark
                             @click="backPage"
+                            aria-label="Voltar"
+                            title="Voltar"
                         >
                             <v-icon>mdi-arrow-u-left-top-bold</v-icon>
                         </v-btn>
@@ -108,6 +110,8 @@
                             large
                             rounded
                             @click="update_profile()"
+                            aria-label="Salvar"
+                            title="Salvar"
                         >
                             <v-icon>mdi-content-save</v-icon>
                         </v-btn>

@@ -13,6 +13,8 @@
                 dark
                 v-bind="attrs"
                 v-on="on"
+                aria-label="Entrar na Fila"
+                title="Entrar na Fila"
             ><v-icon>mdi-plus</v-icon></v-btn>
         </v-fab-transition>
       </template>
@@ -61,6 +63,8 @@
               rounded
               dark
               @click="dialog = false"
+              aria-label="Voltar"
+              title="Voltar"
             >
               <v-icon>mdi-arrow-u-left-top-bold</v-icon>
           </v-btn>
@@ -70,6 +74,8 @@
               large
               rounded
               @click="save_user()"
+              aria-label="Salvar"
+              title="Salvar"
           >
             <v-icon>mdi-content-save</v-icon>
           </v-btn>

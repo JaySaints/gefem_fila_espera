@@ -12,6 +12,8 @@
                     rounded
                     v-bind="attrs" v-on="on"
                     @click="dialog = !dialog"
+                    aria-label="Sair da Fila"
+                    title="Sair da Fila"
                 ><v-icon>mdi-run-fast</v-icon></v-btn>
             </template>
 

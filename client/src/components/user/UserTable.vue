@@ -38,6 +38,8 @@
                   icon
                   small
                   :to="{ name: 'Edit-Users', params: {uid: user.id} }"
+                  aria-label="Editar"
+                  title="Editar"
                 ><v-icon>mdi-pencil</v-icon>
                 </v-btn>
               </td>
