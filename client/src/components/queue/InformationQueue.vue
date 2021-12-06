@@ -21,13 +21,21 @@
             </v-card-title>
 
             <v-card-text class="text-center">
-                <strong>
-                    <p>{{elements.User.post}} - {{elements.User.name}}</p>
-                    <p>Telefone: ({{ elements.User.codArea }}) {{elements.User.phone}}</p>
-                    <p>Início do Despacho: {{elements.dateScheduling}}</p>
-                    <p>Assunto: {{elements.subject}}</p>
-                    <p v-html="hasTelegram"></p>
-                </strong>
+              <v-layout>
+                <v-flex>
+                  <strong>Militar:</strong>
+                  <p>{{elements.User.post}} {{elements.User.name}}</p>
+                  <strong>Telefone:</strong>
+                  <p>({{ elements.User.codArea }}) {{elements.User.phone}}</p>
+                  <strong>Data e Hora que entrou na fila:</strong>
+                  <p>{{dateTime}}</p>
+                  <strong>Assunto:</strong>
+                  <p>{{elements.subject}}</p>
+                </v-flex>
+              </v-layout>
+              <div>
+                  <strong><p v-html="hasTelegram"></p></strong>
+              </div>
             </v-card-text>
 
             <v-divider></v-divider>
@@ -54,7 +62,8 @@ export default {
   data () {
     return {
       dialog: null,
-      hasTelegram: ''
+      hasTelegram: '',
+      dateTime: ''
     }
   },
   props: [
@@ -68,6 +77,13 @@ export default {
     } else {
       this.hasTelegram = 'Aviso: Telegram cadastrado para receber mensagens.'
     }
+
+    this.dateTime = this.elements.createdAt
   }
 }
 </script>
+
+<style>
+tr {
+}
+</style>
