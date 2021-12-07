@@ -10,8 +10,12 @@ export default {
   login_user_post (payload) {
     return axios.post(`${DomainServer}/login`, payload)
   },
-  all_user_get () {
-    return axios.get(`${DomainServer}/mil`)
+  all_user_get (payload) {
+    return axios.get(`${DomainServer}/mil`, {
+      params: {
+        search: payload
+      }
+    })
   },
   one_user_get (uid) {
     return axios.get(`${DomainServer}/mil/${uid}`)

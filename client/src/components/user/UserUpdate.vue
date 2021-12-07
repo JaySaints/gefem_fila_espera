@@ -19,6 +19,7 @@
                                 v-model="userObject.post"
                                 :items="posts"
                                 label="Posto *"
+                                :rules="[rules.required]"
                                 required
                                 ></v-select>
                             </v-col>
@@ -29,6 +30,7 @@
                                 <v-text-field
                                 v-model="userObject.name"
                                 label="Nome *"
+                                :rules="[rules.required]"
                                 required
                                 ></v-text-field>
                             </v-col>
@@ -40,6 +42,7 @@
                                 v-model="userObject.session"
                                 :items="sessions"
                                 label="Seção *"
+                                :rules="[rules.required]"
                                 required
                                 ></v-select>
                             </v-col>
@@ -50,6 +53,7 @@
                             <v-text-field
                                 v-model="userObject.email"
                                 label="Email *"
+                                :rules="[rules.required]"
                                 required
                                 ></v-text-field>
                             </v-col>
@@ -60,6 +64,7 @@
                                 <v-text-field
                                 v-model="userObject.codArea"
                                 label="DDD *"
+                                :rules="[rules.required]"
                                 required
                                 ></v-text-field>
                             </v-col>
@@ -71,6 +76,7 @@
                                 v-model="userObject.phone"
                                 label="Telefone *"
                                 type="tel"
+                                :rules="[rules.required]"
                                 required
                                 ></v-text-field>
                             </v-col>
@@ -94,14 +100,16 @@
                                 ></v-radio>
                                 </v-radio-group>
                             </v-col>
-                            <v-col cols="6" ms="6">
-                                <v-btn
-                                    color="warning"
-                                    small
-                                    @click="reset_password()"
-                                    aria-label="Resetar Senha"
-                                    title="Resetar Senha"
-                                >Resetar senha</v-btn>
+                            <v-col cols="2">
+                              <button-dialog
+                                :dialog_title="'Aviso!'"
+                                :dialog_text="'Tem certeza que deseja resetar a senha?'"
+                                :btn_color="'warning'"
+                                :btn_small="true"
+                                :btn_title="'Resetar Senha'"
+                                :btn_label="'RESETAR SENHA'"
+                                v-on:onClickYes="reset_password()"
+                              />
                             </v-col>
                             </v-row>
                         </v-container>
@@ -121,17 +129,16 @@
                             <v-icon>mdi-arrow-u-left-top-bold</v-icon>
                         </v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn
-                            color="red darken-2"
-                            large
-                            rounded
-                            dark
-                            @click="delete_user()"
-                            aria-label="Deletar"
-                            title="Deletar"
-                        >
-                            <v-icon>mdi-delete</v-icon>
-                        </v-btn>
+                        <button-dialog
+                          :dialog_title="'Aviso!'"
+                          :dialog_text="'Tem certeza que deseja excluir este cadastro?'"
+                          :btn_icon="'mdi-delete'"
+                          :btn_color="'red lighten-1'"
+                          :btn_title="'Excluir'"
+                          :btn_large="true"
+                          :btn_rounded="true"
+                          v-on:onClickYes="delete_user()"
+                        />
                         <v-spacer></v-spacer>
                         <v-btn
                             color="primary darken-2"
@@ -150,7 +157,7 @@
                     absolute
                     center
                     >
-                    Dados Atualizados!
+                      {{ returnMsg }}
                     </v-snackbar>
                 </v-card>
             </v-container>
@@ -160,8 +167,10 @@
 
 <script>
 import api from '../../service/api'
+import ButtonDialog from './ButtonDialog.vue'
 
 export default {
+  components: { ButtonDialog },
   name: '',
   data () {
     return {
@@ -177,7 +186,11 @@ export default {
         codArea: ''
       },
       posts: [],
-      sessions: []
+      sessions: [],
+      returnMsg: '',
+      rules: {
+        required: (value) => !!value || 'Obrigatório!'
+      }
     }
   },
   async mounted () {
@@ -188,28 +201,44 @@ export default {
     this.userObject = (await api.one_user_get(this.uid)).data.user
   },
   methods: {
+    sayHi: function () {
+      return alert('Hello Man')
+    },
     async update_user () {
+      const areAllFieldsFilledIn = Object
+        .keys(this.userObject)
+        .every(key => !!this.userObject[key])
+      if (!areAllFieldsFilledIn) {
+        this.returnMsg = 'Preencha todos os campos OBRIGATÓRIOS!'
+        this.hasSaved = true
+        return
+      }
       try {
         const user = {
           post: this.userObject.post,
           name: this.userObject.name,
           session: this.userObject.session,
           email: this.userObject.email,
-          codArea: this.userObject.codArea,
-          phone: this.userObject.phone,
+          codArea: (this.userObject.codArea).toString(),
+          phone: (this.userObject.phone).toString(),
           role: this.userObject.role
         }
         const result = (await api.update_user_post(this.uid, user)).data
         if (result.success) {
+          this.returnMsg = 'Dados Atualizados!'
           this.hasSaved = true
         }
       } catch (error) {
+        this.returnMsg = error.response.data.error
+        this.hasSaved = true
         console.log(error)
       }
     },
     async reset_password () {
       try {
         const result = (await api.reset_passowrd_get(this.uid)).data
+        this.returnMsg = 'Senha Resetada!'
+        this.hasSaved = true
         console.log(result.msg)
       } catch (error) {
         console.log(error)
@@ -221,7 +250,6 @@ export default {
         await api.delete_user_get(this.uid)
         this.$router.push({ name: 'Users' })
       } catch (error) {
-        // console.log(error)
         this.error = error.response.data.error
       }
     }

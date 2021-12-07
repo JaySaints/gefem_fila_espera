@@ -21,7 +21,7 @@ module.exports = (app) => {
     app.get('/mil/:uid', user.one_user_get)
 
     // Update user information account
-    app.post('/mil/:uid/update', user.update_user_post)
+    app.post('/mil/:uid/update', EmailPolicy.register, user.update_user_post)
 
     // Delete user account
     app.get('/mil/:uid/delete', user.delete_user_get)

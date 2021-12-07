@@ -69,6 +69,14 @@ export default {
       console.log(error)
     }
   },
+  watch: {
+    '$route.query.search': {
+      immediate: true,
+      async handler (value) {
+        this.users = (await api.all_user_get(value)).data.users
+      }
+    }
+  },
   methods: {
     navigateTo (route) {
       this.$router.push(route)
