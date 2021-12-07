@@ -91,6 +91,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   data: () => ({
     avatarSrc: '',
@@ -107,6 +109,14 @@ export default {
       { text: 'Militares', to: '/mil' },
       { text: 'Login', icon: 'mdi-login', color: 'green darken-2', to: '/login' }
     ]
-  })
+  }),
+  computed: {
+    ...mapGetters(['isAuthAdmin'])
+  },
+  mounted () {
+    if (this.isAuthAdmin === 2) {
+      this.isAdmin = true
+    }
+  }
 }
 </script>

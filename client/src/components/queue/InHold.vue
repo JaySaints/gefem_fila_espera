@@ -34,11 +34,11 @@
                     </v-card-text>
                     <v-divider></v-divider>
                    <v-card-actions class="justify-center">
-                      <started-dispatch :elements="item" v-on:update="updatePage"/>
+                      <started-dispatch :elements="item" v-on:update="updatePage" v-if="isAdmin"/>
 
-                        <information-queue :elements="item"/>
+                        <information-queue :elements="item" v-if="isAdmin || item.User.id === user.id" />
 
-                      <exit-queue  :elements="item" v-on:update="updatePage"/>
+                      <exit-queue  :elements="item" v-on:update="updatePage" v-if="isAdmin || item.User.id === user.id"/>
                         </v-card-actions>
                 </v-card>
             </v-slide-item>
@@ -52,13 +52,14 @@ import api from '../../service/api'
 import ExitQueue from './ExitQueue.vue'
 import InformationQueue from './InformationQueue.vue'
 import StartedDispatch from './StartedDispatch.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   components: { ExitQueue, StartedDispatch, InformationQueue },
   name: '',
   data () {
     return {
-      isAdmin: true,
+      isAdmin: false,
       dialog_3: null,
       userLogged: 10,
       err: null,
@@ -68,6 +69,10 @@ export default {
   props: [
     'updateQueue'
   ],
+  computed: {
+    ...mapGetters(['isAuthAdmin']),
+    ...mapGetters(['user'])
+  },
   methods: {
     updatePage (payload) {
       this.usersObject = this.usersObject.filter(item => item.id !== payload.id)
@@ -95,6 +100,9 @@ export default {
     }
   },
   async mounted () {
+    if (this.isAuthAdmin === 2) {
+      this.isAdmin = true
+    }
     try {
       this.usersObject = (await api.list_queue_get()).data.users
       this.$emit('update', { total: this.usersObject.length })

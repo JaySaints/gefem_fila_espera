@@ -12,10 +12,17 @@
                       <v-btn
                         v-model="btnConclued"
                         fab color="success lighten-2"
-                        :elevation="hover ? 8 : 2"
+                        v-if="isAdmin"
                         @click="conclued(scheId)"
                         aria-label="Concluir!"
                         title="Concluir!"
+                      >
+                        <v-icon color="white">mdi-check-outline</v-icon>
+                      </v-btn>
+                      <v-btn
+                        v-else
+                        v-model="btnConclued"
+                        fab color="cyan lighten-3"
                       >
                         <v-icon color="white">mdi-check-outline</v-icon>
                       </v-btn>
@@ -40,10 +47,12 @@
 
 <script>
 import api from '../../service/api'
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
     return {
+      isAdmin: false,
       userObject: [],
       post: '',
       name: '',
@@ -54,7 +63,13 @@ export default {
   props: [
     'upcard'
   ],
+  computed: {
+    ...mapGetters(['isAuthAdmin'])
+  },
   async mounted () {
+    if (this.isAuthAdmin === 2) {
+      this.isAdmin = true
+    }
     this.userObject = (await api.in_attendance_get()).data.users
     this.name = this.userObject.User.name
     this.post = this.userObject.User.post
