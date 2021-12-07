@@ -31,7 +31,13 @@
         >
           <v-app-bar-nav-icon  @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-          <v-app-bar-title>Fila Online</v-app-bar-title>
+          <v-app-bar-title>
+            <router-link
+                tag="span"
+                class="home"
+                :to="{name: 'home'}"
+            >Fila Online</router-link>
+          </v-app-bar-title>
 
           <v-spacer></v-spacer>
 
@@ -72,5 +78,11 @@ export default {
 </script>
 
 <style>
+.home {
+    cursor: pointer;
+}
 
+.home:hover {
+    color: rgb(68, 176, 209);
+}
 </style>
