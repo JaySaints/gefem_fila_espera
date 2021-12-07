@@ -38,29 +38,59 @@ function issueJWT(user) {
 
 function authMiddleware(req, res, next){
 // Validates if there is a token in the header request
-try {
-    const tokenParts = req.headers.authorization.split(' ');
-    //console.log(tokenParts);
-
-// tokenParts[1].match(/\S+\.\S+\.\S+/) --> this method check if the tokem is has parts between the points
-if (tokenParts[0] === 'Bearer' && tokenParts[1].match(/\S+\.\S+\.\S+/) !== null) {
     try {
-    const verification = jsonwebtoken.verify(tokenParts[1], config.authentication.PUB_KEY, { algorithms: ['RS256'] });
-    //console.log('verification ', verification);
-    next();      
+        const tokenParts = req.headers.authorization.split(' ');
+        //console.log(tokenParts);
+
+        // tokenParts[1].match(/\S+\.\S+\.\S+/) --> this method check if the tokem is has parts between the points
+        if (tokenParts[0] === 'Bearer' && tokenParts[1].match(/\S+\.\S+\.\S+/) !== null) {
+            try {
+                const verification = jsonwebtoken.verify(tokenParts[1], config.authentication.PUB_KEY, { algorithms: ['RS256'] });
+                console.log('verification ', verification);
+                next();      
+            } catch (err) {
+                res.status(401).json({success: false, error: "You are not authorized to visit this route!"});
+            }    
+        } else{
+            res.status(401).json({success: false, error: "You are not authorized to visit this route!"});
+        }
     } catch (err) {
-    res.status(401).json({success: false, error: "You are not authorized to visit this route!"});
-    }    
-} else{
-    res.status(401).json({success: false, error: "You are not authorized to visit this route!"});
+        res.send({success: false, error: 'Error, invalid token!'})
+    }
 }
-} catch (err) {
-    res.send({success: false, error: 'Error, invalid token!'})
+
+function isAuthAdmin(req, res, next) {
+    // Validates if there is a token in the header request
+    try {
+        const tokenParts = req.headers.authorization.split(' ');
+        //console.log(tokenParts);
+
+        // tokenParts[1].match(/\S+\.\S+\.\S+/) --> this method check if the tokem is has parts between the points
+        if (tokenParts[0] === 'Bearer' && tokenParts[1].match(/\S+\.\S+\.\S+/) !== null) {
+            try {
+                const verification = jsonwebtoken.verify(tokenParts[1], config.authentication.PUB_KEY, { algorithms: ['RS256'] });
+                console.log('verification ', verification);
+
+                if (verification.role === 2) {
+                    next();                          
+                } else {
+                    res.status(401).json({success: false, error: "Você não está autorizado a visitar esta página!"}); 
+                }
+
+            } catch (err) {
+                res.status(401).json({success: false, error: "You are not authorized to visit this route!"});
+            }    
+        } else{
+            res.status(401).json({success: false, error: "You are not authorized to visit this route!"});
+        }
+    } catch (err) {
+        res.send({success: false, error: 'Error, invalid token!'})
+    }
 }
-}
-  
+
   module.exports.validPassword = validPassword;
   module.exports.genPassword = genPassword;
   module.exports.issueJWT = issueJWT;
   module.exports.authMiddleware = authMiddleware;
+  module.exports.isAuthAdmin = isAuthAdmin;
     

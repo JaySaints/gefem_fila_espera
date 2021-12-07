@@ -104,6 +104,21 @@ module.exports = {
         }
     },
 
+    async one_user_post (req, res, next) {
+        try {
+            const user = await User.findOne({
+                where: { id: req.body.uid },                
+                attributes: ['id', 'post', 'name', 'session', 'codArea', 'phone', 'role', 'email']
+            })
+            if (!user) {
+                res.status(500).send({success: false, error: 'Usuário não existe.'})
+            }
+            res.status(200).send({success: true, user: user})
+        } catch (error) {
+            res.status(500).send({success: false, error: 'Usuário não encontrado.'})
+        }
+    },
+
     // Update user information => POST
     async update_user_post (req, res, next) {
         try {

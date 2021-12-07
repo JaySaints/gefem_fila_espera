@@ -173,8 +173,7 @@ export default {
     const objects = (await api.get_inflate_get()).data
     this.sessions = objects.sessions
     this.posts = objects.posts
-    this.uid = this.user.id
-    this.userObject = (await api.one_user_get(this.uid)).data.user
+    this.userObject = (await api.one_user_post({ uid: this.user.id })).data.user
   },
   methods: {
     async update_profile () {

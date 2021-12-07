@@ -20,6 +20,9 @@ export default {
   one_user_get (uid) {
     return axios.get(`${DomainServer}/mil/${uid}`)
   },
+  one_user_post (uid) {
+    return axios.post(`${DomainServer}/profile`, uid)
+  },
   update_user_post (uid, payload) {
     return axios.post(`${DomainServer}/mil/${uid}/update`, payload)
   },
