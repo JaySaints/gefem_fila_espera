@@ -22,6 +22,7 @@
                       name="password"
                       label="Senha"
                       type="password"
+                      @keyup.enter="access()"
                     ></v-text-field>
                 </v-form>
               </v-card-text>
@@ -29,11 +30,18 @@
                 <v-spacer></v-spacer>
                 <v-btn color="primary" @click="access()" rounded>Entrar</v-btn>
               </v-card-actions>
+              <v-snackbar
+                    v-model="snack"
+                    :timeout="2000"
+                    absolute
+                    center
+                    >
+                      {{ err }}
+                    </v-snackbar>
           </v-card>
           <div>
             <forget-pwd />
           </div>
-          <div class="danger-alert" v-html="err"></div>
         </v-flex>
     </v-layout>
 </template>
@@ -49,6 +57,7 @@ export default {
   data () {
     return {
       email: '',
+      snack: false,
       password: '',
       err: null,
       dialog: false
@@ -64,13 +73,16 @@ export default {
         }).then(res => {
           if (res.data.success) {
             this.err = res.data.msg
+            this.snack = true
             this.$router.push({ name: 'home' })
           }
         }).catch(error => {
           this.err = error.response.data.error
+          this.snack = true
         })
       } catch (error) {
         this.err = error.response.data.error
+        this.snack = true
       }
     }
   }
