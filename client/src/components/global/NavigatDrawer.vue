@@ -46,6 +46,27 @@
             <v-list-item-title v-text="item.text"></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
+        <v-list-group
+          prepend-icon="mdi-link-variant"
+        >
+        <template v-slot:activator>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>Links Úteis</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+        <v-list-item
+          v-for="link in links"
+          :key="link.text"
+          :to="link.to"
+        >
+            <v-list-item-content>
+              <v-list-item-title>{{ link.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
       </v-list-item-group>
     </v-list>
   </v-card>
@@ -62,9 +83,12 @@ export default {
       { text: 'Perfil', icon: 'mdi-account', color: 'amber darken-2', to: '/profile' },
       { text: 'Militares', icon: 'mdi-account-multiple', color: 'cyan darken-4', to: '/mil' },
       { text: 'Login', icon: 'mdi-login', color: 'green darken-2', to: '/login' },
-      { text: 'Emitir Relatório', icon: 'mdi-upload', color: 'yellow darken-2', to: '/reports' },
-      { text: 'Links Úteis', icon: 'mdi-link-variant', color: 'blue darken-2', to: '#' },
-      { text: 'Logout', icon: 'mdi-logout', color: 'red darken-2', to: '#' }
+      { text: 'Emitir Relatório', icon: 'mdi-upload', color: 'yellow darken-2', to: '/reports' }
+    ],
+    links: [
+      { text: 'Fila', to: '/' },
+      { text: 'Perfil', to: '/profile' },
+      { text: 'Militares', to: '/mil' }
     ]
   })
 }

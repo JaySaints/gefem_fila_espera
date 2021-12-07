@@ -2,13 +2,26 @@
     <div
         color="#0071bc"
         flat
+        class="mx-auto"
         height="200px"
         tile
     >
         <v-navigation-drawer
         v-model="drawer"
         app
-        ><navigat-drawer />
+        >
+          <navigat-drawer />
+          <template v-slot:append>
+            <div class="pa-2">
+              <v-btn
+              dark
+              width="240"
+              color="red darken-2"
+              >
+                <v-icon>mdi-logout</v-icon>Logout
+              </v-btn>
+            </div>
+          </template>
         </v-navigation-drawer>
         <v-app-bar
             app
