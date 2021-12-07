@@ -47,6 +47,24 @@
           </v-list-item-content>
         </v-list-item>
 
+        <v-list-item to="/mil" v-if="isAdmin">
+          <v-list-item-icon>
+            <v-icon color="cyan darken-4">mdi-account-multiple</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Militares</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item to="/reports" v-if="isAdmin">
+          <v-list-item-icon>
+            <v-icon color="yellow darken-2">mdi-upload</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Emitir Relatório</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
         <v-list-group
           prepend-icon="mdi-link-variant"
         >
@@ -76,19 +94,18 @@
 export default {
   data: () => ({
     avatarSrc: '',
+    isAdmin: false,
     title: 'Menu',
     subTitle: 'Bem-Vindo',
     items: [
       { text: 'Fila', icon: 'mdi-history', color: 'blue darken-2', to: '/' },
-      { text: 'Perfil', icon: 'mdi-account', color: 'amber darken-2', to: '/profile' },
-      { text: 'Militares', icon: 'mdi-account-multiple', color: 'cyan darken-4', to: '/mil' },
-      { text: 'Login', icon: 'mdi-login', color: 'green darken-2', to: '/login' },
-      { text: 'Emitir Relatório', icon: 'mdi-upload', color: 'yellow darken-2', to: '/reports' }
+      { text: 'Perfil', icon: 'mdi-account', color: 'amber darken-2', to: '/profile' }
     ],
     links: [
       { text: 'Fila', to: '/' },
       { text: 'Perfil', to: '/profile' },
-      { text: 'Militares', to: '/mil' }
+      { text: 'Militares', to: '/mil' },
+      { text: 'Login', icon: 'mdi-login', color: 'green darken-2', to: '/login' }
     ]
   })
 }

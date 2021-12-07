@@ -17,6 +17,7 @@
               dark
               width="240"
               color="red darken-2"
+              @click="logoutUser()"
               >
                 <v-icon>mdi-logout</v-icon>Logout
               </v-btn>
@@ -43,6 +44,7 @@
 
 <script>
 import NavigatDrawer from '@/components/global/NavigatDrawer'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'HeaderPage',
@@ -56,7 +58,16 @@ export default {
   },
   props: [
     'option_btn'
-  ]
+  ],
+  computed: {
+    ...mapActions(['logout'])
+  },
+  methods: {
+    async logoutUser () {
+      await this.logout
+      this.$router.push({ name: 'Login' })
+    }
+  }
 }
 </script>
 

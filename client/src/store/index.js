@@ -23,7 +23,7 @@ export default new Vuex.Store({
       state.status = result.success
       state.isAdmin = result.user.role
     },
-    loggout (state) {
+    logout (state) {
       state.token = null
       state.user = null
       state.status = false
@@ -49,7 +49,7 @@ export default new Vuex.Store({
       await localStorage.removeItem('token')
       localStorage.clear()
       delete axios.defaults.headers.common.Authorization
-      commit('loggout')
+      commit('logout')
     }
   },
   getters: {
