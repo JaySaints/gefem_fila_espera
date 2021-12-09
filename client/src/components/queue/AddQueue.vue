@@ -31,19 +31,27 @@
                 sm="12"
               >
                 <v-select
+                  v-if="isAdmin"
                   v-model="military"
                   :items="listMilitary"
                   :item-text="item => `${item.post} ${item.name}`"
                   item-value="id"
                   label="Militar"
                 ></v-select>
+                <v-text-field
+                  v-else
+                  v-model="military"
+                  outlined
+                  v-text="`${user.post} ${user.name}`"
+                  label="Militar"
+                ></v-text-field>
               </v-col>
               <v-col
                 cols="12"
                 sm="12"
               >
                <v-textarea
-                  v-model="user.subject"
+                  v-model="subject"
                   background-color="grey lighten-2"
                   color="cyan"
                   row="3"
@@ -87,20 +95,24 @@
 
 <script>
 import api from '../../service/api'
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
     return {
       dialog: false,
+      isAdmin: false,
+      username: '',
+      post: '',
+      subject: '',
       posts: [],
       military: '',
-      listMilitary: [],
-      user: {
-        name: '',
-        post: '',
-        subject: ''
-      }
+      listMilitary: []
     }
+  },
+  computed: {
+    ...mapGetters(['isAuthAdmin']),
+    ...mapGetters(['user'])
   },
   methods: {
     async save_user () {
@@ -109,25 +121,34 @@ export default {
         var fullDate = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)
         // today.getDay() + '/' + today.getMonth() + '/' + today.getFullYear()
         // var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
+
         const payload = {
           dateScheduling: fullDate,
           userId: this.military,
-          subject: this.user.subject,
+          subject: this.subject,
           status: 'em espera'
         }
+        console.log(payload)
+
         await api.enter_on_queue_post(payload).data
         this.$emit('queue')
       } catch (error) {
         console.log(error)
       }
       this.dialog = false
-      this.user.post = ''
-      this.user.name = ''
-      this.user.subject = ''
     }
   },
   async mounted () {
-    this.listMilitary = (await api.all_user_get()).data.users
+    try {
+      this.listMilitary = (await api.all_user_get()).data.users
+    } catch (error) {
+      // console.log(error.response.data.error)
+      this.military = this.user.id
+    }
+
+    if (this.isAuthAdmin === 2) {
+      this.isAdmin = true
+    }
   }
 }
 </script>
