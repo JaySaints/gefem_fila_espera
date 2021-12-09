@@ -173,7 +173,8 @@ export default {
     const objects = (await api.get_inflate_get()).data
     this.sessions = objects.sessions
     this.posts = objects.posts
-    this.userObject = (await api.one_user_post({ uid: this.user.id })).data.user
+    this.uid = this.user.id
+    this.userObject = (await api.one_user_post({ uid: this.uid })).data.user
   },
   methods: {
     async update_profile () {
@@ -208,7 +209,6 @@ export default {
             password: this.password
           }
           const result = (await api.update_profile_post(this.uid, profile)).data
-
           if (result.success) {
             this.returnMsg = 'Informações atualizadas!'
             this.hasSaved = true
