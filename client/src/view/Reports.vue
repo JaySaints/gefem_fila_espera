@@ -24,9 +24,17 @@
         </v-row>
         <v-row>
           <v-col cols="12" sm="12">
-            <list-reports/>
+            <list-reports :users="getElements.result"/>
           </v-col>
         </v-row>
+        <v-snackbar
+          v-model="hasSaved"
+          :timeout="2000"
+          absolute
+          center
+        >
+          {{ returnMsg }}
+        </v-snackbar>
       </v-container>
     </div>
 </template>
@@ -35,12 +43,16 @@
 import HeaderBar from '../components/global/HeaderBar.vue'
 import ListReports from '../components/reports/ListReports.vue'
 import SearchReports from '../components/reports/SearchReports.vue'
+import api from '../service/api'
 
 export default {
   name: '',
   data () {
     return {
-      checkbox: false
+      checkbox: false,
+      getElements: [],
+      returnMsg: null,
+      hasSaved: false
     }
   },
   components: {
@@ -49,13 +61,19 @@ export default {
     SearchReports
   },
   methods: {
-    dailyReport (e) {
-      alert('Data: ' + e.start)
-      // console.log('Data ' + e.start)
+    async dailyReport (e) {
+      this.getElements = (await api.search_reports_post({ dateStart: e.start, dateEnd: '' })).data
+      if (this.getElements.result.length === 0) {
+        this.returnMsg = this.getElements.msg
+        this.hasSaved = true
+      }
     },
-    periodReport (e) {
-      alert('Data inicio: ' + e.start + ' Data fim: ' + e.end)
-      // console.log('Data inicio: ' + e.start + ' Data fim: ' + e.end)
+    async periodReport (e) {
+      this.getElements = (await api.search_reports_post({ dateStart: e.start, dateEnd: e.end })).data
+      if (this.getElements.result.length === 0) {
+        this.returnMsg = this.getElements.msg
+        this.hasSaved = true
+      }
     }
   }
 }

@@ -52,5 +52,8 @@ export default {
   },
   send_message_post (payload) {
     return axios.post(`${DomainServer}/send-message`, payload)
+  },
+  search_reports_post (payload) {
+    return axios.post(`${DomainServer}/search-reports`, payload)
   }
 }

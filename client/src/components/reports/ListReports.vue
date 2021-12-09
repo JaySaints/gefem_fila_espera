@@ -29,12 +29,12 @@
               v-for="user in users"
               :key="user.id"
             >
-              <td>{{ `${user.post} ${user.name}` }}</td>
-              <td>{{ user.session }}</td>
+              <td>{{ `${user.User.post} ${user.User.name}` }}</td>
+              <td>{{ user.User.session }}</td>
               <td >{{ user.subject }}</td>
-              <td>{{ user.date }}</td>
-              <td>{{ user.hourStart }}</td>
-              <td>{{ user.hourEnd }}</td>
+              <td>{{ user.dateScheduling }}</td>
+              <td>{{ user.dateTimeEnd }}</td>
+              <td>{{ user.dateTimeEnd }}</td>
             </tr>
           </tbody>
       </v-simple-table>
@@ -48,10 +48,10 @@ export default {
   name: '',
   data () {
     return {
-      users: [
-        { id: 1, post: 'cap', name: 'Jota', session: 'Ordenança', subject: 'Envio de pagamento', date: '15/12/2019', hourStart: '13:54:03', hourEnd: '14:11:47' }
-      ]
     }
-  }
+  },
+  props: [
+    'users'
+  ]
 }
 </script>

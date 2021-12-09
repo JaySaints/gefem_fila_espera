@@ -56,5 +56,6 @@ module.exports = (app) => {
     // Send notification for dispatschers
     app.post('/send-message', authToken.authMiddleware, scheduling.send_message_post)
 
-    app.post('/search-reports', searchReports.control)
+    // Search for reports
+    app.post('/search-reports', searchReports.controller)
 }
