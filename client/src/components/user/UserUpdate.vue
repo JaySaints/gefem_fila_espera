@@ -236,17 +236,15 @@ export default {
     },
     async reset_password () {
       try {
-        const result = (await api.reset_passowrd_get(this.uid)).data
+        await api.reset_passowrd_get(this.uid).data
         this.returnMsg = 'Senha Resetada!'
         this.hasSaved = true
-        console.log(result.msg)
       } catch (error) {
         console.log(error)
       }
     },
     async delete_user () {
       try {
-        console.log(this.uid)
         await api.delete_user_get(this.uid)
         this.$router.push({ name: 'Users' })
       } catch (error) {

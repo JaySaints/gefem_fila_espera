@@ -56,7 +56,6 @@ module.exports = {
         }
     },
     protectedPage (req, res, next) {
-        console.log(req.headers)
         res.send({success: true, msg: 'Hi! You are authenticated', user: req.jwt});
     }
 }

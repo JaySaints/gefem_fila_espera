@@ -82,17 +82,13 @@ export default {
     },
     async sendMessage (payload) {
       try {
-        console.log('Sende Message')
         const fil = this.usersObject[0]
         const msg = 'Você já é o próximo a ser atendido, dirija-se a sala de espera!'
         if (fil) {
-          const result = (await api.send_message_post({
+          await api.send_message_post({
             uid: fil.User.id,
             msg: msg
-          })).data
-          console.log({
-            return_serve: result
-          })
+          }).data
         }
       } catch (error) {
         console.log(error)
@@ -108,7 +104,6 @@ export default {
       this.$emit('update', { total: this.usersObject.length })
       this.err = null
     } catch (error) {
-      console.log('Nem um militar na fila!!!')
     }
   },
   watch: {

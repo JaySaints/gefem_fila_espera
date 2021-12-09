@@ -40,7 +40,6 @@ function authMiddleware(req, res, next){
 // Validates if there is a token in the header request
     try {
         const tokenParts = req.headers.authorization.split(' ');
-        //console.log(tokenParts);
 
         // tokenParts[1].match(/\S+\.\S+\.\S+/) --> this method check if the tokem is has parts between the points
         if (tokenParts[0] === 'Bearer' && tokenParts[1].match(/\S+\.\S+\.\S+/) !== null) {
@@ -63,7 +62,6 @@ function isAuthAdmin(req, res, next) {
     // Validates if there is a token in the header request
     try {
         const tokenParts = req.headers.authorization.split(' ');
-        //console.log(tokenParts);
 
         // tokenParts[1].match(/\S+\.\S+\.\S+/) --> this method check if the tokem is has parts between the points
         if (tokenParts[0] === 'Bearer' && tokenParts[1].match(/\S+\.\S+\.\S+/) !== null) {

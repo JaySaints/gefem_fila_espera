@@ -3,7 +3,6 @@ const Sequelize = require('sequelize')
 const Op = Sequelize.Op;
 
 module.exports.search = async (search) => {
-  console.log('Search ', search)
   var users = null
   if (search) {
       users = await User.findAll({

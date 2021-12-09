@@ -193,7 +193,6 @@ export default {
         } else if (this.password === '' && this.confPassword === '') {
           this.password = ''
           this.updata = true
-          console.log('Salvar sem alterar senha')
         } else {
           this.updata = true
         }

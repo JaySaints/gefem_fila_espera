@@ -128,7 +128,6 @@ export default {
           subject: this.subject,
           status: 'em espera'
         }
-        console.log(payload)
 
         await api.enter_on_queue_post(payload).data
         this.$emit('queue')

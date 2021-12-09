@@ -60,8 +60,6 @@ exports.start = (bot, msg) => {
 
 exports.on = ('message', (bot, msg) => {
     const chatId = msg.chat.id;
-
-    console.log(msg.text)
     // send a message to the chat acknowledging receipt of their message
     bot.sendMessage(chatId, `Olá ${msg.chat.first_name}`);
 

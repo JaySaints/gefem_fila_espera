@@ -213,7 +213,6 @@ module.exports = {
                     id: req.params.uid
                 }
             })
-            console.log(user)
             if (!user) {
                 res.status(500).send({success: false, error: 'Usuário não encontrado!'})
             }

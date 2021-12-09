@@ -74,7 +74,6 @@ export default {
     this.name = this.userObject.User.name
     this.post = this.userObject.User.post
     this.scheId = this.userObject.id
-    // console.log(this.userObject)
   },
   methods: {
     async conclued (id) {
