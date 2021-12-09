@@ -105,12 +105,12 @@ export default {
   methods: {
     async save_user () {
       try {
-        var today = new Date()
-        // var fullDate = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)
+        // var today = new Date()
+        var fullDate = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)
         // today.getDay() + '/' + today.getMonth() + '/' + today.getFullYear()
-        var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
+        // var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
         const payload = {
-          dateScheduling: time,
+          dateScheduling: fullDate,
           userId: this.military,
           subject: this.user.subject,
           status: 'em espera'

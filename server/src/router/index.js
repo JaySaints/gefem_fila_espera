@@ -4,6 +4,7 @@ const inflateLayout = require('../controller/InflateLayoutController')
 const scheduling = require('../controller/SchedulingController')
 const EmailPolicy = require('../polices/EmailPolicy')
 const authToken = require('../config/tools');
+const searchReports = require('../controller/SearchReportsController')
 
 
 
@@ -54,4 +55,6 @@ module.exports = (app) => {
 
     // Send notification for dispatschers
     app.post('/send-message', authToken.authMiddleware, scheduling.send_message_post)
+
+    app.post('/search-reports', searchReports.control)
 }

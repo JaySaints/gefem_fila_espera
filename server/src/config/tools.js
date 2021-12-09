@@ -46,7 +46,7 @@ function authMiddleware(req, res, next){
         if (tokenParts[0] === 'Bearer' && tokenParts[1].match(/\S+\.\S+\.\S+/) !== null) {
             try {
                 const verification = jsonwebtoken.verify(tokenParts[1], config.authentication.PUB_KEY, { algorithms: ['RS256'] });
-                console.log('verification ', verification);
+                // console.log('verification ', verification);
                 next();      
             } catch (err) {
                 res.status(401).json({success: false, error: "You are not authorized to visit this route!"});
@@ -69,7 +69,6 @@ function isAuthAdmin(req, res, next) {
         if (tokenParts[0] === 'Bearer' && tokenParts[1].match(/\S+\.\S+\.\S+/) !== null) {
             try {
                 const verification = jsonwebtoken.verify(tokenParts[1], config.authentication.PUB_KEY, { algorithms: ['RS256'] });
-                console.log('verification ', verification);
 
                 if (verification.role === 2) {
                     next();                          
