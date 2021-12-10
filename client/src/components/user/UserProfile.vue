@@ -125,6 +125,7 @@
                     <v-snackbar
                     v-model="hasSaved"
                     :timeout="2000"
+                    :color="snackColor"
                     absolute
                     center
                     >
@@ -149,6 +150,7 @@ export default {
       uid: null,
       updata: false,
       returnMsg: '',
+      snackColor: '',
       userObject: {
         name: '',
         post: '',
@@ -182,13 +184,15 @@ export default {
         .keys(this.userObject)
         .every(key => !!this.userObject[key])
       if (!areAllFieldsFilledIn) {
-        this.returnMsg = 'Preencha todos os campos OBRIGATÓRIOS!'
+        this.returnMsg = 'Preencha todos os campos obrigatórios!'
+        this.snackColor = 'red'
         this.hasSaved = true
         return
       }
       try {
         if (this.password !== this.confPassword) {
           this.returnMsg = 'As senhas não conferem!'
+          this.snackColor = 'red'
           this.hasSaved = true
           this.updata = false
         } else if (this.password === '' && this.confPassword === '') {
@@ -211,11 +215,13 @@ export default {
           const result = (await api.update_profile_post(this.uid, profile)).data
           if (result.success) {
             this.returnMsg = 'Informações atualizadas!'
+            this.snackColor = 'success'
             this.hasSaved = true
           }
         }
       } catch (error) {
         this.returnMsg = error.response.data.error
+        this.snackColor = 'red'
         this.hasSaved = true
         console.log(error)
       }

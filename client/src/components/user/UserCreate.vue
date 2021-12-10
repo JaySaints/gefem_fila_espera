@@ -217,6 +217,11 @@ export default {
           }, 500)
           this.$emit('update_list')
         }
+        if (!result.success) {
+          this.returnMsg = result.error
+          this.snackColor = 'red'
+          this.hasSaved = true
+        }
       } catch (error) {
         console.log(error)
         this.returnMsg = error.response.data.error

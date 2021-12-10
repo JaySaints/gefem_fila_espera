@@ -54,20 +54,7 @@ module.exports = {
                     break;
             }
         } else {
-            const result = await User.findOne({
-                where: {
-                    email: req.body.email
-                }
-            }) 
-            console.log(result)
-            if (result !== null) {
-                res.status(400).send({
-                    error: 'Ops! Este email já foi registrado.',
-                    errorLog: error
-                })  
-            } else {
-                next() 
-            }
+            next()
         }        
     }
 }
