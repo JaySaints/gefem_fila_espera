@@ -41,14 +41,27 @@ module.exports = {
     },
     async update_status_queue_post (req, res, next) {
         try {
-            
-            const result = await Scheduling.update({
-                status: req.body.status
-            },{
-                where: {
-                    id: req.body.id
-                }
-            })            
+            var result
+            if(req.body.dateTimeStart === "") {
+                result = await Scheduling.update({
+                    status: req.body.status,
+                    dateTimeEnd: req.body.dateTimeEnd
+                },{
+                    where: {
+                        id: req.body.id
+                    }
+                })
+            } else {
+                result = await Scheduling.update({
+                    status: req.body.status,
+                    dateTimeStart: req.body.dateTimeStart,
+                    dateTimeEnd: req.body.dateTimeEnd
+                },{
+                    where: {
+                        id: req.body.id
+                    }
+                })
+            }
             res.status(200).send({success: true, msg: 'Elemento Atualizado!!!', return: result})
         } catch (error) {
             console.log(error)

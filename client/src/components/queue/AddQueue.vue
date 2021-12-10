@@ -95,6 +95,7 @@
 
 <script>
 import api from '../../service/api'
+// import formatDateTime from '../global/formatDateTime'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -117,10 +118,8 @@ export default {
   methods: {
     async save_user () {
       try {
-        // var today = new Date()
+        // var today = formatDateTime.format(new Date())
         var fullDate = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)
-        // today.getDay() + '/' + today.getMonth() + '/' + today.getFullYear()
-        // var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
 
         const payload = {
           dateScheduling: fullDate,

@@ -69,7 +69,7 @@ export default {
     async updateStatus (id) {
       this.dialog = false
       try {
-        const result = (await api.update_status_queue_post({ status: 'Saiu da Fila', id: id })).data
+        const result = (await api.update_status_queue_post({ status: 'Saiu da Fila', id: id, dateTimeEnd: null, dateTimeStart: null })).data
         console.log(result)
         this.$emit('update', { id: id })
       } catch (error) {

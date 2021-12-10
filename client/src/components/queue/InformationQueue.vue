@@ -30,7 +30,7 @@
                   <strong>Telefone:</strong>
                   <p>({{ elements.User.codArea }}) {{elements.User.phone}}</p>
                   <strong>Data e Hora que entrou na fila:</strong>
-                  <p>{{dateTime}}</p>
+                  <p>{{`${fdate} ${fhour}`}}</p>
                   <strong>Assunto:</strong>
                   <p>{{elements.subject}}</p>
                 </v-flex>
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import formatDateTime from '../global/formatDateTime'
 
 export default {
   name: '',
@@ -65,7 +66,8 @@ export default {
     return {
       dialog: null,
       hasTelegram: '',
-      dateTime: ''
+      fdate: '',
+      fhour: ''
     }
   },
   props: [
@@ -80,12 +82,11 @@ export default {
       this.hasTelegram = 'Aviso: Telegram cadastrado para receber mensagens.'
     }
 
-    this.dateTime = this.elements.createdAt
+    this.fdate = formatDateTime.format(this.elements.createdAt).date
+    this.fhour = formatDateTime.format(this.elements.createdAt).hour
   }
 }
 </script>
 
 <style>
-tr {
-}
 </style>

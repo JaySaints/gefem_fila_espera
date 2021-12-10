@@ -58,7 +58,7 @@
 
         <v-list-item to="/reports" v-if="isAdmin">
           <v-list-item-icon>
-            <v-icon color="yellow darken-2">mdi-upload</v-icon>
+            <v-icon color="success darken-2">mdi-upload</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>Emitir Relatório</v-list-item-title>
@@ -78,10 +78,11 @@
         <v-list-item
           v-for="link in links"
           :key="link.text"
-          :to="link.to"
+          :href="link.to"
+          target="_blank"
         >
             <v-list-item-content>
-              <v-list-item-title>{{ link.text }}</v-list-item-title>
+              <v-list-item-title class="blue--text">{{ link.text }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
@@ -100,14 +101,14 @@ export default {
     title: 'Menu',
     subTitle: 'Bem-Vindo',
     items: [
-      { text: 'Fila', icon: 'mdi-history', color: 'blue darken-2', to: '/' },
+      { text: 'Fila', icon: 'mdi-history', color: 'red darken-2', to: '/' },
       { text: 'Perfil', icon: 'mdi-account', color: 'amber darken-2', to: '/profile' }
     ],
     links: [
-      { text: 'Fila', to: '/' },
-      { text: 'Perfil', to: '/profile' },
-      { text: 'Militares', to: '/mil' },
-      { text: 'Login', icon: 'mdi-login', color: 'green darken-2', to: '/login' }
+      { text: '5° GAC AP', to: 'http://www.5gacap.eb.mil.br/' },
+      { text: 'Quartéis por Estado', to: 'https://www.eb.mil.br/quarteis-por-estado' },
+      { text: 'Rádio Verde Oliva', to: 'https://socialradio.com.br/radio/verdeolivama/' },
+      { text: 'Folha Militar', to: 'http://folhamilitar.com.br/' }
     ]
   }),
   computed: {
