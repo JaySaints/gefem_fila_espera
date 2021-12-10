@@ -142,6 +142,7 @@
         <v-snackbar
           v-model="hasSaved"
           :timeout="2000"
+          :color="snackColor"
           absolute
           center
         >
@@ -169,6 +170,7 @@ export default {
         email: '',
         codArea: ''
       },
+      snackColor: '',
       sessions: [],
       posts: [],
       returnMsg: '',
@@ -184,6 +186,7 @@ export default {
         .every(key => !!this.user[key])
       if (!areAllFieldsFilledIn) {
         this.returnMsg = 'Preencha todos os campos obrigatórios!'
+        this.snackColor = 'red'
         this.hasSaved = true
         return
       }
@@ -201,6 +204,7 @@ export default {
         const result = (await api.create_user_post(user)).data
         if (result.success) {
           this.returnMsg = 'Militar Cadastrado!'
+          this.snackColor = 'success'
           this.hasSaved = true
           await setTimeout(() => {
             this.dialog = false
@@ -216,6 +220,7 @@ export default {
       } catch (error) {
         console.log(error)
         this.returnMsg = error.response.data.error
+        this.snackColor = 'red'
         this.hasSaved = true
       }
     }

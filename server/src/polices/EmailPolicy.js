@@ -59,7 +59,8 @@ module.exports = {
                     email: req.body.email
                 }
             }) 
-            if (result !== '') {
+            console.log(result)
+            if (result !== null) {
                 res.status(400).send({
                     error: 'Ops! Este email já foi registrado.',
                     errorLog: error
