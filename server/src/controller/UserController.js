@@ -78,7 +78,9 @@ module.exports = {
                 const users = await searchUser.search(search)
                 res.send({success: true, users: users})
             } else {
-                const users = await User.findAll()
+                const users = await User.findAll({order: [
+                    ['post', 'ASC']
+                ]})
                 res.send({success: true, users: users})
             }
     

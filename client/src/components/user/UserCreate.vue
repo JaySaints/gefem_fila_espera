@@ -132,7 +132,7 @@
               color="primary darken-2"
               large
               rounded
-              @click="create_user()"
+              @click="create_user"
               aria-label="Salvar"
               title="Salvar"
           >
@@ -183,7 +183,7 @@ export default {
         .keys(this.user)
         .every(key => !!this.user[key])
       if (!areAllFieldsFilledIn) {
-        this.returnMsg = 'Preencha todos os campos OBRIGATÓRIOS!'
+        this.returnMsg = 'Preencha todos os campos obrigatórios!'
         this.hasSaved = true
         return
       }
@@ -202,13 +202,17 @@ export default {
         if (result.success) {
           this.returnMsg = 'Militar Cadastrado!'
           this.hasSaved = true
+          await setTimeout(() => {
+            this.dialog = false
+            this.user.post = ''
+            this.user.name = ''
+            this.user.session = ''
+            this.user.email = ''
+            this.user.codArea = ''
+            this.user.phone = ''
+          }, 500)
+          this.$emit('update_list')
         }
-        this.user.post = ''
-        this.user.name = ''
-        this.user.session = ''
-        this.user.email = ''
-        this.user.codArea = ''
-        this.user.phone = ''
       } catch (error) {
         console.log(error)
         this.returnMsg = error.response.data.error
