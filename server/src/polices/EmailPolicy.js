@@ -1,7 +1,8 @@
 const Joi = require('joi');
+const User = require('../model/UserModel')
 
 module.exports = {
-    register (req, res, next) {
+    async register (req, res, next) {
         const schema = Joi.object({
             email: Joi.string().email(),            
             codArea: Joi.string()
@@ -53,7 +54,19 @@ module.exports = {
                     break;
             }
         } else {
-            next() 
+            const result = await User.findOne({
+                where: {
+                    email: req.body.email
+                }
+            }) 
+            if (result !== '') {
+                res.status(400).send({
+                    error: 'Ops! Este email já foi registrado.',
+                    errorLog: error
+                })  
+            } else {
+                next() 
+            }
         }        
     }
 }
