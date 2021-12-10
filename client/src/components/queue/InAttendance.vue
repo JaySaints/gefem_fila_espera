@@ -11,7 +11,7 @@
                     <div class="mb-4">
                       <v-btn
                         v-model="btnConclued"
-                        fab color="success lighten-2"
+                        fab color="cyan lighten-2"
                         v-if="isAdmin"
                         @click="conclued(scheId)"
                         aria-label="Concluir!"
@@ -48,6 +48,7 @@
 <script>
 import api from '../../service/api'
 import { mapGetters } from 'vuex'
+import formatDateTime from '../global/formatDateTime'
 
 export default {
   data () {
@@ -77,7 +78,8 @@ export default {
   },
   methods: {
     async conclued (id) {
-      await api.update_status_queue_post({ id: id, status: 'Concluido' })
+      const endTime = formatDateTime.format(new Date())
+      await api.update_status_queue_post({ id: id, status: 'Concluido', dateTimeEnd: endTime.hour })
       this.post = 'Sala'
       this.name = 'vazia!'
     }

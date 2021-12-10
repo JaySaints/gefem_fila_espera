@@ -54,6 +54,7 @@
 
 <script>
 import api from '../../service/api'
+import formatDateTime from '../global/formatDateTime'
 
 export default {
   name: '',
@@ -69,7 +70,8 @@ export default {
     async updateStatus (id) {
       this.dialog = false
       try {
-        await api.update_status_queue_post({ status: 'Em atendimento', id: id, uid: this.elements.userId })
+        const startTime = formatDateTime.format(new Date())
+        await api.update_status_queue_post({ status: 'Em atendimento', id: id, uid: this.elements.userId, dateTimeEnd: null, dateTimeStart: startTime.hour })
         this.$emit('update', { id: id })
       } catch (error) {
         console.log(error)

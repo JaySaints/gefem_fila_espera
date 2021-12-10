@@ -17,6 +17,9 @@
                 DATA DO DESPACHO
               </th>
               <th class="text-center" id="t1">
+                STATUS
+              </th>
+              <th class="text-center" id="t1">
                 HORA INÍCIO
               </th>
               <th class="text-center" id="t1">
@@ -33,7 +36,8 @@
               <td>{{ user.User.session }}</td>
               <td >{{ user.subject }}</td>
               <td>{{ user.dateScheduling }}</td>
-              <td>{{ user.dateTimeEnd }}</td>
+              <td>{{ user.status }}</td>
+              <td>{{ user.dateTimeStart }}</td>
               <td>{{ user.dateTimeEnd }}</td>
             </tr>
           </tbody>
@@ -52,6 +56,8 @@ export default {
   },
   props: [
     'users'
-  ]
+  ],
+  mounted () {
+  }
 }
 </script>

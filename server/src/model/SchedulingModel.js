@@ -19,7 +19,10 @@ const Scheduling = sequelize.define('Scheduling', {
         type: DataTypes.STRING
     },
     dateTimeEnd: {
-        type: DataTypes.DATE
+        type: DataTypes.STRING
+    },
+    dateTimeStart: {
+        type: DataTypes.STRING
     },
     status: {
         type: DataTypes.STRING,
