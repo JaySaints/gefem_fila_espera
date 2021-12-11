@@ -15,7 +15,7 @@ module.exports = (app) => {
     app.post('/login', user.login_user_post)
     
     // Create new user
-    app.post('/mil/create', EmailPolicy.register, user.create_user_post)
+    app.post('/mil/create', authToken.isAuthAdmin, EmailPolicy.register, user.create_user_post)
 
     // List all user accounts
     app.get('/mil/', authToken.isAuthAdmin, user.all_user_get)
