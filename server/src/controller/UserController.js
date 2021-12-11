@@ -29,7 +29,7 @@ module.exports = {
                     post: req.body.post,
                     name: (req.body.name).toUpperCase(),
                     session: req.body.session,
-                    email: req.body.email,
+                    email: (req.body.email).toLowerCase(),
                     codArea: req.body.codArea,
                     phone: req.body.phone,
                     role: req.body.role,
