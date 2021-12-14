@@ -1,7 +1,8 @@
 const Joi = require('joi');
+const User = require('../model/UserModel')
 
 module.exports = {
-    register (req, res, next) {
+    async register (req, res, next) {
         const schema = Joi.object({
             email: Joi.string().email(),            
             codArea: Joi.string()
@@ -31,18 +32,18 @@ module.exports = {
             switch (error.details[0].context.key) {
                 case 'email':
                     res.status(400).send({
-                        error: 'Erro: Informe um EMAIL válido!'
+                        error: 'Erro: Informe um email válido!'
                     });
                     break;  
                 case 'codArea':
                     res.status(400).send({
-                        error: 'Erro: Verifique o CÓDIGO DE ÂREA!',
+                        error: 'Erro: Verifique o DDD!',
                         errorLog: error
                     });
                     break;  
                 case 'phone':
                     res.status(400).send({
-                        error: 'Erro: Verifique o NÚMERO DE TELEFONE!'
+                        error: 'Erro: Verifique o número de telefone!'
                     });
                     break;               
                 default:
@@ -53,7 +54,7 @@ module.exports = {
                     break;
             }
         } else {
-            next() 
+            next()
         }        
     }
 }

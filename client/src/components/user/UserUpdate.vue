@@ -154,6 +154,7 @@
                     <v-snackbar
                     v-model="hasSaved"
                     :timeout="2000"
+                    :color="snackColor"
                     absolute
                     center
                     >
@@ -185,6 +186,7 @@ export default {
         email: '',
         codArea: ''
       },
+      snackColor: '',
       posts: [],
       sessions: [],
       returnMsg: '',
@@ -209,7 +211,8 @@ export default {
         .keys(this.userObject)
         .every(key => !!this.userObject[key])
       if (!areAllFieldsFilledIn) {
-        this.returnMsg = 'Preencha todos os campos OBRIGATÓRIOS!'
+        this.returnMsg = 'Preencha todos os campos obrigatório!'
+        this.snackColor = 'red'
         this.hasSaved = true
         return
       }
@@ -226,10 +229,12 @@ export default {
         const result = (await api.update_user_post(this.uid, user)).data
         if (result.success) {
           this.returnMsg = 'Dados Atualizados!'
+          this.snackColor = 'success'
           this.hasSaved = true
         }
       } catch (error) {
         this.returnMsg = error.response.data.error
+        this.snackColor = 'red'
         this.hasSaved = true
         console.log(error)
       }
@@ -238,6 +243,7 @@ export default {
       try {
         await api.reset_passowrd_get(this.uid).data
         this.returnMsg = 'Senha Resetada!'
+        this.snackColor = 'success'
         this.hasSaved = true
       } catch (error) {
         console.log(error)

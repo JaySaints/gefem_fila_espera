@@ -132,7 +132,7 @@
               color="primary darken-2"
               large
               rounded
-              @click="create_user()"
+              @click="create_user"
               aria-label="Salvar"
               title="Salvar"
           >
@@ -142,6 +142,7 @@
         <v-snackbar
           v-model="hasSaved"
           :timeout="2000"
+          :color="snackColor"
           absolute
           center
         >
@@ -169,6 +170,7 @@ export default {
         email: '',
         codArea: ''
       },
+      snackColor: '',
       sessions: [],
       posts: [],
       returnMsg: '',
@@ -183,7 +185,8 @@ export default {
         .keys(this.user)
         .every(key => !!this.user[key])
       if (!areAllFieldsFilledIn) {
-        this.returnMsg = 'Preencha todos os campos OBRIGATÓRIOS!'
+        this.returnMsg = 'Preencha todos os campos obrigatórios!'
+        this.snackColor = 'red'
         this.hasSaved = true
         return
       }
@@ -201,17 +204,28 @@ export default {
         const result = (await api.create_user_post(user)).data
         if (result.success) {
           this.returnMsg = 'Militar Cadastrado!'
+          this.snackColor = 'success'
+          this.hasSaved = true
+          await setTimeout(() => {
+            this.dialog = false
+            this.user.post = ''
+            this.user.name = ''
+            this.user.session = ''
+            this.user.email = ''
+            this.user.codArea = ''
+            this.user.phone = ''
+          }, 500)
+          this.$emit('update_list')
+        }
+        if (!result.success) {
+          this.returnMsg = result.error
+          this.snackColor = 'red'
           this.hasSaved = true
         }
-        this.user.post = ''
-        this.user.name = ''
-        this.user.session = ''
-        this.user.email = ''
-        this.user.codArea = ''
-        this.user.phone = ''
       } catch (error) {
         console.log(error)
         this.returnMsg = error.response.data.error
+        this.snackColor = 'red'
         this.hasSaved = true
       }
     }

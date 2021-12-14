@@ -128,12 +128,14 @@ export default {
           status: 'em espera'
         }
 
-        await api.enter_on_queue_post(payload).data
+        await api.enter_on_queue_post(payload)
         this.$emit('queue')
       } catch (error) {
         console.log(error)
       }
       this.dialog = false
+      this.subject = ''
+      this.military = ''
     }
   },
   async mounted () {

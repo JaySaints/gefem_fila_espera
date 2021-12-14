@@ -61,6 +61,9 @@ export default {
       users: []
     }
   },
+  props: [
+    'update'
+  ],
   async mounted () {
     // do a request to the backend for all the users
     try {
@@ -74,6 +77,14 @@ export default {
       immediate: true,
       async handler (value) {
         this.users = (await api.all_user_get(value)).data.users
+      }
+    },
+    update: {
+      immediate: true,
+      async handler () {
+        if (this.update) {
+          this.users = (await api.all_user_get()).data.users
+        }
       }
     }
   },

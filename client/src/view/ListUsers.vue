@@ -14,11 +14,11 @@
     </header-bar>
 
     <div>
-      <table-users />
+      <table-users :update="update"/>
     </div>
 
     <div class="button_add_user">
-      <create-user />
+      <create-user v-on:update_list="updateList" />
     </div>
   </v-container>
 </template>
@@ -33,7 +33,8 @@ export default {
   name: 'Users',
   data () {
     return {
-      search: ''
+      search: '',
+      update: false
     }
   },
   components: {
@@ -42,6 +43,12 @@ export default {
     TableUsers
   },
   methods: {
+    async updateList () {
+      this.update = true
+      setTimeout(() => {
+        this.update = false
+      }, 1000)
+    }
   },
   watch: {
     search: _.debounce(async function (value) {

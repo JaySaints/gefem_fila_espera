@@ -19,7 +19,10 @@ module.exports.search = async (search) => {
                     }
                   }
                 ]
-          }
+          },
+          order: [
+            ['post', 'ASC']
+          ]
         })
   } else {
       users = await User.findAll({

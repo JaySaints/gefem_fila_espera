@@ -10,22 +10,42 @@ module.exports = {
             const salt = saltHash.salt;
             const hash = saltHash.hash;
 
-            const user = await User.create({
-                post: req.body.post,
-                name: (req.body.name).toUpperCase(),
-                session: req.body.session,
-                email: req.body.email,
-                codArea: req.body.codArea,
-                phone: req.body.phone,
-                role: req.body.role,
-                hash: hash,
-                salt: salt
-            })
-            res.status(200).send({success: true, msg: 'Militar Registrado!', user: user});
+            const result = await User.findOne({
+                where: {
+                    email: req.body.email
+                }
+            }) 
+            var msg = null
+            var success = null 
+            var user = null
+            var error = null
+
+            if (result !== null) {
+                error = 'Ops! Este email já foi registrado.'
+                user = null
+                success = false
+            } else {
+                user = await User.create({
+                    post: req.body.post,
+                    name: (req.body.name).toUpperCase(),
+                    session: req.body.session,
+                    email: (req.body.email).toLowerCase(),
+                    codArea: req.body.codArea,
+                    phone: req.body.phone,
+                    role: req.body.role,
+                    hash: hash,
+                    salt: salt
+                })
+                msg = 'Militar Registrado!'
+                success = true
+            }
+            res.send({success: success, msg: msg, user: user, error: error})                 
+
         } catch (err) {
             res.status(400).send({
                 error: 'Error undefined'
             })
+            console.log(err)
         }
     },
     // Function Login user account
@@ -78,7 +98,9 @@ module.exports = {
                 const users = await searchUser.search(search)
                 res.send({success: true, users: users})
             } else {
-                const users = await User.findAll()
+                const users = await User.findAll({order: [
+                    ['post', 'ASC']
+                ]})
                 res.send({success: true, users: users})
             }
     
