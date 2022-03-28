@@ -97,7 +97,7 @@ import { mapGetters } from 'vuex'
 export default {
   data: () => ({
     avatarSrc: '',
-    isAdmin: false,
+    isAdmin: true,
     title: 'Menu',
     subTitle: 'Bem-Vindo',
     items: [

@@ -14,9 +14,6 @@ app.use(cors());
 
 require('./router')(app);
 
-// Call routers
-require('./telegram/BotRouter')(Bot);
-
 sequelize.sync({force: false})
     .then(() => {
         app.listen(settings.port);

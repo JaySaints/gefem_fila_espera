@@ -231,7 +231,7 @@ export default {
     }
   },
   async mounted () {
-    const objects = (await api.get_inflate_get()).data
+    const objects = require('../../data/post_sessions.json')
     this.sessions = objects.sessions
     this.posts = objects.posts
   }

@@ -1,0 +1,29 @@
+{
+    "posts": [
+        "CEL", 
+        "T-CEL",
+        "MAJ",
+        "CAP",
+        "TEN",
+        "ASP",
+        "S-TEN",
+        "SGT",
+        "CB",
+        "SD",
+        "OUTROS"
+    ],
+    "sessions": [
+        "BC/AP",
+        "1º BO",
+        "2º BO",
+        "3º BO",
+        "4º BO",
+        "NPOR",
+        "Tesouraria",
+        "Salc",
+        "Almox",
+        "Aprov",
+        "ordenança",
+        "N/A"
+    ]
+}

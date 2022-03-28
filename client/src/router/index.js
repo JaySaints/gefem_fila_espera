@@ -10,7 +10,7 @@ const routes = [
     name: 'home',
     component: () => import(/* webpackChunkName: "show-queue" */ '../view/Queue.vue'),
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
@@ -18,7 +18,7 @@ const routes = [
     name: 'Profile',
     component: () => import(/* webpackChunkName: "profile" */'../view/Profile.vue'),
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
@@ -31,7 +31,7 @@ const routes = [
     name: 'Users',
     component: () => import(/* webpackChunkName: "list-users" */ '../view/ListUsers.vue'),
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
@@ -39,7 +39,7 @@ const routes = [
     name: 'Edit-Users',
     component: () => import(/* webpackChunkName: "edit-users" */ '../view/EditUsers.vue'),
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
@@ -47,7 +47,7 @@ const routes = [
     name: 'Reports',
     component: () => import(/* webpackChunkName: "Reports" */ '../view/Reports.vue'),
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
