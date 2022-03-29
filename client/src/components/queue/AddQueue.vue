@@ -102,7 +102,7 @@ export default {
   data () {
     return {
       dialog: false,
-      isAdmin: false,
+      isAdmin: true,
       username: '',
       post: '',
       subject: '',

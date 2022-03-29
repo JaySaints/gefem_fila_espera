@@ -1,6 +1,5 @@
 const Scheduling = require('../model/SchedulingModel')
 const User = require('../model/UserModel')
-const Bot = require('../telegram/bot').Bot
 
 module.exports = {
     async enter_on_queue_post (req, res, next) {
@@ -89,35 +88,6 @@ module.exports = {
         } catch (error) {
             console.log(error)
             res.status(500).send({success: false, msg: "Nem um militar na fila!"})
-        }
-    },
-    async send_message_post (req, res, next) {
-        try {
-            const {uid, msg} = req.body
-            const user = await User.findOne({
-                where: {
-                    id: uid
-                },
-                attributes: ['post', 'name', 'session', 'chatId', 'phone', 'email']
-            })
-            if (user.chatId != null) {
-                await Bot.sendMessage(user.chatId, msg);      
-                res.send({
-                    success: true,
-                    chat_id: user.chatId,
-                    name: user.name,
-                    msg: "Usuário registrado no telegram."
-                })
-            } else {
-                res.send({
-                    success: false,
-                    chat_id: user.chatId,
-                    name: user.name,
-                    msg: "Usuário ainda NÃO registrado no telegram!"
-                })
-            }
-        } catch (error) {
-            console.log(error)
         }
     }
 }

@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const { sequelize } = require('./model');
-const Bot = require('./telegram/bot').Bot
 require('dotenv').config()
 const settings = require('./config/Settings')
 const app = express();
@@ -13,6 +12,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 require('./router')(app);
+
+require('./controller/VerifyAdmin').exist_admin()
 
 sequelize.sync({force: false})
     .then(() => {

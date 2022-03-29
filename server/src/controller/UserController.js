@@ -1,15 +1,13 @@
 const User = require('../model/UserModel')
 const tools = require('../config/tools')
+const AddUser = require('./CreateUser')
+const Op = require('sequelize').Op;
 const searchUser = require('./SearchUsersController')
 
 module.exports = {
     // Function create user account => POST
     async create_user_post (req, res, next) {
         try {
-            const saltHash = tools.genPassword(req.body.password);
-            const salt = saltHash.salt;
-            const hash = saltHash.hash;
-
             const result = await User.findOne({
                 where: {
                     email: req.body.email
@@ -25,17 +23,7 @@ module.exports = {
                 user = null
                 success = false
             } else {
-                user = await User.create({
-                    post: req.body.post,
-                    name: (req.body.name).toUpperCase(),
-                    session: req.body.session,
-                    email: (req.body.email).toLowerCase(),
-                    codArea: req.body.codArea,
-                    phone: req.body.phone,
-                    role: req.body.role,
-                    hash: hash,
-                    salt: salt
-                })
+                user = await AddUser.func_create_user(req)
                 msg = 'Militar Registrado!'
                 success = true
             }
@@ -48,6 +36,7 @@ module.exports = {
             console.log(err)
         }
     },
+    
     // Function Login user account
     async login_user_post (req, res, next) {
         try {
@@ -98,9 +87,16 @@ module.exports = {
                 const users = await searchUser.search(search)
                 res.send({success: true, users: users})
             } else {
-                const users = await User.findAll({order: [
-                    ['post', 'ASC']
-                ]})
+                const users = await User.findAll({
+                    order: [
+                        ['post', 'ASC']
+                    ],
+                    where: {
+                        email: {
+                            [Op.ne]: "admin@admin.com"
+                        }
+                    }
+                })
                 res.send({success: true, users: users})
             }
     

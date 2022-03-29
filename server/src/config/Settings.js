@@ -24,8 +24,5 @@ module.exports = {
     authentication: {
         PRIV_KEY: PRIV_KEY || 'secret',
         PUB_KEY: PUB_KEY || 'secret'
-    },
-    telegram: {
-        token: process.env.TOKEN_BOT
     }
 }

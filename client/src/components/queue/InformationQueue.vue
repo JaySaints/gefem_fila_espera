@@ -35,9 +35,6 @@
                   <p>{{elements.subject}}</p>
                 </v-flex>
               </v-layout>
-              <div>
-                  <strong><p v-html="hasTelegram"></p></strong>
-              </div>
             </v-card-text>
 
             <v-divider></v-divider>
@@ -65,7 +62,6 @@ export default {
   data () {
     return {
       dialog: null,
-      hasTelegram: '',
       fdate: '',
       fhour: ''
     }
@@ -76,12 +72,6 @@ export default {
   methods: {
   },
   mounted () {
-    if (this.elements.User.chatId == null) {
-      this.hasTelegram = 'Aviso: Telegram NÃO cadastrado.'
-    } else {
-      this.hasTelegram = 'Aviso: Telegram cadastrado para receber mensagens.'
-    }
-
     this.fdate = formatDateTime.format(this.elements.createdAt).date
     this.fhour = formatDateTime.format(this.elements.createdAt).hour
   }
